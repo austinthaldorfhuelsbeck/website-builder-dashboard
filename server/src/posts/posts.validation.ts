@@ -3,8 +3,8 @@ import { Request, Response, NextFunction } from "express"
 
 // Internal Modules
 import { PostsService } from "./posts.service"
-import { PostCategoriesService } from "../post_categories/post_categories.service"
-import { PostTopicsService } from "../post_topics/post_topics.service"
+import { PostCategoriesService } from "../post-categories/post-categories.service"
+import { PostTopicsService } from "../post-topics/post-topics.service"
 import { defaultImg } from "../utils/app-constants"
 import { errorHandler } from "../errors/error.handlers"
 import {
