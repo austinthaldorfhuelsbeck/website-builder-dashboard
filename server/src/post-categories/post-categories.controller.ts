@@ -2,8 +2,8 @@
 import { Request, Response } from "express"
 
 // Internal Modules
-import { PostCategoriesValidation } from "./post-categories.validation"
-import { PostCategoriesService } from "./post-categories.service"
+import { PostCategoriesValidation } from "./post_categories.validation"
+import { PostCategoriesService } from "./post_categories.service"
 import { errorHandler } from "../errors/error.handlers"
 import { IBaseCategory, IPostCategory } from "../interfaces/objects.interface"
 

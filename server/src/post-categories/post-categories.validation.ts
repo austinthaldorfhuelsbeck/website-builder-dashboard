@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from "express"
 
 // Internal Modules
-import { PostCategoriesService } from "./post-categories.service"
+import { PostCategoriesService } from "./post_categories.service"
 import { errorHandler } from "../errors/error.handlers"
 import { IBaseCategory, IPostCategory } from "../interfaces/objects.interface"
 

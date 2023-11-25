@@ -1,8 +1,8 @@
 [
 	{
 		"post_id": "1700444667940",
-		"category_id": "1700446535950",
-		"topic_id": "1700446682860",
+		"post_category_id": "1700446535950",
+		"post_topic_id": "1700446682860",
 		"featured": "TRUE",
 		"img": "Ep174-1.jpeg",
 		"title": "Redeeming Heartache: Trauma is Profound, Healing is Possible",
@@ -15,8 +15,8 @@
 	},
 	{
 		"post_id": "1700444667941",
-		"category_id": "1700446535951",
-		"topic_id": "1700446682861",
+		"post_category_id": "1700446535951",
+		"post_topic_id": "1700446682861",
 		"featured": "FALSE",
 		"img": "elmer-canas-hTrc3aG3OGY-unsplash-e1629743443998.jpg",
 		"title": "Wisdom of the Collective Mother",
@@ -28,8 +28,8 @@
 	},
 	{
 		"post_id": "1700444667942",
-		"category_id": "1700446535952",
-		"topic_id": "1700446682860",
+		"post_category_id": "1700446535952",
+		"post_topic_id": "1700446682860",
 		"featured": "FALSE",
 		"img": "cathy-square.jpg",
 		"title": "What Is Story Work?",
@@ -41,8 +41,8 @@
 	},
 	{
 		"post_id": "1700444667943",
-		"category_id": "1700446535950",
-		"topic_id": "1700446682862",
+		"post_category_id": "1700446535950",
+		"post_topic_id": "1700446682864",
 		"featured": "FALSE",
 		"img": "Season-3-Episode-Art-795-X-500-1.png",
 		"title": "Warfare Part 9: Soul Ties",
@@ -55,8 +55,8 @@
 	},
 	{
 		"post_id": "1700444667944",
-		"category_id": "1700446535951",
-		"topic_id": "1700446682861",
+		"post_category_id": "1700446535951",
+		"post_topic_id": "1700446682861",
 		"featured": "FALSE",
 		"img": "https://cdn.theallendercenter.org/wp-content/uploads/2015/09/Gizmo.jpg",
 		"title": "Goodbye Old Friend",

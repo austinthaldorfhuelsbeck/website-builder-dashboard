@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from "express"
 
 // Internal Modules
-import { PostTopicsService } from "./post-topics.service"
+import { PostTopicsService } from "./post_topics.service"
 import { errorHandler } from "../errors/error.handlers"
 import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 

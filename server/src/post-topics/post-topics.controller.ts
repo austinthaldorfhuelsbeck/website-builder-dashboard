@@ -2,8 +2,8 @@
 import { Request, Response } from "express"
 
 // Internal Modules
-import { PostTopicsValidation } from "./post-topics.validation"
-import { PostTopicsService } from "./post-topics.service"
+import { PostTopicsValidation } from "./post_topics.validation"
+import { PostTopicsService } from "./post_topics.service"
 import { errorHandler } from "../errors/error.handlers"
 import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 

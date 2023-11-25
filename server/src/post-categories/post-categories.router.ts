@@ -2,7 +2,7 @@
 import { Router } from "express"
 
 // Internal Modules
-import { PostCategoriesController } from "./post-categories.controller"
+import { PostCategoriesController } from "./post_categories.controller"
 import { methodNotAllowed } from "../errors/error.handlers"
 
 // Router Definition
