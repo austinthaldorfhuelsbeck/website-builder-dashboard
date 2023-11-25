@@ -91,6 +91,10 @@ const routes: RouteObject[] = [
 		],
 	},
 	{
+		path: "callback",
+		element: <CallbackPage />,
+	},
+	{
 		path: "*",
 		element: <NotFound />,
 	},

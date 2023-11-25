@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 
 import { routes } from "./routes"
-import { ContextProvider } from "./context/ContextProvider"
+import { ContextProvider } from "./context/context.interface"
 import { Loader, PageContainer } from "./styles/layouts/page-layout.style"
 
 function App() {
