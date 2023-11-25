@@ -1,12 +1,22 @@
 import {
 	Context,
+	createContext,
 	PropsWithChildren,
 	ReactNode,
-	createContext,
 	useContext,
 	useEffect,
 	useState,
 } from "react"
+
+import { IApiResponse } from "../interfaces/utils.interface"
+import { listPosts } from "../services/cl-api/posts.service"
+import {
+	IEventCategory,
+	IPostCategory,
+	IPostTopic,
+	IValidEvent,
+	IValidPost,
+} from "../interfaces/objects.interface"
 import {
 	IEventCategoriesContext,
 	IEventCategoriesContextState,
@@ -22,21 +32,17 @@ import {
 	IPostCategoryContextState,
 	IPostContext,
 	IPostContextState,
+	IPostsContext,
+	IPostsContextState,
 	IPostTopicContext,
 	IPostTopicContextState,
 	IPostTopicsContext,
 	IPostTopicsContextState,
-	IPostsContext,
-	IPostsContextState,
 } from "./context.interface"
-import {
-	IEventCategory,
-	IPostCategory,
-	IPostTopic,
-	IValidEvent,
-	IValidPost,
-} from "../interfaces/objects.interface"
-import { IApiResponse } from "../interfaces/utils.interface"
+import { listPostCategories } from "../services/cl-api/post-categories.service"
+import { listPostTopics } from "../services/cl-api/post-topics.service"
+import { listEvents } from "../services/cl-api/events.service"
+import { listEventCategories } from "../services/cl-api/event-categories.service"
 
 // Context Definitions
 // sets

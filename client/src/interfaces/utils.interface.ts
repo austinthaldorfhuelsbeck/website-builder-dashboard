@@ -1,9 +1,9 @@
-interface ErrorStatus extends Error {
-	status: number
+interface IAppError {
+	message: string
 }
 interface IApiResponse {
 	data: any
 	error: IAppError | null
 }
 
-export type { ErrorStatus, IApiResponse }
+export type { IAppError, IApiResponse }
