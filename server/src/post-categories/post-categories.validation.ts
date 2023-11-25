@@ -36,7 +36,10 @@ async function postCategoryExists(
 	} else if (req.body.data.post_category_id) {
 		id = req.body.data.post_category_id
 	} else {
-		errorHandler({ status: 400, message: "Post ID required." }, res)
+		errorHandler(
+			{ status: 400, message: "Post Category ID required." },
+			res,
+		)
 	}
 	// Read the post category
 	const postCategory: IPostCategory = await PostCategoriesService.read(

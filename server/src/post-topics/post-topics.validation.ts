@@ -35,7 +35,7 @@ async function postTopicExists(
 	} else if (req.body.data.post_topic_id) {
 		id = req.body.data.post_topic_id
 	} else {
-		errorHandler({ status: 400, message: "Post ID required." }, res)
+		errorHandler({ status: 400, message: "Post Topic ID required." }, res)
 	}
 	// Read the post topic
 	const postTopic: IPostTopic = await PostTopicsService.read(parseInt(id))

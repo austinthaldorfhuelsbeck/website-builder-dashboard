@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express"
 
 // Internal Modules
 import { EventsService } from "./events.service"
+import { EventCategoriesService } from "../event-categories/event-categories.service"
 import { errorHandler } from "../errors/error.handlers"
 import {
 	IBaseEvent,
@@ -44,7 +45,7 @@ async function eventExists(req: Request, res: Response, next: NextFunction) {
 	const event: IEvent = await EventsService.read(parseInt(id))
 	// Return error or pass thru locals
 	if (event) {
-		res.locals.foundPost = event
+		res.locals.foundEvent = event
 		return next()
 	}
 	errorHandler({ status: 404, message: `Event ${id} cannot be found.` }, res)

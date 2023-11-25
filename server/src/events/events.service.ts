@@ -21,7 +21,7 @@ async function update(newEvent: IBaseEvent, id: number): Promise<IEvent> {
 	return knex("events")
 		.select("*")
 		.where({ event_id: id })
-		.update(newEvent)
+		.update(newEvent, "*")
 		.then((events) => events[0])
 }
 async function destroy(id: number): Promise<void> {
