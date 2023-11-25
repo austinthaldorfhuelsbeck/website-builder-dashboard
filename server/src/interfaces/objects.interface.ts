@@ -25,7 +25,7 @@ interface IValidPost extends IPost {
 // EVENT
 interface IBaseEvent extends ITimestamps {
 	event_category_id: number
-	name: string
+	title: string
 	date: Date
 	text: string
 	content: string

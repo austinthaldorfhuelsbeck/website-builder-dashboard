@@ -36,7 +36,7 @@ async function update(req: Request, res: Response) {
 			newPostCategory,
 			id,
 		)
-		res.status(204).json(data)
+		res.status(200).json(data)
 	} catch (err) {
 		errorHandler(err, res)
 	}
@@ -47,7 +47,7 @@ async function destroy(req: Request, res: Response) {
 			res.locals.foundPostCategory.post_category_id,
 		)
 		const data: void = await PostCategoriesService.destroy(id)
-		res.status(202).json(data)
+		res.status(204).json(data)
 	} catch (err) {
 		errorHandler(err, res)
 	}

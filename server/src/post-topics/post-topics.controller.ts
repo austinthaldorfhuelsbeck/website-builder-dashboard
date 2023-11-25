@@ -11,9 +11,7 @@ import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 async function create(req: Request, res: Response) {
 	try {
 		const postTopic: IBaseTopic = res.locals.validPostTopic
-		console.log("Topic: ", postTopic)
 		const data: IPostTopic = await PostTopicsService.create(postTopic)
-		console.log("Res: ", data)
 		res.status(201).json(data)
 	} catch (err) {
 		errorHandler(err, res)
@@ -35,7 +33,7 @@ async function update(req: Request, res: Response) {
 			newPostTopic,
 			id,
 		)
-		res.status(204).json(data)
+		res.status(200).json(data)
 	} catch (err) {
 		errorHandler(err, res)
 	}
@@ -44,7 +42,7 @@ async function destroy(req: Request, res: Response) {
 	try {
 		const id: number = parseInt(res.locals.foundPostTopic.post_topic_id)
 		const data: void = await PostTopicsService.destroy(id)
-		res.status(202).json(data)
+		res.status(204).json(data)
 	} catch (err) {
 		errorHandler(err, res)
 	}

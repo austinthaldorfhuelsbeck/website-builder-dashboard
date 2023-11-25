@@ -30,7 +30,7 @@ async function update(req: Request, res: Response) {
 		const newPost: IBasePost = res.locals.validPost
 		const id: number = parseInt(res.locals.foundPost.post_id)
 		const data: IPost = await PostsService.update(newPost, id)
-		res.status(204).json(data)
+		res.status(200).json(data)
 	} catch (err) {
 		errorHandler(err, res)
 	}
@@ -39,7 +39,7 @@ async function destroy(req: Request, res: Response) {
 	try {
 		const id: number = parseInt(res.locals.foundPost.post_id)
 		const data: void = await PostsService.destroy(id)
-		res.status(202).json(data)
+		res.status(204).json(data)
 	} catch (err) {
 		errorHandler(err, res)
 	}
