@@ -1,14 +1,28 @@
-import express from "express"
+// External Modules
+import express, { NextFunction, Request, Response } from "express"
+import cors from "cors"
 
+// Internal Modules
+import { notFound, errorHandler } from "./errors/error.handlers"
+import { PostsRouter } from "./posts/posts.router"
+
+// App Definition
 const app = express()
-const port = 3000
 
-app.get("/", (req, res) => {
-	res.send("Hello NOD Readers!")
+// Middleware
+app.use(express.json())
+app.set("json spaces", 2)
+app.use(function (req: Request, res: Response, next: NextFunction) {
+	res.contentType("application/json; charset=utf-8")
+	next()
 })
+app.use(cors())
 
-app.listen(port, () => {
-	return console.log(
-		`Express server is listening at http://localhost:${port} 🚀`,
-	)
-})
+// Route handlers
+app.use("/posts", PostsRouter)
+
+// Error handlers
+app.use(notFound)
+app.use(errorHandler)
+
+export { app }
