@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from "express"
 
 // Internal Modules
-import { PostTopicsService } from "./post_topics.service"
+import { PostTopicsService } from "./post-topics.service"
 import { errorHandler } from "../errors/error.handlers"
 import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 
@@ -10,8 +10,6 @@ import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 function isValidPostTopic(req: Request, res: Response, next: NextFunction) {
 	// Get post topic from req
 	const postTopic: IBaseTopic = req.body
-	// Validate
-	if (!postTopic.text) postTopic.text = ""
 	// Build error message
 	const messages: string[] = []
 	if (!postTopic.label) messages.push("Topic name required.")

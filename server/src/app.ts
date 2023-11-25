@@ -5,6 +5,8 @@ import cors from "cors"
 // Internal Modules
 import { notFound, errorHandler } from "./errors/error.handlers"
 import { PostsRouter } from "./posts/posts.router"
+import { PostCategoriesRouter } from "./post-categories/post-categories.router"
+import { PostTopicsRouter } from "./post-topics/post-topics.router"
 
 // App Definition
 const app = express()
@@ -20,6 +22,8 @@ app.use(cors())
 
 // Route handlers
 app.use("/posts", PostsRouter)
+app.use("/post_categories", PostCategoriesRouter)
+app.use("/post_topics", PostTopicsRouter)
 
 // Error handlers
 app.use(notFound)

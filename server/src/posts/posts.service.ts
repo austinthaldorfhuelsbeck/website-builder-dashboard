@@ -38,17 +38,17 @@ async function readFeatured(): Promise<IPost> {
 		.orderBy("created_at", "desc")
 		.then((posts) => posts[0])
 }
-async function listCategory(category: string): Promise<IPost[]> {
+async function listCategory(id: number): Promise<IPost[]> {
 	return knex("posts")
 		.select("*")
-		.where({ category: category })
+		.where({ post_category_id: id })
 		.orderBy("updated_at", "desc")
 		.orderBy("created_at", "desc")
 }
-async function listTopic(topic: string): Promise<IPost[]> {
+async function listTopic(id: number): Promise<IPost[]> {
 	return knex("posts")
 		.select("*")
-		.where({ topic: topic })
+		.where({ post_topic_id: id })
 		.orderBy("updated_at", "desc")
 		.orderBy("created_at", "desc")
 }

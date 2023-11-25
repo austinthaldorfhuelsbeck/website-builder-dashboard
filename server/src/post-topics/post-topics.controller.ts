@@ -2,8 +2,8 @@
 import { Request, Response } from "express"
 
 // Internal Modules
-import { PostTopicsValidation } from "./post_topics.validation"
-import { PostTopicsService } from "./post_topics.service"
+import { PostTopicsValidation } from "./post-topics.validation"
+import { PostTopicsService } from "./post-topics.service"
 import { errorHandler } from "../errors/error.handlers"
 import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 
@@ -11,7 +11,9 @@ import { IBaseTopic, IPostTopic } from "../interfaces/objects.interface"
 async function create(req: Request, res: Response) {
 	try {
 		const postTopic: IBaseTopic = res.locals.validPostTopic
+		console.log("Topic: ", postTopic)
 		const data: IPostTopic = await PostTopicsService.create(postTopic)
+		console.log("Res: ", data)
 		res.status(201).json(data)
 	} catch (err) {
 		errorHandler(err, res)

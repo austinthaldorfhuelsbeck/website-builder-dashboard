@@ -62,8 +62,8 @@ async function readFeatured(req: Request, res: Response) {
 }
 async function listCategory(req: Request, res: Response) {
 	try {
-		const category: string = req.params.category
-		const data: IPost[] = await PostsService.listCategory(category)
+		const id: number = parseInt(req.params.category_id)
+		const data: IPost[] = await PostsService.listCategory(id)
 		res.status(200).json(data)
 	} catch (err) {
 		errorHandler(err, res)
@@ -71,8 +71,8 @@ async function listCategory(req: Request, res: Response) {
 }
 async function listTopic(req: Request, res: Response) {
 	try {
-		const topic: string = req.params.topic
-		const data: IPost[] = await PostsService.listTopic(topic)
+		const id: number = parseInt(req.params.topic_id)
+		const data: IPost[] = await PostsService.listTopic(id)
 		res.status(200).json(data)
 	} catch (err) {
 		errorHandler(err, res)

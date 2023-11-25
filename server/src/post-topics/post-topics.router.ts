@@ -2,7 +2,7 @@
 import { Router } from "express"
 
 // Internal Modules
-import { PostTopicsController } from "./post_topics.controller"
+import { PostTopicsController } from "./post-topics.controller"
 import { methodNotAllowed } from "../errors/error.handlers"
 
 // Router Definition
@@ -18,3 +18,6 @@ PostTopicsRouter.route("/:post_topic_id")
 	.put(PostTopicsController.update)
 	.delete(PostTopicsController.delete)
 	.all(methodNotAllowed)
+
+// Return
+export { PostTopicsRouter }

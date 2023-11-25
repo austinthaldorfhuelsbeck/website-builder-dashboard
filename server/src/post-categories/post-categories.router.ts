@@ -2,7 +2,7 @@
 import { Router } from "express"
 
 // Internal Modules
-import { PostCategoriesController } from "./post_categories.controller"
+import { PostCategoriesController } from "./post-categories.controller"
 import { methodNotAllowed } from "../errors/error.handlers"
 
 // Router Definition
@@ -18,3 +18,6 @@ PostCategoriesRouter.route("/:post_category_id")
 	.put(PostCategoriesController.update)
 	.delete(PostCategoriesController.delete)
 	.all(methodNotAllowed)
+
+// Return
+export { PostCategoriesRouter }
