@@ -7,6 +7,7 @@ import { notFound, errorHandler } from "./errors/error.handlers"
 import { PostsRouter } from "./posts/posts.router"
 import { PostCategoriesRouter } from "./post-categories/post-categories.router"
 import { PostTopicsRouter } from "./post-topics/post-topics.router"
+import { EventsRouter } from "./events/events.router"
 
 // App Definition
 const app = express()
@@ -24,6 +25,7 @@ app.use(cors())
 app.use("/posts", PostsRouter)
 app.use("/post_categories", PostCategoriesRouter)
 app.use("/post_topics", PostTopicsRouter)
+app.use("/events", EventsRouter)
 
 // Error handlers
 app.use(notFound)

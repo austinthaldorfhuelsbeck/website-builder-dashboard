@@ -25,14 +25,17 @@ interface IValidPost extends IPost {
 // EVENT
 interface IBaseEvent extends ITimestamps {
 	event_category_id: number
-	title: string
 	date: Date
+	title: string
 	text: string
 	content: string
 	url: string
 }
 interface IEvent extends IBaseEvent {
 	event_id: number
+}
+interface IValidEvent extends IEvent {
+	category: IEventCategory
 }
 // CATEGORY
 interface IBaseCategory extends ITimestamps {
@@ -63,6 +66,7 @@ export {
 	IValidPost,
 	IBaseEvent,
 	IEvent,
+	IValidEvent,
 	IBaseCategory,
 	IPostCategory,
 	IEventCategory,
