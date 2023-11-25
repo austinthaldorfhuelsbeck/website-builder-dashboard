@@ -1,8 +1,8 @@
 # Cathy Loerzel
 
-This project is a single-page application designed as a personal website, a blog, and a landing page to promote Cathy Loerzel and her book, Redeeming Heartache.
+This project is a single-page application designed as a personal website, a post, and a landing page to promote Cathy Loerzel and her book, Redeeming Heartache.
 
-The app stores all requisite data for blogs, topics, categories, testimonials, and events within a database, and provides a service to the administrator for interacting with and modifying this data.
+The app stores all requisite data for posts, topics, categories, testimonials, and events within a database, and provides a service to the administrator for interacting with and modifying this data.
 
 The admin dashboard allows admin users to perform API-enabled actions upon the data from within a user-friendly dashboard.
 
@@ -10,54 +10,54 @@ The admin dashboard allows admin users to perform API-enabled actions upon the d
 
 ## Custom API Solution
 
-*(updated 09-02-2021)*
+*(updated 09-02-2021)* //TODO 2023 update
 
-A custom API solution for keeping track of various data throughout the site. The API keeps track of blog posts, their topics, and their categories. It also manages testimonials for "Redeeming Heartache", and upcoming events.
+A custom API solution for keeping track of various data throughout the site. The API keeps track of posts, their topics, and their categories. It also manages testimonials for "Redeeming Heartache", and upcoming events.
 
 The API powers the display of the site, as well as the functionality of the admin page.
 
-### Blogs
+### Posts
 
-Blogs encompass writing, podcasts, and videos of Cathy's teaching. Each blog is organized by category and topic.
+Posts encompass writing, podcasts, and videos of Cathy's teaching. Each post is organized by category and topic.
 
-Blogs click through to an individual blog page, which displays the data for a single post in greater detail for the user to experience. The blog page is designed to display any of these three types of blog, and adjust what is displayed accordingly.
+Posts click through to an individual post page, which displays the data for a single in greater detail for the user to experience. The post page is designed to display any of these three types of post, and adjust what is displayed accordingly.
 
-The blog post object is structured as follows:
+The post object is structured as follows:
 
-- blog_id (string): PRIMARY This is parameter read by the component from the URL. Unique identifier, required, will be auto generated in dashboard form if not provided.
-- title (string): (required) The unique title of the blog to be displayed.
-- featured (boolean): Whether or not the blog is featured.
+- post_id (string): PRIMARY This is parameter read by the component from the URL. Unique identifier, required, will be auto generated in dashboard form if not provided.
+- title (string): (required) The unique title of the post to be displayed.
+- featured (boolean): Whether or not the post is featured.
 - category (string): (required) Currently, categories are: writing, podcasts, teaching.
-- topic (string): (required) A topic, to categorize the blog, used in sorting cards.
+- topic (string): (required) A topic, to categorize the post, used in sorting cards.
 - date (date): (required) Date the content was published, MM-DD-YYYY.
-- text (string): (required) The description provided for the card to display, for example the first paragraph of the blog.
-- img (string): (required) The public URL for the banner image for the blog, should be 16x9.
-- content (string): (required) The HTML of the full content of the post.
-- audio (string): The public URL for the audio of a podcast post.
-- video (string): The public URL for the video of a teaching post.
-- url (string): The clickthrough link for posts which are originally hosted elsewhere.
+- text (string): (required) The description provided for the card to display, for example the first paragraph of the post.
+- img (string): (required) The public URL for the banner image for the post, should be 16x9.
+- content (string): (required) The HTML of the full content of the.
+- audio (string): The public URL for the audio of a podcast.
+- video (string): The public URL for the video of a teaching.
+- url (string): The clickthrough link fors which are originally hosted elsewhere.
 
-#### Blogs - Methods and Routing
+#### Posts - Methods and Routing
 
-The methods and routing for the blogs section of the API is as follows:
+The methods and routing for the posts section of the API is as follows:
 
-- GET / - list all blogs
-- POST / - create a new blog
-- GET /category=:blog_category - list all blogs in a category
-- GET /topic=:blog_topic - list all blogs of a topic
-- GET /:blog_id - read a blog by ID
-- GET /featured - list all blogs which are featured
-- PUT /:blog_id - update a blog by ID
-- DELETE /:blog_id - delete a blog by ID
+- GET / - list all posts
+- POST / - create a new post
+- GET /category=:post_category - list all posts in a category
+- GET /topic=:post_topic - list all posts of a topic
+- GET /:post_id - read a post by ID
+- GET /featured - list all posts which are featured
+- PUT /:post_id - update a post by ID
+- DELETE /:post_id - delete a post by ID
 
 ### Topics
 
-Topics categorize blogs by subject matter. They relate to the Blogs table.
+Topics categorize posts by subject matter. They relate to the Posts table.
 
 The topic object is structured as follows:
 
 - topic_id (integer): PRIMARY Unique numerical identifier
-- topic (string): (required) Name of the topic which relates to Blogs table
+- topic (string): (required) Name of the topic which relates to Posts table
 - color (string): (required) Hex value of the color to associate with this topic.
 
 #### Topics - Methods and Routing
@@ -72,12 +72,12 @@ The methods and routing for the topics section of the API is as follows:
 
 ### Categories
 
-Categories represent the type of blog post. They relate to the Blogs table.
+Categories represent the type of post. They relate to the Posts table.
 
 The category object is structured as follows:
 
 - category_id (integer): PRIMARY Unique numerical identifier
-- category (string): (required) Name of the category which relates to Blogs table
+- category (string): (required) Name of the category which relates to Posts table
 
 #### Categories - Methods and Routing
 
@@ -119,7 +119,7 @@ The event object is structured as follows:
 - event_id (integer): (required) A unique numerical identifier.
 - name (string): (required) Name of the upcoming event.
 - date (string): (required) Date(s) of the upcoming event.
-- content (string, 10000): (required) The HTML of the full content of the post.
+- content (string, 10000): (required) The HTML of the full content of the.
 
 #### Events - Methods and Routing
 
