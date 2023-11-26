@@ -1,4 +1,66 @@
 import { RouteObject } from "react-router-dom"
+import { PageLayout } from "./layouts/PageLayout"
+import { AdminLayout } from "./layouts/AdminLayout"
+import { AuthenticationGuard } from "./common/AuthenticationGuard"
+import { Debug } from "./common/Debug"
+
+function Home() {
+	return <>Home!</>
+}
+function About() {
+	return <>About!</>
+}
+function Contact() {
+	return <>Contact!</>
+}
+function RedeemingHeartache() {
+	return <>Redeeming Heartache!</>
+}
+function PostsLayout() {
+	return <>Posts!</>
+}
+function EventsLayout() {
+	return <>Events!</>
+}
+function DashboardLayout() {
+	return <>Dashboard!</>
+}
+function PostsGrid() {
+	return <>Posts Grid!</>
+}
+function PostForm() {
+	return <>Post Form!</>
+}
+function EventsGrid() {
+	return <>Events Grid!</>
+}
+function EventForm() {
+	return <>Event Form!</>
+}
+function PostCategoriesGrid() {
+	return <>PostCategoriesGrid</>
+}
+function PostCategoriesForm() {
+	return <>PostCategoriesForm</>
+}
+function PostTopicsGrid() {
+	return <>PostTopicsGrid</>
+}
+function PostTopicsForm() {
+	return <>PostTopicsForm</>
+}
+function EventCategoriesGrid() {
+	return <>EventCategoriesGrid</>
+}
+function EventCategoriesForm() {
+	return <>EventCategoriesForm</>
+}
+function CallbackPage() {
+	return <>Callback!</>
+}
+function NotFound() {
+	return <>Not Found!</>
+}
 
 const routes: RouteObject[] = [
 	{
@@ -29,12 +91,12 @@ const routes: RouteObject[] = [
 				],
 			},
 			{
-				path: "/events",
+				path: "events",
 				children: [
 					{ index: true, element: <EventsLayout /> },
-					{ path: "/:event_id", element: <EventsLayout /> },
+					{ path: ":event_id", element: <EventsLayout /> },
 					{
-						path: "/category",
+						path: "category",
 						children: [
 							{ path: ":category_id", element: <EventsLayout /> },
 						],
@@ -93,6 +155,10 @@ const routes: RouteObject[] = [
 	{
 		path: "callback",
 		element: <CallbackPage />,
+	},
+	{
+		path: "debug",
+		element: <Debug />,
 	},
 	{
 		path: "*",

@@ -8,6 +8,7 @@ import { PostsRouter } from "./posts/posts.router"
 import { PostCategoriesRouter } from "./post-categories/post-categories.router"
 import { PostTopicsRouter } from "./post-topics/post-topics.router"
 import { EventsRouter } from "./events/events.router"
+import { EventCategoriesRouter } from "./event-categories/event-categories.router"
 
 // App Definition
 const app = express()
@@ -26,6 +27,7 @@ app.use("/posts", PostsRouter)
 app.use("/post_categories", PostCategoriesRouter)
 app.use("/post_topics", PostTopicsRouter)
 app.use("/events", EventsRouter)
+app.use("/event_categories", EventCategoriesRouter)
 
 // Error handlers
 app.use(notFound)

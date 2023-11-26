@@ -12,9 +12,8 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        color: var(--indigo);  
-        font-size: 22px;
-        line-height: 30px;
+        color: var(--indigo);
+        line-height: 15px;
         font-family: var(--font-primary);
         ::-webkit-scrollbar {display:none;}
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -25,6 +24,14 @@ const GlobalStyles = createGlobalStyle`
         font-family: var(--font-secondary);
     }
 
+    input, button {
+        font-family: var(--font-tertiary);
+    }
+
+    pre {
+        font-family: var(--font-mono);
+    }
+
     hr {
         border-top: 1px solid var(--aluminium);
         border-bottom: none;
@@ -33,10 +40,6 @@ const GlobalStyles = createGlobalStyle`
     a {
         color: var(--dark-goldenrod);
         text-decoration: none;
-    }
-
-    input, button {
-        font-family: var(--font-tertiary);
     }
 
     strong {
