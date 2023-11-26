@@ -1,24 +1,20 @@
 import { Outlet } from "react-router-dom"
 
+import { DashboardHeader } from "../components/headers/DashboardHeader"
 import { PageContainer, PageContent } from "../styles/layouts/page-layout.style"
-
-function DashboardHeader() {
-	return <>Dashboard Header!</>
-}
-function DashboardSidebar() {
-	return <>Dashboard Sidebar!</>
-}
+import { DashboardContentContainer } from "../styles/layouts/admin-layout.style"
+import { DashboardSidebar } from "../components/sidebars/DashboardSidebar"
 
 function AdminLayout() {
 	return (
 		<PageContainer>
 			<DashboardHeader />
-			<>
+			<DashboardContentContainer>
 				<DashboardSidebar />
 				<PageContent>
 					<Outlet />
 				</PageContent>
-			</>
+			</DashboardContentContainer>
 		</PageContainer>
 	)
 }

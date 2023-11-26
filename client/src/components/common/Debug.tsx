@@ -10,7 +10,7 @@ import {
 	usePostTopicContext,
 	usePostTopicsContext,
 	usePostsContext,
-} from "../context/ContextProvider"
+} from "../../context/ContextProvider"
 
 interface ComponentProps {
 	state: boolean

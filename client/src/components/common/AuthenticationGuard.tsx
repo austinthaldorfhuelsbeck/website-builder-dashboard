@@ -1,9 +1,9 @@
-import React, { ComponentType, PropsWithChildren } from "react"
+import { ComponentType, PropsWithChildren } from "react"
 
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { withAuthenticationRequired } from "@auth0/auth0-react"
 
-import { Loader, PageContent } from "../styles/layouts/page-layout.style"
+import { Loader, PageContent } from "../../styles/layouts/page-layout.style"
 
 interface ComponentProps {
 	component: ComponentType

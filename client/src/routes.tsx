@@ -1,8 +1,8 @@
 import { RouteObject } from "react-router-dom"
 import { PageLayout } from "./layouts/PageLayout"
 import { AdminLayout } from "./layouts/AdminLayout"
-import { AuthenticationGuard } from "./common/AuthenticationGuard"
-import { Debug } from "./common/Debug"
+import { AuthenticationGuard } from "./components/common/AuthenticationGuard"
+import { Debug } from "./components/common/Debug"
 
 function Home() {
 	return <>Home!</>
