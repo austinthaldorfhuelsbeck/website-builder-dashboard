@@ -6,16 +6,21 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    ::-webkit-scrollbar {
+        display:none;
+    }
+
     html {
         text-rendering: geometricPrecision;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 
     body {
+        padding: 0;
+        margin: 0;
         color: var(--indigo);
         line-height: 15px;
         font-family: var(--font-primary);
-        ::-webkit-scrollbar {display:none;}
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         overflow-y: scroll;
     }
@@ -40,6 +45,12 @@ const GlobalStyles = createGlobalStyle`
     a {
         color: var(--dark-goldenrod);
         text-decoration: none;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
     }
 
     strong {

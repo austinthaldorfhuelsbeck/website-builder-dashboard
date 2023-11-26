@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react"
 
-import { Link, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 import {
 	DashboardHeaderContainer,
@@ -11,7 +11,7 @@ interface IQuery {
 	query: string | undefined
 }
 
-function SearchBar() {
+function DashboardHeader() {
 	// State
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [formData, setFormData] = useState<IQuery>({ query: undefined })
@@ -24,21 +24,14 @@ function SearchBar() {
 	}
 
 	return (
-		<DashboardSearchBar
-			type="search"
-			placeholder="Search"
-			aria-label="Search"
-			onChange={onChange}
-			value={formData.query}
-		/>
-	)
-}
-
-function DashboardHeader() {
-	return (
 		<DashboardHeaderContainer>
-			<Link to="/admin">CL Admin</Link>
-			<SearchBar />
+			<DashboardSearchBar
+				type="search"
+				placeholder="Search"
+				aria-label="Search"
+				onChange={onChange}
+				value={formData.query}
+			/>
 		</DashboardHeaderContainer>
 	)
 }

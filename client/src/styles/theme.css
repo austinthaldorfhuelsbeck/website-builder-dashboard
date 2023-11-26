@@ -11,6 +11,7 @@
     --dark-aluminum: #454545;
     --grey: #999;
     --dark-grey: #222;
+    --light-grey: #ddd;
     --indigo: #5f4d5d;
     --lilac: #b08ead;
     --goldenrod: #b57a47;
@@ -20,6 +21,8 @@
     --mint: #afbcb2;
     --royal-blue: #1f353b;
     --royal-blue-transparent: #1f353bc9;
+
+    --box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
     --font-primary: "Cormorant Garamond", serif;
     --font-secondary: "Montserrat", sans-serif;

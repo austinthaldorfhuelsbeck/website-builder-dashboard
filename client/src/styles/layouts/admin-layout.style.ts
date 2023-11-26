@@ -4,6 +4,8 @@ const DashboardHeaderContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
+	padding: 1rem;
+	box-shadow: var(--box-shadow);
 `
 
 const DashboardContentContainer = styled.div`
@@ -12,7 +14,9 @@ const DashboardContentContainer = styled.div`
 	justify-content: flex-start;
 `
 
-const DashboardSearchBar = styled.input``
+const DashboardSearchBar = styled.input`
+	width: 100%;
+`
 
 export {
 	DashboardHeaderContainer,
