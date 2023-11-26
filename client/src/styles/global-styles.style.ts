@@ -4,6 +4,7 @@ import "./theme.css"
 const GlobalStyles = createGlobalStyle`
     * {
         box-sizing: border-box;
+        transition: all 0.3s ease-in-out;
     }
 
     ::-webkit-scrollbar {
@@ -19,7 +20,6 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
         color: var(--indigo);
-        line-height: 15px;
         font-family: var(--font-primary);
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         overflow-y: scroll;

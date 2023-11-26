@@ -8,6 +8,13 @@ const DashboardHeaderContainer = styled.div`
 	box-shadow: var(--box-shadow);
 `
 
+const DashboardSubheader = styled.h3`
+	margin: 0.5rem 0;
+	cursor: default;
+`
+
+const DashboardText = styled.p``
+
 const DashboardContentContainer = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -20,6 +27,8 @@ const DashboardSearchBar = styled.input`
 
 export {
 	DashboardHeaderContainer,
+	DashboardSubheader,
+	DashboardText,
 	DashboardContentContainer,
 	DashboardSearchBar,
 }

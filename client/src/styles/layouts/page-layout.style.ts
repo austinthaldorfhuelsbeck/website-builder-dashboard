@@ -8,13 +8,12 @@ const PageContainer = styled.div`
 `
 
 const PageContent = styled.div`
-	flex: 1;
 	flex-basis: auto;
 	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
-	margin-top: 8rem;
-	width: 100%;
+	margin: 0.5rem;
+	width: 80%;
 `
 
 const spinAnimation = keyframes`

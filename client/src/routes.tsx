@@ -3,6 +3,8 @@ import { PageLayout } from "./layouts/PageLayout"
 import { AdminLayout } from "./layouts/AdminLayout"
 import { AuthenticationGuard } from "./components/common/AuthenticationGuard"
 import { Debug } from "./components/common/Debug"
+import { PostsGrid } from "./components/Grids/PostsGrid"
+import { EventsGrid } from "./components/Grids/EventsGrid"
 
 function Home() {
 	return <>Home!</>
@@ -25,14 +27,8 @@ function EventsLayout() {
 function DashboardLayout() {
 	return <>Dashboard!</>
 }
-function PostsGrid() {
-	return <>Posts Grid!</>
-}
 function PostForm() {
 	return <>Post Form!</>
-}
-function EventsGrid() {
-	return <>Events Grid!</>
 }
 function EventForm() {
 	return <>Event Form!</>
