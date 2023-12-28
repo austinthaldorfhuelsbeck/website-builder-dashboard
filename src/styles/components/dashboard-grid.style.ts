@@ -20,4 +20,18 @@ const GridLink = styled(Link)`
 	}
 `
 
-export { GridContainer, GridLink }
+const TagsContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+`
+
+const GridTag = styled.p`
+	background-color: var(--light-aluminum);
+	color: var(--white);
+	margin: 0 0.5rem;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+`
+
+export { GridContainer, GridLink, TagsContainer, GridTag }

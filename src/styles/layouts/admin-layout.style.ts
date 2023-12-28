@@ -13,7 +13,9 @@ const DashboardSubheader = styled.h3`
 	cursor: default;
 `
 
-const DashboardText = styled.p``
+const DashboardText = styled.p`
+	margin: 0.5rem 0;
+`
 
 const DashboardContentContainer = styled.div`
 	display: flex;
