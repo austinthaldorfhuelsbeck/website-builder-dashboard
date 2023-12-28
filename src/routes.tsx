@@ -1,29 +1,10 @@
 import { RouteObject } from "react-router-dom"
-import { PageLayout } from "./layouts/PageLayout"
 import { AdminLayout } from "./layouts/AdminLayout"
 import { AuthenticationGuard } from "./components/common/AuthenticationGuard"
 import { Debug } from "./components/common/Debug"
 import { PostsGrid } from "./components/Grids/PostsGrid"
 import { EventsGrid } from "./components/Grids/EventsGrid"
 
-function Home() {
-	return <>Home!</>
-}
-function About() {
-	return <>About!</>
-}
-function Contact() {
-	return <>Contact!</>
-}
-function RedeemingHeartache() {
-	return <>Redeeming Heartache!</>
-}
-function PostsLayout() {
-	return <>Posts!</>
-}
-function EventsLayout() {
-	return <>Events!</>
-}
 function DashboardLayout() {
 	return <>Dashboard!</>
 }
@@ -61,48 +42,6 @@ function NotFound() {
 const routes: RouteObject[] = [
 	{
 		path: "/",
-		element: <PageLayout />,
-		children: [
-			{ index: true, element: <Home /> },
-			{ path: "about", element: <About /> },
-			{ path: "contact", element: <Contact /> },
-			{ path: "redeeming-heartache", element: <RedeemingHeartache /> },
-			{
-				path: "posts",
-				children: [
-					{ index: true, element: <PostsLayout /> },
-					{ path: ":post_id", element: <PostsLayout /> },
-					{
-						path: "category",
-						children: [
-							{ path: ":category_id", element: <PostsLayout /> },
-						],
-					},
-					{
-						path: "topic",
-						children: [
-							{ path: ":topic_id", element: <PostsLayout /> },
-						],
-					},
-				],
-			},
-			{
-				path: "events",
-				children: [
-					{ index: true, element: <EventsLayout /> },
-					{ path: ":event_id", element: <EventsLayout /> },
-					{
-						path: "category",
-						children: [
-							{ path: ":category_id", element: <EventsLayout /> },
-						],
-					},
-				],
-			},
-		],
-	},
-	{
-		path: "/admin",
 		element: <AuthenticationGuard component={AdminLayout} />,
 		children: [
 			{ index: true, element: <DashboardLayout /> },
