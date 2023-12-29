@@ -14,6 +14,8 @@ import {
 	IPostCategory,
 	IPostTopic,
 } from "../../interfaces/objects.interface";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { formatLocation, formatQuery } from "../../services/util.service";
 
 // Data
 interface ComponentProps {
@@ -22,6 +24,10 @@ interface ComponentProps {
 
 // Components
 function Grid({ loader }: PropsWithChildren<ComponentProps>) {
+	// Hooks
+	const [searchParams] = useSearchParams();
+	const location = useLocation();
+
 	// State
 	// resources to be loaded with loader function
 	const [resources, setResources] = useState<
@@ -47,22 +53,34 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 		},
 		[loader, resources],
 	);
-	// load category to state
 
+	// filter results by search query and then map items
 	return resources ? (
 		<>
-			<DashboardSubheader>Resources</DashboardSubheader>
+			<DashboardSubheader>
+				{formatLocation(location.pathname)}
+			</DashboardSubheader>
 			<GridContainer>
-				{resources.map(function (resource) {
-					return (
-						resource && (
-							<GridItem
-								key={resource.label + resource.updated_at}
-								resource={resource}
-							/>
-						)
-					);
-				})}
+				{resources
+					.filter(
+						(resource) =>
+							resource &&
+							(resource.label
+								.toLowerCase()
+								.includes(formatQuery(searchParams)) ||
+								resource.text
+									.toLowerCase()
+									.includes(formatQuery(searchParams))),
+					)
+					.map(
+						(resource) =>
+							resource && (
+								<GridItem
+									key={resource.label + resource.updated_at}
+									resource={resource}
+								/>
+							),
+					)}
 			</GridContainer>
 		</>
 	) : (

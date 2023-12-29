@@ -13,7 +13,7 @@ import {
 	PostsGrid,
 } from "./components/Grids/Grids";
 
-function DashboardLayout() {
+function Dashboard() {
 	return <>Dashboard!</>;
 }
 function PostForm() {
@@ -43,7 +43,7 @@ const routes: RouteObject[] = [
 		path: "/",
 		element: <AuthenticationGuard component={Layout} />,
 		children: [
-			{ index: true, element: <DashboardLayout /> },
+			{ index: true, element: <Dashboard /> },
 			{
 				path: "posts",
 				children: [
