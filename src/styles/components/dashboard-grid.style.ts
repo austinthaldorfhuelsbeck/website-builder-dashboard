@@ -1,22 +1,22 @@
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import styled from "styled-components";
 
 const GridContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	grid-gap: 1rem;
 	align-items: stretch;
-`
+`;
 
 interface IGridLinkProps {
 	bgColor?: string;
 }
-const GridLink = styled(Link)<IGridLinkProps>`
+const GridCard = styled.div<IGridLinkProps>`
 	background-color: ${(props) =>
 		props.bgColor ? props.bgColor : "var(--off-white)"};
 	margin: 1rem 0;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
+	cursor: pointer;
 	&:hover {
 		background-color: ${(props) =>
 			props.bgColor ? props.bgColor : "var(--light-grey)"};
@@ -29,7 +29,7 @@ const TagsContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-`
+`;
 
 interface ITagProps {
 	bgColor?: string;
@@ -43,4 +43,4 @@ const GridTag = styled.p<ITagProps>`
 	border-radius: 0.5rem;
 `;
 
-export { GridContainer, GridLink, TagsContainer, GridTag }
+export { GridContainer, GridCard, TagsContainer, GridTag };

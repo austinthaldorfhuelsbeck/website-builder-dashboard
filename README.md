@@ -25,7 +25,7 @@ Posts click through to an individual post page, which displays the data for a si
 The post object is structured as follows:
 
 - post_id (string): PRIMARY This is parameter read by the component from the URL. Unique identifier, required, will be auto generated in dashboard form if not provided.
-- title (string): (required) The unique title of the post to be displayed.
+- label (string): (required) The unique title of the post to be displayed.
 - featured (boolean): Whether or not the post is featured.
 - category (string): (required) Currently, categories are: writing, podcasts, teaching.
 - topic (string): (required) A topic, to categorize the post, used in sorting cards.
@@ -88,27 +88,6 @@ The methods and routing for the categories section of the API is as follows:
 - PUT /:category_id - update a category
 - POST / - create a new category
 - DELETE /:category_id - delete a category
-
-### Testimonials
-
-Testimonials are used for the Redeeming Heartache landing page. A carousel cycles through cards which are populated from the database.
-
-The testimonial object is structured as follows:
-
-- testimonial_id (integer): (required) A unique numerical identifier.
-- name (string): (required) First and last name of the author of the testimonial.
-- title (string): (required) Professional title of the author of the testimonial.
-- message (string, 1000): (required) The testimonial itself.
-
-#### Testimonials - Methods and Routing
-
-The methods and routing for the testimonials section of the API is as follows:
-
-- GET / - list all testimonials
-- GET /:testimonial_id - read a testimonial by ID
-- PUT /:testimonial_id - update a testimonial
-- POST / - create a new testimonial
-- DELETE /:testimonial_id - delete a testimonial
 
 ### Events
 
