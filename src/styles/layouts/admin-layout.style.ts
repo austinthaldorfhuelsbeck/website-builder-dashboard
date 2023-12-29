@@ -8,14 +8,20 @@ const DashboardHeaderContainer = styled.div`
 	box-shadow: var(--box-shadow);
 `
 
-const DashboardSubheader = styled.h3`
+interface IDashboardComponentProps {
+	white?: boolean;
+	link?: boolean;
+}
+const DashboardSubheader = styled.h3<IDashboardComponentProps>`
+	color: ${(props) => (props.white ? "var(--white)" : "inherit")};
 	margin: 0.5rem 0;
-	cursor: default;
-`
+	cursor: ${(props) => (props.link ? "cursor" : "default")};
+`;
 
-const DashboardText = styled.p`
+const DashboardText = styled.p<IDashboardComponentProps>`
+	color: ${(props) => (props.white ? "var(--white)" : "inherit")};
 	margin: 0.5rem 0;
-`
+`;
 
 const DashboardContentContainer = styled.div`
 	display: flex;

@@ -8,17 +8,22 @@ const GridContainer = styled.div`
 	align-items: stretch;
 `
 
-const GridLink = styled(Link)`
-	background-color: var(--off-white);
+interface IGridLinkProps {
+	bgColor?: string;
+}
+const GridLink = styled(Link)<IGridLinkProps>`
+	background-color: ${(props) =>
+		props.bgColor ? props.bgColor : "var(--off-white)"};
 	margin: 1rem 0;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	&:hover {
-		background-color: var(--light-grey);
+		background-color: ${(props) =>
+			props.bgColor ? props.bgColor : "var(--light-grey)"};
 		box-shadow: var(--box-shadow);
 		color: var(--goldenrod);
 	}
-`
+`;
 
 const TagsContainer = styled.div`
 	display: flex;

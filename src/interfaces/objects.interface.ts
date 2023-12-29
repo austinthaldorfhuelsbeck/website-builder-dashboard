@@ -16,11 +16,7 @@ interface IBasePost extends ITimestamps {
 	url: string | undefined
 }
 interface IPost extends IBasePost {
-	post_id: number
-}
-interface IValidPost extends IPost {
-	category: IPostCategory
-	topic: IPostTopic
+	post_id: number;
 }
 // EVENT
 interface IBaseEvent extends ITimestamps {
@@ -32,10 +28,7 @@ interface IBaseEvent extends ITimestamps {
 	url: string
 }
 interface IEvent extends IBaseEvent {
-	event_id: number
-}
-interface IValidEvent extends IEvent {
-	category: IEventCategory
+	event_id: number;
 }
 // CATEGORY
 interface IBaseCategory extends ITimestamps {
@@ -63,13 +56,11 @@ export type {
 	ITimestamps,
 	IBasePost,
 	IPost,
-	IValidPost,
 	IBaseEvent,
 	IEvent,
-	IValidEvent,
 	IBaseCategory,
 	IPostCategory,
 	IEventCategory,
 	IBaseTopic,
 	IPostTopic,
-}
+};

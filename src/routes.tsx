@@ -1,32 +1,27 @@
 import { RouteObject } from "react-router-dom"
-import { Layout } from "./layouts/Layout"
-import { AuthenticationGuard } from "./components/common/AuthenticationGuard"
-import { PostsGrid } from "./components/Grids/PostsGrid"
-import { EventsGrid } from "./components/Grids/EventsGrid"
+
+import { Layout } from "./layouts/Layout";
+import { PostsGrid } from "./components/Grids/PostsGrid";
+import { EventsGrid } from "./components/Grids/EventsGrid";
+import { PostTopicsGrid } from "./components/Grids/PostTopicsGrid";
+import { PostCategoriesGrid } from "./components/Grids/PostCategoriesGrid";
+import { AuthenticationGuard } from "./components/common/AuthenticationGuard";
+import { EventCategoriesGrid } from "./components/Grids/EventCategoriesGrid";
 
 function DashboardLayout() {
-	return <>Dashboard!</>
+	return <>Dashboard!</>;
 }
 function PostForm() {
-	return <>Post Form!</>
+	return <>Post Form!</>;
 }
 function EventForm() {
-	return <>Event Form!</>
-}
-function PostCategoriesGrid() {
-	return <>PostCategoriesGrid</>
+	return <>Event Form!</>;
 }
 function PostCategoriesForm() {
-	return <>PostCategoriesForm</>
-}
-function PostTopicsGrid() {
-	return <>PostTopicsGrid</>
+	return <>PostCategoriesForm</>;
 }
 function PostTopicsForm() {
-	return <>PostTopicsForm</>
-}
-function EventCategoriesGrid() {
-	return <>EventCategoriesGrid</>
+	return <>PostTopicsForm</>;
 }
 function EventCategoriesForm() {
 	return <>EventCategoriesForm</>
