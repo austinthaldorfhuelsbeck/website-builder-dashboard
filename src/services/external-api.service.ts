@@ -70,7 +70,7 @@ async function fetchResponse(config: AxiosRequestConfig) {
 	const { data, error } = (await callExternalApi({
 		config: configWithHeaders,
 	})) as IApiResponse
-	return { data, error }
+	return { data: data.data, error: data.error || error };
 }
 
 export { fetchResponse }

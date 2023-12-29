@@ -14,7 +14,6 @@ import {
 	DashboardText,
 } from "../../styles/layouts/admin-layout.style"
 import { formatDate, shortenText } from "../../services/util.service"
-import { useEventsContext } from "../../context/ContextProvider"
 import { Loader } from "../../styles/layouts/page-layout.style"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 
@@ -36,7 +35,7 @@ function EventGridItem({ event }: PropsWithChildren<ComponentProps>) {
 	}, [event])
 
 	return (
-		<GridLink to={`/admin/events/${event.event_id}`}>
+		<GridLink to={`/events/${event.event_id}`}>
 			<DashboardSubheader>{event.title}</DashboardSubheader>
 			<DashboardText>{formatDate(event.date)}</DashboardText>
 			<DashboardText>{shortenText(event.text)}</DashboardText>
@@ -48,20 +47,22 @@ function EventGridItem({ event }: PropsWithChildren<ComponentProps>) {
 }
 function EventsGrid() {
 	// Context
-	const { events } = useEventsContext()
+	// const { events } = useEventsContext()
 
-	return events ? (
-		<>
-			<DashboardSubheader>Events</DashboardSubheader>
-			<GridContainer>
-				{events.map(function (event) {
-					return <EventGridItem key={event.event_id} event={event} />
-				})}
-			</GridContainer>
-		</>
-	) : (
-		<Loader icon={faSpinner} />
-	)
+	// return events ? (
+	// 	<>
+	// 		<DashboardSubheader>Events</DashboardSubheader>
+	// 		<GridContainer>
+	// 			{events.map(function (event) {
+	// 				return <EventGridItem key={event.event_id} event={event} />
+	// 			})}
+	// 		</GridContainer>
+	// 	</>
+	// ) : (
+	// 	<Loader icon={faSpinner} />
+	// )
+
+	return <Loader icon={faSpinner} />
 }
 
 export { EventsGrid }

@@ -1,7 +1,5 @@
 import { ILinkGroup } from "../interfaces/utils.interface"
 
-const baseUrl: string = "/admin"
-
 const viewGroup: ILinkGroup = {
 	id: 0,
 	label: "View",
@@ -9,17 +7,17 @@ const viewGroup: ILinkGroup = {
 		{
 			id: 0,
 			label: "Dashboard",
-			target: baseUrl,
+			target: "/",
 		},
 		{
 			id: 1,
 			label: "Posts",
-			target: `${baseUrl}/posts`,
+			target: "/posts",
 		},
 		{
 			id: 2,
 			label: "Events",
-			target: `${baseUrl}/events`,
+			target: "/events",
 		},
 	],
 }
@@ -30,12 +28,12 @@ const createGroup: ILinkGroup = {
 		{
 			id: 0,
 			label: "New Post",
-			target: `${baseUrl}/posts/new`,
+			target: "/posts/new",
 		},
 		{
 			id: 1,
 			label: "New Event",
-			target: `${baseUrl}/events/new`,
+			target: "/events/new",
 		},
 	],
 }
@@ -46,17 +44,17 @@ const manageGroup: ILinkGroup = {
 		{
 			id: 0,
 			label: "Post Categories",
-			target: `${baseUrl}/post-categories`,
+			target: "/post-categories",
 		},
 		{
 			id: 1,
 			label: "Post Topics",
-			target: `${baseUrl}/post-topics`,
+			target: "/post-topics",
 		},
 		{
 			id: 2,
 			label: "Event Categories",
-			target: `${baseUrl}/event-categories`,
+			target: "/event-categories",
 		},
 	],
 }

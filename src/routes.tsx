@@ -1,7 +1,6 @@
 import { RouteObject } from "react-router-dom"
-import { AdminLayout } from "./layouts/AdminLayout"
+import { Layout } from "./layouts/Layout"
 import { AuthenticationGuard } from "./components/common/AuthenticationGuard"
-import { Debug } from "./components/common/Debug"
 import { PostsGrid } from "./components/Grids/PostsGrid"
 import { EventsGrid } from "./components/Grids/EventsGrid"
 
@@ -42,7 +41,7 @@ function NotFound() {
 const routes: RouteObject[] = [
 	{
 		path: "/",
-		element: <AuthenticationGuard component={AdminLayout} />,
+		element: <AuthenticationGuard component={Layout} />,
 		children: [
 			{ index: true, element: <DashboardLayout /> },
 			{
@@ -90,10 +89,6 @@ const routes: RouteObject[] = [
 	{
 		path: "callback",
 		element: <CallbackPage />,
-	},
-	{
-		path: "debug",
-		element: <Debug />,
 	},
 	{
 		path: "*",

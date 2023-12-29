@@ -26,12 +26,16 @@ const TagsContainer = styled.div`
 	justify-content: flex-start;
 `
 
-const GridTag = styled.p`
-	background-color: var(--light-aluminum);
+interface ITagProps {
+	bgColor?: string;
+}
+const GridTag = styled.p<ITagProps>`
+	background-color: ${(props) =>
+		props.bgColor ? props.bgColor : "var(--light-aluminum)"};
 	color: var(--white);
 	margin: 0 0.5rem;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
-`
+`;
 
 export { GridContainer, GridLink, TagsContainer, GridTag }

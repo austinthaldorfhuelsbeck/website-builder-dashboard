@@ -5,7 +5,7 @@ import { PageContainer, PageContent } from "../styles/layouts/page-layout.style"
 import { DashboardContentContainer } from "../styles/layouts/admin-layout.style"
 import { DashboardSidebar } from "../components/sidebars/DashboardSidebar"
 
-function AdminLayout() {
+function Layout() {
 	return (
 		<PageContainer>
 			<DashboardHeader />
@@ -19,4 +19,4 @@ function AdminLayout() {
 	)
 }
 
-export { AdminLayout }
+export { Layout }
