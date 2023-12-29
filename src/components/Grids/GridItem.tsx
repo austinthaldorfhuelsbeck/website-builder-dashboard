@@ -30,7 +30,7 @@ interface ComponentProps {
 }
 
 // Components
-function ResourceGridItem({ resource }: PropsWithChildren<ComponentProps>) {
+function GridItem({ resource }: PropsWithChildren<ComponentProps>) {
 	// Hooks
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -63,10 +63,12 @@ function ResourceGridItem({ resource }: PropsWithChildren<ComponentProps>) {
 			async function getPostCategory(id: number) {
 				const response: IApiResponse = await readPostCategory(id);
 				if (response.data) setCategory(response.data);
+				// TODO: handle error
 			}
 			async function getEventCategory(id: number) {
 				const response: IApiResponse = await readEventCategory(id);
 				if (response.data) setCategory(response.data);
+				// TODO: handle error
 			}
 			// get corresponding category for each resource type
 			if (!category) {
@@ -85,6 +87,7 @@ function ResourceGridItem({ resource }: PropsWithChildren<ComponentProps>) {
 			async function getPostTopic(id: number) {
 				const response: IApiResponse = await readPostTopic(id);
 				if (response.data) setTopic(response.data);
+				// TODO: handle error
 			}
 			// get topic if resource is a post
 			if (!topic) {
@@ -122,4 +125,4 @@ function ResourceGridItem({ resource }: PropsWithChildren<ComponentProps>) {
 	);
 }
 
-export { ResourceGridItem };
+export { GridItem };

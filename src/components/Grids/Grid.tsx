@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect, useState } from "react";
 
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import { ResourceGridItem } from "./ResourceGridItem";
+import { GridItem } from "./GridItem";
 import { IApiResponse } from "../../interfaces/utils.interface";
 import { Loader } from "../../styles/layouts/page-layout.style";
 import { GridContainer } from "../../styles/components/dashboard-grid.style";
@@ -21,7 +21,7 @@ interface ComponentProps {
 }
 
 // Components
-function ResourceGrid({ loader }: PropsWithChildren<ComponentProps>) {
+function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 	// State
 	// resources to be loaded with loader function
 	const [resources, setResources] = useState<
@@ -56,7 +56,7 @@ function ResourceGrid({ loader }: PropsWithChildren<ComponentProps>) {
 				{resources.map(function (resource) {
 					return (
 						resource && (
-							<ResourceGridItem
+							<GridItem
 								key={resource.label + resource.updated_at}
 								resource={resource}
 							/>
@@ -70,4 +70,4 @@ function ResourceGrid({ loader }: PropsWithChildren<ComponentProps>) {
 	);
 }
 
-export { ResourceGrid };
+export { Grid };

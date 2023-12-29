@@ -1,4 +1,4 @@
-import { ResourceGrid } from "./ResourceGrid";
+import { Grid } from "./Grid";
 import { listPosts } from "../../services/cl-api/posts.service";
 import { listEvents } from "../../services/cl-api/events.service";
 import { listPostTopics } from "../../services/cl-api/post-topics.service";
@@ -7,19 +7,19 @@ import { listEventCategories } from "../../services/cl-api/event-categories.serv
 
 // Components
 function PostsGrid() {
-	return <ResourceGrid loader={listPosts} />;
+	return <Grid loader={listPosts} />;
 }
 function EventsGrid() {
-	return <ResourceGrid loader={listEvents} />;
+	return <Grid loader={listEvents} />;
 }
 function PostCategoriesGrid() {
-	return <ResourceGrid loader={listPostCategories} />;
+	return <Grid loader={listPostCategories} />;
 }
 function PostTopicsGrid() {
-	return <ResourceGrid loader={listPostTopics} />;
+	return <Grid loader={listPostTopics} />;
 }
 function EventCategoriesGrid() {
-	return <ResourceGrid loader={listEventCategories} />;
+	return <Grid loader={listEventCategories} />;
 }
 
 export {
