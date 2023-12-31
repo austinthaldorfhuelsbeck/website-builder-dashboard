@@ -38,8 +38,9 @@ const GlobalStyles = createGlobalStyle`
     }
 
     hr {
-        border-top: 1px solid var(--aluminium);
+        border-top: 1px solid var(--light-aluminum);
         border-bottom: none;
+        width: 100%;
     }
 
     a {
@@ -96,6 +97,6 @@ const GlobalStyles = createGlobalStyle`
             overflow: hidden;
         }
     }
-`
+`;
 
 export { GlobalStyles }

@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import { IPostCategory, IPostTopic } from "../../interfaces/objects.interface";
+
+import ReactQuill from "react-quill";
+
 import { usePostForm } from "../hooks/usePostForm";
 import { IApiResponse } from "../../interfaces/utils.interface";
-import { listPostCategories } from "../../services/cl-api/post-categories.service";
+import { ControlGroup, InputGroup, TextAreaGroup } from "./InputGroups";
 import { listPostTopics } from "../../services/cl-api/post-topics.service";
 import {
+	DashboardHeader,
 	DashboardSubheader,
-	DashboardText,
-} from "../../styles/layouts/admin-layout.style";
+} from "../../styles/layouts/dashboard-layout.style";
+import { audioCategoryId, videoCategoryId } from "../../data/app-config.data";
+import { IPostCategory, IPostTopic } from "../../interfaces/objects.interface";
+import { listPostCategories } from "../../services/cl-api/post-categories.service";
 import {
 	FormButton,
 	FormRow,
 	InlineForm,
 } from "../../styles/components/form.style";
-import { ControlGroup, InputGroup, TextAreaGroup } from "./InputGroups";
 import {
 	postAudioValidation,
 	postCategoryValidation,
@@ -23,8 +27,6 @@ import {
 	postUrlValidation,
 	postVideoValidation,
 } from "./validation/validation";
-import ReactQuill from "react-quill";
-import { audioCategoryId, videoCategoryId } from "../../data/app-config.data";
 
 // Components
 function PostForm() {
@@ -66,7 +68,8 @@ function PostForm() {
 		<>
 			{/* <pre>{JSON.stringify(formData, null, "\t")}</pre> */}
 			<InlineForm onSubmit={onSubmit} noValidate>
-				<DashboardSubheader>Basic Info</DashboardSubheader>
+				<DashboardHeader>Basic Info</DashboardHeader>
+				<hr />
 				<InputGroup
 					{...postLabelValidation}
 					onChange={onChange}
@@ -86,7 +89,8 @@ function PostForm() {
 						value={formData.post_topic_id}
 					/>
 				</FormRow>
-				<DashboardSubheader>Details</DashboardSubheader>
+				<DashboardHeader>Details</DashboardHeader>
+				<hr />
 				<InputGroup
 					{...postUrlValidation}
 					onChange={onChange}
@@ -111,7 +115,8 @@ function PostForm() {
 					onChange={onChange}
 					value={formData.text}
 				/>
-				<DashboardSubheader>Content</DashboardSubheader>
+				<DashboardHeader>Content</DashboardHeader>
+				<hr />
 				<ReactQuill onChange={onQuillChange} value={formData.content} />
 				<FormRow>
 					<FormButton onClick={onCancel}>Cancel</FormButton>

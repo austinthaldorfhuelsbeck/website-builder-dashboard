@@ -11,7 +11,7 @@ import {
 import {
 	DashboardSubheader,
 	DashboardText,
-} from "../../styles/layouts/admin-layout.style";
+} from "../../styles/layouts/dashboard-layout.style";
 import {
 	IEvent,
 	IEventCategory,

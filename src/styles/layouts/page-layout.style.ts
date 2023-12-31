@@ -12,9 +12,9 @@ const PageContent = styled.div`
 	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
-	margin: 0.5rem;
+	margin: 1rem;
 	width: 80%;
-`
+`;
 
 const spinAnimation = keyframes`
 	0% { transform: rotate(0deg); }

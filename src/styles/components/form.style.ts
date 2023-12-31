@@ -24,14 +24,16 @@ const FormField = styled.div<FieldProps>`
 	}
 
 	input,
-	select {
+	select,
+	textarea {
+		display: block;
 		background: none;
-		border-top: none;
-		border-left: none;
-		border-right: none;
-		border-bottom: solid var(--grey) 0.1rem;
+		padding: 0.375rem 0.75rem;
+		line-height: 1.5;
+		border: 1px solid var(--light-grey);
+		border-radius: 0.25rem;
 		outline: none;
-		vertical-align: bottom;
+		font-family: var(--sans-serif);
 	}
 `;
 

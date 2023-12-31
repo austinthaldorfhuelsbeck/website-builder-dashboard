@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom"
 import {
 	DashboardHeaderContainer,
 	DashboardSearchBar,
-} from "../../styles/layouts/admin-layout.style"
+} from "../../styles/layouts/dashboard-layout.style";
 
 interface IQuery {
 	query: string | undefined

@@ -6,7 +6,7 @@ import { GridItem } from "./GridItem";
 import { IApiResponse } from "../../interfaces/utils.interface";
 import { Loader } from "../../styles/layouts/page-layout.style";
 import { GridContainer } from "../../styles/components/dashboard-grid.style";
-import { DashboardSubheader } from "../../styles/layouts/admin-layout.style";
+import { DashboardHeader } from "../../styles/layouts/dashboard-layout.style";
 import {
 	IEvent,
 	IEventCategory,
@@ -57,9 +57,10 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 	// filter results by search query and then map items
 	return resources ? (
 		<>
-			<DashboardSubheader>
+			<DashboardHeader>
 				{formatLocation(location.pathname)}
-			</DashboardSubheader>
+			</DashboardHeader>
+			<hr />
 			<GridContainer>
 				{resources
 					.filter(

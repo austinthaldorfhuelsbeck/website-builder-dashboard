@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
+
 import ReactQuill from "react-quill";
+
 import { useEventForm } from "../hooks/useEventForm";
 import { ControlGroup, InputGroup } from "./InputGroups";
+import { IApiResponse } from "../../interfaces/utils.interface";
+import { IEventCategory } from "../../interfaces/objects.interface";
+import { DashboardSubheader } from "../../styles/layouts/dashboard-layout.style";
+import { listEventCategories } from "../../services/cl-api/event-categories.service";
+import {
+	FormButton,
+	FormRow,
+	InlineForm,
+} from "../../styles/components/form.style";
 import {
 	eventCategoryValidation,
 	eventDateValidation,
@@ -8,17 +20,6 @@ import {
 	eventTextValidation,
 	eventUrlValidation,
 } from "./validation/validation";
-import { useEffect, useState } from "react";
-import { IEventCategory } from "../../interfaces/objects.interface";
-import { IApiResponse } from "../../interfaces/utils.interface";
-import { listEventCategories } from "../../services/cl-api/event-categories.service";
-import {
-	FormButton,
-	FormField,
-	FormRow,
-	InlineForm,
-} from "../../styles/components/form.style";
-import { DashboardSubheader } from "../../styles/layouts/admin-layout.style";
 
 // Components
 function EventForm() {
