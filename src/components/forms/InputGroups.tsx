@@ -1,11 +1,13 @@
 import { PropsWithChildren } from "react";
 import { FormField } from "../../styles/components/form.style";
+import { DashboardText } from "../../styles/layouts/admin-layout.style";
 
 // Data
 interface ComponentProps {
 	name: string;
 	title: string;
 	$short?: boolean;
+	subtext?: string;
 	value: string;
 	onChange: (e: any) => void;
 }
@@ -23,6 +25,7 @@ function InputGroup({
 	name,
 	title,
 	placeholder,
+	subtext,
 	$short,
 	onChange,
 	value,
@@ -39,6 +42,38 @@ function InputGroup({
 				onChange={onChange}
 				value={value}
 			/>
+			{subtext && (
+				<DashboardText>
+					<em>{subtext}</em>
+				</DashboardText>
+			)}
+		</FormField>
+	);
+}
+function TextAreaGroup({
+	name,
+	title,
+	placeholder,
+	subtext,
+	onChange,
+	value,
+}: PropsWithChildren<InputProps>) {
+	return (
+		<FormField>
+			<label htmlFor={name}>
+				<strong>{title}</strong>
+			</label>
+			<textarea
+				placeholder={placeholder}
+				name={name}
+				onChange={onChange}
+				value={value}
+			/>
+			{subtext && (
+				<DashboardText>
+					<em>{subtext}</em>
+				</DashboardText>
+			)}
 		</FormField>
 	);
 }
@@ -67,4 +102,4 @@ function ControlGroup({
 	);
 }
 
-export { InputGroup, ControlGroup };
+export { InputGroup, TextAreaGroup, ControlGroup };

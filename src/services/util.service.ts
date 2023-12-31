@@ -1,9 +1,16 @@
+import { IEvent } from "../interfaces/objects.interface";
+
 function formatDate(date: Date): string {
 	return new Date(date).toLocaleDateString("en-us", {
 		year: "numeric",
 		month: "short",
 		day: "numeric",
 	});
+}
+// accepts an event from api
+// formats date correctly for form
+function formatEventResponse(event: IEvent): any {
+	return { ...event, date: event.date.toString().slice(0, 10) };
 }
 // Used for previews
 function shortenText(text: string): string {
@@ -22,4 +29,10 @@ function formatLocation(pathname: string): string {
 	return capitalized.join(" ");
 }
 
-export { formatDate, shortenText, formatQuery, formatLocation };
+export {
+	formatDate,
+	formatEventResponse,
+	shortenText,
+	formatQuery,
+	formatLocation,
+};

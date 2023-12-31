@@ -23,7 +23,9 @@ import { DashboardSubheader } from "../../styles/layouts/admin-layout.style";
 // Components
 function EventForm() {
 	// State
-	const [options, setOptions] = useState<(IEventCategory | undefined)[]>([]);
+	const [categories, setCategories] = useState<
+		(IEventCategory | undefined)[]
+	>([]);
 
 	// Hooks
 	const { formData, onChange, onQuillChange, onCancel, onSubmit, onDelete } =
@@ -35,18 +37,18 @@ function EventForm() {
 		function () {
 			async function loadCategories() {
 				const response: IApiResponse = await listEventCategories();
-				if (response.data) setOptions(response.data);
+				if (response.data) setCategories(response.data);
 			}
-			if (!options.length) loadCategories();
+			if (!categories.length) loadCategories();
 		},
-		[options],
+		[categories],
 	);
 
 	return (
 		<>
 			{/* <pre>{JSON.stringify(formData, null, "\t")}</pre> */}
-			<DashboardSubheader>Event</DashboardSubheader>
 			<InlineForm onSubmit={onSubmit} noValidate>
+				<DashboardSubheader>Event</DashboardSubheader>
 				<FormRow>
 					<InputGroup
 						{...eventLabelValidation}
@@ -55,7 +57,7 @@ function EventForm() {
 					/>
 					<ControlGroup
 						{...eventCategoryValidation}
-						options={options}
+						options={categories}
 						onChange={onChange}
 						value={formData.event_category_id}
 					/>
@@ -77,15 +79,8 @@ function EventForm() {
 					onChange={onChange}
 					value={formData.text}
 				/>
-				<FormField>
-					<label htmlFor="content">
-						<strong>Content</strong>
-					</label>
-					<ReactQuill
-						onChange={onQuillChange}
-						value={formData.content}
-					/>
-				</FormField>
+				<DashboardSubheader>Content</DashboardSubheader>
+				<ReactQuill onChange={onQuillChange} value={formData.content} />
 				<FormRow>
 					<FormButton onClick={onCancel}>Cancel</FormButton>
 					<FormButton type="submit">Submit</FormButton>

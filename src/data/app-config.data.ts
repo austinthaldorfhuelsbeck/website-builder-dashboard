@@ -1,4 +1,4 @@
-import { ILinkGroup } from "../interfaces/utils.interface"
+import { ILinkGroup } from "../interfaces/utils.interface";
 
 const viewGroup: ILinkGroup = {
 	id: 0,
@@ -20,7 +20,7 @@ const viewGroup: ILinkGroup = {
 			target: "/events",
 		},
 	],
-}
+};
 const createGroup: ILinkGroup = {
 	id: 1,
 	label: "Create",
@@ -36,7 +36,7 @@ const createGroup: ILinkGroup = {
 			target: "/events/new",
 		},
 	],
-}
+};
 const manageGroup: ILinkGroup = {
 	id: 2,
 	label: "Manage",
@@ -57,8 +57,12 @@ const manageGroup: ILinkGroup = {
 			target: "/event-categories",
 		},
 	],
-}
+};
 
-const dashboardNavLinks: ILinkGroup[] = [viewGroup, createGroup, manageGroup]
+const dashboardNavLinks: ILinkGroup[] = [viewGroup, createGroup, manageGroup];
 
-export { dashboardNavLinks }
+// some post categories affect conditional rendering on form
+const audioCategoryId: string = "1703796960641";
+const videoCategoryId: string = "1703796960642";
+
+export { dashboardNavLinks, audioCategoryId, videoCategoryId };

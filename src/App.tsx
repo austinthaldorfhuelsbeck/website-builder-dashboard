@@ -13,12 +13,10 @@ import {
 	PostsGrid,
 } from "./components/Grids/Grids";
 import { EventForm } from "./components/forms/EventForm";
+import { PostForm } from "./components/forms/PostForm";
 
 function Dashboard() {
 	return <>Dashboard!</>;
-}
-function PostForm() {
-	return <>Post Form!</>;
 }
 function PostCategoriesForm() {
 	return <>PostCategoriesForm</>;
