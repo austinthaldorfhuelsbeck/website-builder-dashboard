@@ -9,17 +9,17 @@ const DashboardHeaderContainer = styled.div`
 `
 
 interface IDashboardComponentProps {
-	white?: boolean;
-	link?: boolean;
+	$white?: boolean;
+	$link?: boolean;
 }
 const DashboardSubheader = styled.h3<IDashboardComponentProps>`
-	color: ${(props) => (props.white ? "var(--white)" : "inherit")};
+	color: ${(props) => (props.$white ? "var(--white)" : "inherit")};
 	margin: 0.5rem 0;
-	cursor: ${(props) => (props.link ? "cursor" : "default")};
+	cursor: ${(props) => (props.$link ? "cursor" : "default")};
 `;
 
 const DashboardText = styled.p<IDashboardComponentProps>`
-	color: ${(props) => (props.white ? "var(--white)" : "inherit")};
+	color: ${(props) => (props.$white ? "var(--white)" : "inherit")};
 	margin: 0.5rem 0;
 `;
 

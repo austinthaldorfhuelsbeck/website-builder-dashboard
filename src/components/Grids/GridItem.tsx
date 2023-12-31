@@ -101,22 +101,27 @@ function GridItem({ resource }: PropsWithChildren<ComponentProps>) {
 	return (
 		<GridCard
 			onClick={onClick}
-			bgColor={(resource as IPostTopic).hex || undefined}
+			$bgColor={(resource as IPostTopic).hex || undefined}
 		>
 			<DashboardSubheader
-				link
-				white={(resource as IPostTopic).hex ? true : false}
+				$link
+				$white={(resource as IPostTopic).hex ? true : false}
 			>
 				{resource.label}
 			</DashboardSubheader>
-			<DashboardText white={(resource as IPostTopic).hex ? true : false}>
+			{(resource as IEvent).date && (
+				<DashboardText>
+					{formatDate((resource as IEvent).date)}
+				</DashboardText>
+			)}
+			<DashboardText $white={(resource as IPostTopic).hex ? true : false}>
 				{shortenText(resource.text)}
 			</DashboardText>
 			<TagsContainer>
 				{category && <GridTag>{category.label}</GridTag>}
-				{topic && <GridTag bgColor={topic.hex}>{topic.label}</GridTag>}
+				{topic && <GridTag $bgColor={topic.hex}>{topic.label}</GridTag>}
 			</TagsContainer>
-			<DashboardText white={(resource as IPostTopic).hex ? true : false}>
+			<DashboardText $white={(resource as IPostTopic).hex ? true : false}>
 				<em>{`Created at ${formatDate(
 					resource.created_at,
 				)} | Updated at ${formatDate(resource.updated_at)}`}</em>

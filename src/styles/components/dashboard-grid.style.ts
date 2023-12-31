@@ -8,18 +8,18 @@ const GridContainer = styled.div`
 `;
 
 interface IGridLinkProps {
-	bgColor?: string;
+	$bgColor?: string;
 }
 const GridCard = styled.div<IGridLinkProps>`
 	background-color: ${(props) =>
-		props.bgColor ? props.bgColor : "var(--off-white)"};
+		props.$bgColor ? props.$bgColor : "var(--off-white)"};
 	margin: 1rem 0;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	&:hover {
 		background-color: ${(props) =>
-			props.bgColor ? props.bgColor : "var(--light-grey)"};
+			props.$bgColor ? props.$bgColor : "var(--light-grey)"};
 		box-shadow: var(--box-shadow);
 		color: var(--goldenrod);
 	}
@@ -32,11 +32,11 @@ const TagsContainer = styled.div`
 `;
 
 interface ITagProps {
-	bgColor?: string;
+	$bgColor?: string;
 }
 const GridTag = styled.p<ITagProps>`
 	background-color: ${(props) =>
-		props.bgColor ? props.bgColor : "var(--light-aluminum)"};
+		props.$bgColor ? props.$bgColor : "var(--light-aluminum)"};
 	color: var(--white);
 	margin: 0 0.5rem;
 	padding: 0.5rem;

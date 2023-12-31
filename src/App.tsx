@@ -12,15 +12,13 @@ import {
 	PostTopicsGrid,
 	PostsGrid,
 } from "./components/Grids/Grids";
+import { EventForm } from "./components/forms/EventForm";
 
 function Dashboard() {
 	return <>Dashboard!</>;
 }
 function PostForm() {
 	return <>Post Form!</>;
-}
-function EventForm() {
-	return <>Event Form!</>;
 }
 function PostCategoriesForm() {
 	return <>PostCategoriesForm</>;
