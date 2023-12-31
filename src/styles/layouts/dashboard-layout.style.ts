@@ -8,7 +8,7 @@ const DashboardHeaderContainer = styled.div`
 	box-shadow: var(--box-shadow);
 `;
 
-const DashboardHeader = styled.h3`
+const DashboardTitle = styled.h3`
 	font-size: 180%;
 	font-weight: 900;
 	margin: 1rem auto 0 1rem;
@@ -41,7 +41,7 @@ const DashboardSearchBar = styled.input`
 
 export {
 	DashboardHeaderContainer,
-	DashboardHeader,
+	DashboardTitle,
 	DashboardSubheader,
 	DashboardText,
 	DashboardContentContainer,

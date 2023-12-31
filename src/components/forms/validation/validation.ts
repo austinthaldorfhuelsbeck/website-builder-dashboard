@@ -61,7 +61,7 @@ const eventLabelValidation: IValidation = {
 	type: "text",
 	name: "label",
 	title: "Event Name *",
-	placeholder: "e.g. Redeeming Heartache Conference",
+	placeholder: "Name of the event",
 };
 
 const eventCategoryValidation: IValidation = {
@@ -76,9 +76,8 @@ const eventDateValidation: IValidation = {
 	$short: true,
 };
 const eventTextValidation: IValidation = {
-	type: "text",
 	name: "text",
-	title: "Preview",
+	title: "Description",
 	placeholder: "A brief description of the event",
 };
 const eventUrlValidation: IValidation = {
@@ -86,6 +85,18 @@ const eventUrlValidation: IValidation = {
 	name: "url",
 	title: "Event URL",
 	placeholder: "Clickthrough URL for the event",
+};
+// categories
+const categoryLabelValidation: IValidation = {
+	type: "text",
+	name: "label",
+	title: "Label *",
+	placeholder: "Name of the category",
+};
+const categoryTextValidation: IValidation = {
+	name: "text",
+	title: "Description",
+	placeholder: "A brief description of the category",
 };
 
 // Exports
@@ -102,4 +113,6 @@ export {
 	eventDateValidation,
 	eventTextValidation,
 	eventUrlValidation,
+	categoryLabelValidation,
+	categoryTextValidation,
 };

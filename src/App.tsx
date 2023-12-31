@@ -14,18 +14,16 @@ import {
 } from "./components/Grids/Grids";
 import { EventForm } from "./components/forms/EventForm";
 import { PostForm } from "./components/forms/PostForm";
+import {
+	PostCategoriesForm,
+	EventCategoriesForm,
+} from "./components/forms/CategoriesForm";
 
 function Dashboard() {
 	return <>Dashboard!</>;
 }
-function PostCategoriesForm() {
-	return <>PostCategoriesForm</>;
-}
 function PostTopicsForm() {
 	return <>PostTopicsForm</>;
-}
-function EventCategoriesForm() {
-	return <>EventCategoriesForm</>;
 }
 function CallbackPage() {
 	return <>Callback!</>;
@@ -81,7 +79,7 @@ const routes: RouteObject[] = [
 					{ index: true, element: <EventCategoriesGrid /> },
 					{ path: "new", element: <EventCategoriesForm /> },
 					{
-						path: ":post_category_id",
+						path: ":event_category_id",
 						element: <EventCategoriesForm />,
 					},
 				],

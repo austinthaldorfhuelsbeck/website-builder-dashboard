@@ -1,4 +1,9 @@
-import { IBaseEvent, IBasePost } from "../interfaces/objects.interface";
+import {
+	IBaseCategory,
+	IBaseEvent,
+	IBasePost,
+	IBaseTopic,
+} from "../interfaces/objects.interface";
 
 const initialEvent: IBaseEvent = {
 	event_category_id: 0,
@@ -24,8 +29,27 @@ const initialPost: IBasePost = {
 	created_at: new Date(),
 	updated_at: new Date(),
 };
+const initialCategory: IBaseCategory = {
+	label: "",
+	text: "",
+	created_at: new Date(),
+	updated_at: new Date(),
+};
+const initialTopic: IBaseTopic = {
+	label: "",
+	text: "",
+	hex: "#fff",
+	created_at: new Date(),
+	updated_at: new Date(),
+};
 
 const warningMessage: string =
 	"Are you sure you wish to delete? You will not be able to recover this resource.";
 
-export { initialEvent, initialPost, warningMessage };
+export {
+	initialEvent,
+	initialPost,
+	initialCategory,
+	initialTopic,
+	warningMessage,
+};

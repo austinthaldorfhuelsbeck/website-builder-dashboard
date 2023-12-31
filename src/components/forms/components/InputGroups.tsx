@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
-import { FormField } from "../../styles/components/form.style";
-import { DashboardText } from "../../styles/layouts/dashboard-layout.style";
+import { FormField } from "../../../styles/components/form.style";
+import { DashboardText } from "../../../styles/layouts/dashboard-layout.style";
 
 // Data
 interface ComponentProps {

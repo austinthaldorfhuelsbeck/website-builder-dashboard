@@ -41,7 +41,7 @@ function useEventForm() {
 		e.preventDefault();
 		if (window.confirm(warningMessage)) {
 			const response: IApiResponse = await deleteEvent(Number(event_id));
-			if (response.data) navigate("/");
+			if (response.data) navigate("/events");
 		}
 	}
 
@@ -62,7 +62,7 @@ function useEventForm() {
 				// onClear();
 			}
 		},
-		[event_id, formData.event_id, onClear, setFormData],
+		[event_id, formData.event_id, setFormData],
 	);
 
 	// Export
