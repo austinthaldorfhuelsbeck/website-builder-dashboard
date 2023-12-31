@@ -2,28 +2,34 @@ import { RouteObject, useRoutes } from "react-router-dom";
 
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
+import { Layout } from "./layouts/Layout";
+import { Grid } from "./components/grids/Grid";
+import { PostForm } from "./components/forms/PostForm";
+import { EventForm } from "./components/forms/EventForm";
+import { listPosts } from "./services/cl-api/posts.service";
+import { listEvents } from "./services/cl-api/events.service";
+import { listPostTopics } from "./services/cl-api/post-topics.service";
 import { Loader, PageContainer } from "./styles/layouts/page-layout.style";
 import { AuthenticationGuard } from "./components/common/AuthenticationGuard";
-import { Layout } from "./layouts/Layout";
+import { listPostCategories } from "./services/cl-api/post-categories.service";
+import { listEventCategories } from "./services/cl-api/event-categories.service";
+import { CategoryForm } from "./components/forms/CategoryForm";
+import {
+	eventCategoryFormConfig,
+	postCategoryFormConfig,
+	postTopicFormConfig,
+} from "./components/forms/config/hook-config";
+import { TopicForm } from "./components/forms/TopicForm";
 import {
 	EventCategoriesGrid,
 	EventsGrid,
 	PostCategoriesGrid,
 	PostTopicsGrid,
 	PostsGrid,
-} from "./components/Grids/Grids";
-import { EventForm } from "./components/forms/EventForm";
-import { PostForm } from "./components/forms/PostForm";
-import {
-	PostCategoriesForm,
-	EventCategoriesForm,
-} from "./components/forms/CategoriesForm";
+} from "./components/grids/Grids";
 
 function Dashboard() {
 	return <>Dashboard!</>;
-}
-function PostTopicsForm() {
-	return <>PostTopicsForm</>;
 }
 function CallbackPage() {
 	return <>Callback!</>;
@@ -57,11 +63,17 @@ const routes: RouteObject[] = [
 			{
 				path: "post-categories",
 				children: [
-					{ index: true, element: <PostCategoriesGrid /> },
-					{ path: "new", element: <PostCategoriesForm /> },
 					{
-						path: ":post_category_id",
-						element: <PostCategoriesForm />,
+						index: true,
+						element: <PostCategoriesGrid />,
+					},
+					{
+						path: "new",
+						element: <CategoryForm {...postCategoryFormConfig} />,
+					},
+					{
+						path: ":category_id",
+						element: <CategoryForm {...postCategoryFormConfig} />,
 					},
 				],
 			},
@@ -69,18 +81,30 @@ const routes: RouteObject[] = [
 				path: "post-topics",
 				children: [
 					{ index: true, element: <PostTopicsGrid /> },
-					{ path: "new", element: <PostTopicsForm /> },
-					{ path: ":post_topic_id", element: <PostTopicsForm /> },
+					{
+						path: "new",
+						element: <TopicForm {...postTopicFormConfig} />,
+					},
+					{
+						path: ":topic_id",
+						element: <TopicForm {...postTopicFormConfig} />,
+					},
 				],
 			},
 			{
 				path: "event-categories",
 				children: [
-					{ index: true, element: <EventCategoriesGrid /> },
-					{ path: "new", element: <EventCategoriesForm /> },
 					{
-						path: ":event_category_id",
-						element: <EventCategoriesForm />,
+						index: true,
+						element: <EventCategoriesGrid />,
+					},
+					{
+						path: "new",
+						element: <CategoryForm {...eventCategoryFormConfig} />,
+					},
+					{
+						path: ":category_id",
+						element: <CategoryForm {...eventCategoryFormConfig} />,
 					},
 				],
 			},

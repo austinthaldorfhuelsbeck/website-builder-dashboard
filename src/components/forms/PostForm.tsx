@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import ReactQuill from "react-quill";
 
-import { usePostForm } from "../hooks/usePostForm";
 import { IApiResponse } from "../../interfaces/utils.interface";
 import {
 	ControlGroup,
@@ -23,12 +22,19 @@ import {
 	postTopicsValidation,
 	postUrlValidation,
 	postVideoValidation,
-} from "./validation/validation";
+} from "./config/validation";
 import { FormControls } from "./components/FormControls";
+import { useForm } from "../hooks/useForm";
+import { postFormConfig } from "./config/hook-config";
+import { useParams } from "react-router-dom";
 
 // Components
 function PostForm() {
+	// Constants
+	const { post_id } = useParams();
+
 	// State
+	// store options that are available for select elements
 	const [categories, setCategories] = useState<(IPostCategory | undefined)[]>(
 		[],
 	);
@@ -36,7 +42,7 @@ function PostForm() {
 
 	// Hooks
 	const { formData, onChange, onQuillChange, onCancel, onSubmit, onDelete } =
-		usePostForm();
+		useForm({ ...postFormConfig, id: post_id });
 
 	// Effects
 	// load available category options

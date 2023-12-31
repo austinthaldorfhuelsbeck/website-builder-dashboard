@@ -10,30 +10,30 @@ interface IValidation {
 
 // Config
 // posts
-const postLabelValidation: IValidation = {
+export const postLabelValidation: IValidation = {
 	type: "text",
 	name: "label",
 	title: "Label *",
 	placeholder: "Title of the post",
 };
-const postCategoryValidation: IValidation = {
+export const postCategoryValidation: IValidation = {
 	name: "post_category_id",
 	title: "Category *",
 	$short: true,
 };
-const postTopicsValidation: IValidation = {
+export const postTopicsValidation: IValidation = {
 	name: "post_topic_id",
 	title: "Topic *",
 	$short: true,
 };
-const postUrlValidation: IValidation = {
+export const postUrlValidation: IValidation = {
 	type: "text",
 	name: "url",
 	title: "Post URL",
 	placeholder: "Clickthrough URL for the post",
 	subtext: "When the thumbnail image is clicked, it links here.",
 };
-const postAudioValidation: IValidation = {
+export const postAudioValidation: IValidation = {
 	type: "text",
 	name: "audio",
 	title: "Audio URL",
@@ -41,7 +41,7 @@ const postAudioValidation: IValidation = {
 	subtext:
 		"For podcasts. If the podcast is hosted somewhere else, paste the URL here to allow users to listen.",
 };
-const postVideoValidation: IValidation = {
+export const postVideoValidation: IValidation = {
 	type: "text",
 	name: "video",
 	title: "Video URL",
@@ -49,7 +49,7 @@ const postVideoValidation: IValidation = {
 	subtext:
 		"For video content. If the content is hosted somewhere else, paste the URL here to allow users to watch.",
 };
-const postTextValidation: IValidation = {
+export const postTextValidation: IValidation = {
 	name: "text",
 	title: "Description",
 	placeholder: "A brief description of the post",
@@ -57,62 +57,55 @@ const postTextValidation: IValidation = {
 		"This could be the first paragraph of the post. Automatically shortened to 250 characters for the preview.",
 };
 // events
-const eventLabelValidation: IValidation = {
+export const eventLabelValidation: IValidation = {
 	type: "text",
 	name: "label",
 	title: "Event Name *",
 	placeholder: "Name of the event",
 };
-
-const eventCategoryValidation: IValidation = {
+export const eventCategoryValidation: IValidation = {
 	name: "event_category_id",
 	title: "Category *",
 	$short: true,
 };
-const eventDateValidation: IValidation = {
+export const eventDateValidation: IValidation = {
 	type: "date",
 	name: "date",
 	title: "Date *",
 	$short: true,
 };
-const eventTextValidation: IValidation = {
+export const eventTextValidation: IValidation = {
 	name: "text",
 	title: "Description",
 	placeholder: "A brief description of the event",
 };
-const eventUrlValidation: IValidation = {
+export const eventUrlValidation: IValidation = {
 	type: "text",
 	name: "url",
 	title: "Event URL",
 	placeholder: "Clickthrough URL for the event",
 };
 // categories
-const categoryLabelValidation: IValidation = {
+export const categoryLabelValidation: IValidation = {
 	type: "text",
 	name: "label",
 	title: "Label *",
 	placeholder: "Name of the category",
 };
-const categoryTextValidation: IValidation = {
+export const categoryTextValidation: IValidation = {
 	name: "text",
 	title: "Description",
 	placeholder: "A brief description of the category",
 };
-
-// Exports
-export {
-	postLabelValidation,
-	postCategoryValidation,
-	postTopicsValidation,
-	postUrlValidation,
-	postTextValidation,
-	postAudioValidation,
-	postVideoValidation,
-	eventLabelValidation,
-	eventCategoryValidation,
-	eventDateValidation,
-	eventTextValidation,
-	eventUrlValidation,
-	categoryLabelValidation,
-	categoryTextValidation,
+// topics
+export const topicLabelValidation: IValidation = {
+	type: "text",
+	name: "label",
+	title: "Label *",
+	placeholder: "Name of the topic",
+};
+export const topicCategoryValidation: IValidation = {
+	name: "text",
+	title: "Description",
+	placeholder: "A brief description of the topic",
 };

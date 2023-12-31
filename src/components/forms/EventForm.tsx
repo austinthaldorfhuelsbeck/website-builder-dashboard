@@ -1,29 +1,36 @@
 import { useEffect, useState } from "react";
 
 import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { useParams } from "react-router-dom";
 
-import { useEventForm } from "../hooks/useEventForm";
+import { useForm } from "../hooks/useForm";
+import { FormControls } from "./components/FormControls";
+import { IApiResponse } from "../../interfaces/utils.interface";
+import { IEventCategory } from "../../interfaces/objects.interface";
+import { FormRow, InlineForm } from "../../styles/components/form.style";
+import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import {
 	ControlGroup,
 	InputGroup,
 	TextAreaGroup,
 } from "./components/InputGroups";
-import { IApiResponse } from "../../interfaces/utils.interface";
-import { IEventCategory } from "../../interfaces/objects.interface";
-import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import { listEventCategories } from "../../services/cl-api/event-categories.service";
-import { FormRow, InlineForm } from "../../styles/components/form.style";
+
 import {
 	eventCategoryValidation,
 	eventDateValidation,
 	eventLabelValidation,
 	eventTextValidation,
 	eventUrlValidation,
-} from "./validation/validation";
-import { FormControls } from "./components/FormControls";
+} from "./config/validation";
+import { eventFormConfig } from "./config/hook-config";
 
 // Components
 function EventForm() {
+	// Constants
+	const { event_id } = useParams();
+
 	// State
 	const [categories, setCategories] = useState<
 		(IEventCategory | undefined)[]
@@ -31,7 +38,10 @@ function EventForm() {
 
 	// Hooks
 	const { formData, onChange, onQuillChange, onCancel, onSubmit, onDelete } =
-		useEventForm();
+		useForm({
+			...eventFormConfig,
+			id: event_id,
+		});
 
 	// Effects
 	// load available category options
@@ -82,7 +92,11 @@ function EventForm() {
 			/>
 			<DashboardTitle>Content</DashboardTitle>
 			<hr />
-			<ReactQuill onChange={onQuillChange} value={formData.content} />
+			<ReactQuill
+				theme="snow"
+				onChange={onQuillChange}
+				value={formData.content}
+			/>
 			<FormControls {...{ onCancel, onDelete }} />
 		</InlineForm>
 	);
