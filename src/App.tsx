@@ -4,40 +4,26 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { Layout } from "./layouts/Layout";
 import { Grid } from "./components/grids/Grid";
+import { Dashboard } from "./layouts/Dashboard";
 import { PostForm } from "./components/forms/PostForm";
 import { EventForm } from "./components/forms/EventForm";
+import { TopicForm } from "./components/forms/TopicForm";
 import { listPosts } from "./services/cl-api/posts.service";
 import { listEvents } from "./services/cl-api/events.service";
+import { CategoryForm } from "./components/forms/CategoryForm";
 import { listPostTopics } from "./services/cl-api/post-topics.service";
+import { DashboardTitle } from "./styles/layouts/dashboard-layout.style";
 import { Loader, PageContainer } from "./styles/layouts/page-layout.style";
 import { AuthenticationGuard } from "./components/common/AuthenticationGuard";
 import { listPostCategories } from "./services/cl-api/post-categories.service";
 import { listEventCategories } from "./services/cl-api/event-categories.service";
-import { CategoryForm } from "./components/forms/CategoryForm";
 import {
 	eventCategoryFormConfig,
 	postCategoryFormConfig,
 	postTopicFormConfig,
 } from "./components/forms/config/hook-config";
-import { TopicForm } from "./components/forms/TopicForm";
-import {
-	EventCategoriesGrid,
-	EventsGrid,
-	PostCategoriesGrid,
-	PostTopicsGrid,
-	PostsGrid,
-} from "./components/grids/Grids";
 
-function Dashboard() {
-	return <>Dashboard!</>;
-}
-function CallbackPage() {
-	return <>Callback!</>;
-}
-function NotFound() {
-	return <>Not Found!</>;
-}
-
+// Config
 const routes: RouteObject[] = [
 	{
 		path: "/",
@@ -112,14 +98,33 @@ const routes: RouteObject[] = [
 	},
 	{
 		path: "callback",
-		element: <CallbackPage />,
+		element: <Loader icon={faSpinner} />,
 	},
 	{
 		path: "*",
-		element: <NotFound />,
+		element: <NotFoundPage />,
 	},
 ];
 
+// Components
+function NotFoundPage() {
+	return <DashboardTitle>404 Not Found</DashboardTitle>;
+}
+function PostsGrid() {
+	return <Grid loader={listPosts} />;
+}
+function EventsGrid() {
+	return <Grid loader={listEvents} />;
+}
+function PostCategoriesGrid() {
+	return <Grid loader={listPostCategories} />;
+}
+function PostTopicsGrid() {
+	return <Grid loader={listPostTopics} />;
+}
+function EventCategoriesGrid() {
+	return <Grid loader={listEventCategories} />;
+}
 function App() {
 	// Routes
 	const content = useRoutes(routes);
@@ -129,4 +134,5 @@ function App() {
 	);
 }
 
+// Exports
 export { App };

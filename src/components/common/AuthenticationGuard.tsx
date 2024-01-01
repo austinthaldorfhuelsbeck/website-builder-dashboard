@@ -9,6 +9,7 @@ interface ComponentProps {
 	component: ComponentType
 }
 
+// Components
 function AuthenticationGuard({ component }: PropsWithChildren<ComponentProps>) {
 	// only return if authenticated
 	const Component = withAuthenticationRequired(component, {
@@ -22,4 +23,5 @@ function AuthenticationGuard({ component }: PropsWithChildren<ComponentProps>) {
 	return <Component />
 }
 
+// Exports
 export { AuthenticationGuard }

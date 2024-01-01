@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 import { DashboardHeader } from "../components/headers/DashboardHeader"
 import { PageContainer, PageContent } from "../styles/layouts/page-layout.style"
 import { DashboardContentContainer } from "../styles/layouts/dashboard-layout.style";
-import { DashboardSidebar } from "../components/sidebars/DashboardSidebar"
+import { DashboardSidebar } from "../components/sidebars/DashboardSidebar";
 
 function Layout() {
 	return (
