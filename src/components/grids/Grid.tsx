@@ -6,7 +6,6 @@ import { GridItem } from "./GridItem";
 import { IApiResponse } from "../../interfaces/utils.interface";
 import { Loader } from "../../styles/layouts/page-layout.style";
 import { GridContainer } from "../../styles/components/dashboard-grid.style";
-import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import {
 	IEvent,
 	IEventCategory,
@@ -16,6 +15,7 @@ import {
 } from "../../interfaces/objects.interface";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { formatLocation, formatQuery } from "../../services/util.service";
+import { DashboardTitle } from "../common/DashboardTitle";
 
 // Data
 interface ComponentProps {
@@ -58,7 +58,7 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 	return resources ? (
 		<>
 			<DashboardTitle>{formatLocation(location.pathname)}</DashboardTitle>
-			<hr />
+
 			<GridContainer>
 				{resources
 					.filter(

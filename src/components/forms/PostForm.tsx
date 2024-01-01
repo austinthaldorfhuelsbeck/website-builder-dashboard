@@ -9,7 +9,6 @@ import {
 	TextAreaGroup,
 } from "./components/InputGroups";
 import { listPostTopics } from "../../services/cl-api/post-topics.service";
-import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import { audioCategoryId, videoCategoryId } from "../../data/app-config.data";
 import { IPostCategory, IPostTopic } from "../../interfaces/objects.interface";
 import { listPostCategories } from "../../services/cl-api/post-categories.service";
@@ -27,6 +26,7 @@ import { FormControls } from "./components/FormControls";
 import { useForm } from "../hooks/useForm";
 import { postFormConfig } from "./config/hook-config";
 import { useParams } from "react-router-dom";
+import { DashboardTitle } from "../common/DashboardTitle";
 
 // Components
 function PostForm() {
@@ -71,7 +71,7 @@ function PostForm() {
 	return (
 		<InlineForm onSubmit={onSubmit} noValidate>
 			<DashboardTitle>Basic Info</DashboardTitle>
-			<hr />
+
 			<InputGroup
 				{...postLabelValidation}
 				onChange={onChange}
@@ -92,7 +92,7 @@ function PostForm() {
 				/>
 			</FormRow>
 			<DashboardTitle>Details</DashboardTitle>
-			<hr />
+
 			<InputGroup
 				{...postUrlValidation}
 				onChange={onChange}
@@ -118,7 +118,7 @@ function PostForm() {
 				value={formData.text}
 			/>
 			<DashboardTitle>Content</DashboardTitle>
-			<hr />
+
 			<ReactQuill onChange={onQuillChange} value={formData.content} />
 			<FormControls {...{ onCancel, onDelete }} />
 		</InlineForm>

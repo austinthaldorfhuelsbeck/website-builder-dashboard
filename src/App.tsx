@@ -12,7 +12,6 @@ import { listPosts } from "./services/cl-api/posts.service";
 import { listEvents } from "./services/cl-api/events.service";
 import { CategoryForm } from "./components/forms/CategoryForm";
 import { listPostTopics } from "./services/cl-api/post-topics.service";
-import { DashboardTitle } from "./styles/layouts/dashboard-layout.style";
 import { Loader, PageContainer } from "./styles/layouts/page-layout.style";
 import { AuthenticationGuard } from "./components/common/AuthenticationGuard";
 import { listPostCategories } from "./services/cl-api/post-categories.service";
@@ -22,6 +21,7 @@ import {
 	postCategoryFormConfig,
 	postTopicFormConfig,
 } from "./components/forms/config/hook-config";
+import { DashboardTitle } from "./components/common/DashboardTitle";
 
 // Config
 const routes: RouteObject[] = [

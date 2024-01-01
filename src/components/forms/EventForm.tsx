@@ -9,7 +9,6 @@ import { FormControls } from "./components/FormControls";
 import { IApiResponse } from "../../interfaces/utils.interface";
 import { IEventCategory } from "../../interfaces/objects.interface";
 import { FormRow, InlineForm } from "../../styles/components/form.style";
-import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import {
 	ControlGroup,
 	InputGroup,
@@ -25,6 +24,7 @@ import {
 	eventUrlValidation,
 } from "./config/validation";
 import { eventFormConfig } from "./config/hook-config";
+import { DashboardTitle } from "../common/DashboardTitle";
 
 // Components
 function EventForm() {
@@ -59,7 +59,7 @@ function EventForm() {
 	return (
 		<InlineForm onSubmit={onSubmit} noValidate>
 			<DashboardTitle>Event</DashboardTitle>
-			<hr />
+
 			<FormRow>
 				<InputGroup
 					{...eventLabelValidation}
@@ -91,7 +91,7 @@ function EventForm() {
 				value={formData.text}
 			/>
 			<DashboardTitle>Content</DashboardTitle>
-			<hr />
+
 			<ReactQuill
 				theme="snow"
 				onChange={onQuillChange}

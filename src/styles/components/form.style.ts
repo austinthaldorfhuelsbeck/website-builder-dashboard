@@ -18,23 +18,6 @@ const FormField = styled.div<FieldProps>`
 	margin: 1rem 1rem 1rem 0;
 	width: 100%;
 	max-width: ${(props) => (props.$short ? "18rem" : "none")};
-
-	label {
-		margin: 0.5rem 0;
-	}
-
-	input,
-	select,
-	textarea {
-		display: block;
-		background: none;
-		padding: 0.375rem 0.75rem;
-		line-height: 1.5;
-		border: 1px solid var(--light-grey);
-		border-radius: 0.25rem;
-		outline: none;
-		font-family: var(--sans-serif);
-	}
 `;
 
 interface ButtonProps {

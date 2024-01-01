@@ -3,7 +3,6 @@ import { IFormHookProps } from "./config/hook-config";
 import { useParams } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import { InlineForm } from "../../styles/components/form.style";
-import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import { InputGroup, TextAreaGroup } from "./components/InputGroups";
 import { FormControls } from "./components/FormControls";
 import {
@@ -11,6 +10,7 @@ import {
 	topicLabelValidation,
 	topicTextValidation,
 } from "./config/validation";
+import { DashboardTitle } from "../common/DashboardTitle";
 
 // Components
 function TopicForm(config: PropsWithChildren<IFormHookProps>) {
@@ -26,7 +26,7 @@ function TopicForm(config: PropsWithChildren<IFormHookProps>) {
 	return (
 		<InlineForm onSubmit={onSubmit} noValidate>
 			<DashboardTitle>Edit Topic</DashboardTitle>
-			<hr />
+
 			<InputGroup
 				{...topicLabelValidation}
 				onChange={onChange}

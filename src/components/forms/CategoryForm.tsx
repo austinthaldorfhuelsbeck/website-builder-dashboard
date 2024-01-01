@@ -7,11 +7,11 @@ import { IFormHookProps } from "./config/hook-config";
 import { FormControls } from "./components/FormControls";
 import { InlineForm } from "../../styles/components/form.style";
 import { InputGroup, TextAreaGroup } from "./components/InputGroups";
-import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import {
 	categoryLabelValidation,
 	categoryTextValidation,
 } from "./config/validation";
+import { DashboardTitle } from "../common/DashboardTitle";
 
 // Components
 function CategoryForm(config: PropsWithChildren<IFormHookProps>) {
@@ -27,7 +27,7 @@ function CategoryForm(config: PropsWithChildren<IFormHookProps>) {
 	return (
 		<InlineForm onSubmit={onSubmit} noValidate>
 			<DashboardTitle>Edit Category</DashboardTitle>
-			<hr />
+
 			<InputGroup
 				{...categoryLabelValidation}
 				onChange={onChange}
