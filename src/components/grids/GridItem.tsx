@@ -122,9 +122,9 @@ function GridItem({ resource }: PropsWithChildren<ComponentProps>) {
 				{topic && <GridTag $bgColor={topic.hex}>{topic.label}</GridTag>}
 			</TagsContainer>
 			<DashboardText $white={(resource as IPostTopic).hex ? true : false}>
-				<em>{`Created at ${formatDate(
+				<em>{`Created: ${formatDate(
 					resource.created_at,
-				)} | Updated at ${formatDate(resource.updated_at)}`}</em>
+				)} | Updated: ${formatDate(resource.updated_at)}`}</em>
 			</DashboardText>
 		</GridCard>
 	);

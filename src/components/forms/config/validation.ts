@@ -104,7 +104,12 @@ export const topicLabelValidation: IValidation = {
 	title: "Label *",
 	placeholder: "Name of the topic",
 };
-export const topicCategoryValidation: IValidation = {
+export const topicColorValidation: IValidation = {
+	type: "color",
+	name: "hex",
+	title: "Color *",
+};
+export const topicTextValidation: IValidation = {
 	name: "text",
 	title: "Description",
 	placeholder: "A brief description of the topic",

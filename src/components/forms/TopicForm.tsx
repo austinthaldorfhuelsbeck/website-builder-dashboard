@@ -6,7 +6,11 @@ import { InlineForm } from "../../styles/components/form.style";
 import { DashboardTitle } from "../../styles/layouts/dashboard-layout.style";
 import { InputGroup, TextAreaGroup } from "./components/InputGroups";
 import { FormControls } from "./components/FormControls";
-import { topicLabelValidation } from "./config/validation";
+import {
+	topicColorValidation,
+	topicLabelValidation,
+	topicTextValidation,
+} from "./config/validation";
 
 // Components
 function TopicForm(config: PropsWithChildren<IFormHookProps>) {
@@ -28,8 +32,13 @@ function TopicForm(config: PropsWithChildren<IFormHookProps>) {
 				onChange={onChange}
 				value={formData.label}
 			/>
+			<InputGroup
+				{...topicColorValidation}
+				onChange={onChange}
+				value={formData.hex}
+			/>
 			<TextAreaGroup
-				{...topicLabelValidation}
+				{...topicTextValidation}
 				onChange={onChange}
 				value={formData.text}
 			/>
