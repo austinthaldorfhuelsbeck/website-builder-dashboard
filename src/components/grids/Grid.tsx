@@ -57,7 +57,11 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 	// filter results by search query and then map items
 	return resources ? (
 		<>
-			<DashboardTitle>{formatLocation(location.pathname)}</DashboardTitle>
+			{location.pathname !== "/" && (
+				<DashboardTitle>
+					{formatLocation(location.pathname)}
+				</DashboardTitle>
+			)}
 
 			<GridContainer>
 				{resources

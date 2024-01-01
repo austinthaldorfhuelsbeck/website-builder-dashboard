@@ -50,16 +50,16 @@ async function listEvents(): Promise<IApiResponse> {
 }
 async function listUpcomingEvents(): Promise<IApiResponse> {
 	const config: AxiosRequestConfig = {
-		url: `${apiUrl}/events/upcoming`,
+		url: `${apiUrl}/events?upcoming=true`,
 		method: "GET",
-	}
+	};
 	return await fetchResponse(config)
 }
 async function listEventsByCategory(id: number): Promise<IApiResponse> {
 	const config: AxiosRequestConfig = {
-		url: `${apiUrl}/events/category/${id}`,
+		url: `${apiUrl}/events?category=${id}`,
 		method: "GET",
-	}
+	};
 	return await fetchResponse(config)
 }
 
