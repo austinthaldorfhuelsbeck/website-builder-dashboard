@@ -68,9 +68,14 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 	return resources ? (
 		<>
 			{location.pathname !== "/" && (
-				<DashboardTitle>
-					{formatLocation(location.pathname)}
-				</DashboardTitle>
+				<>
+					<DashboardTitle>
+						{formatLocation(location.pathname)}
+					</DashboardTitle>
+					<InlineButton onClick={onClick}>
+						<FontAwesomeIcon icon={faPlus} /> New
+					</InlineButton>
+				</>
 			)}
 
 			<GridContainer>
@@ -95,10 +100,6 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 							),
 					)}
 			</GridContainer>
-
-			<InlineButton onClick={onClick}>
-				<FontAwesomeIcon icon={faPlus} /> New
-			</InlineButton>
 		</>
 	) : (
 		<Loader icon={faSpinner} />

@@ -52,7 +52,7 @@ function GridItem({ resource }: PropsWithChildren<ComponentProps>) {
 			(resource as IPostCategory).post_category_id ||
 			(resource as IPostTopic).post_topic_id ||
 			(resource as IEventCategory).event_category_id;
-		navigate(`${location.pathname}/${id}`);
+		if (location.pathname !== "/") navigate(`${location.pathname}/${id}`);
 	}
 
 	// Effects

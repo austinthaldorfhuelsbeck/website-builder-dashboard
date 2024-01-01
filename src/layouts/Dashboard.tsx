@@ -7,8 +7,11 @@ import { useHide } from "../components/hooks/useHide";
 import { DashboardTitle } from "../components/common/DashboardTitle";
 import { listUpcomingEvents } from "../services/cl-api/events.service";
 import { DashboardSubheader } from "../styles/layouts/dashboard-layout.style";
-import { PropsWithChildren } from "react";
-import { listPosts } from "../services/cl-api/posts.service";
+import { PropsWithChildren, useEffect, useState } from "react";
+import { readFeaturedPost } from "../services/cl-api/posts.service";
+import { GridItem } from "../components/grids/GridItem";
+import { IPost } from "../interfaces/objects.interface";
+import { IApiResponse } from "../interfaces/utils.interface";
 
 // Data
 interface ComponentProps {
@@ -22,9 +25,31 @@ const componentProps: ComponentProps[] = [
 		label: "Upcoming Events",
 		children: <Grid loader={listUpcomingEvents} />,
 	},
+	{
+		label: "Featured Post",
+		children: <FeaturedPost />,
+	},
 ];
 
 // Components
+function FeaturedPost() {
+	// State
+	const [post, setPost] = useState<IPost | undefined>();
+
+	// Effects
+	useEffect(
+		function () {
+			async function loadFeatured() {
+				const response: IApiResponse = await readFeaturedPost();
+				if (response.data) setPost(response.data);
+			}
+			if (!post) loadFeatured();
+		},
+		[post],
+	);
+
+	return <>{post && <GridItem resource={post} />}</>;
+}
 function DashboardComponent({
 	label,
 	children,
@@ -37,8 +62,8 @@ function DashboardComponent({
 			<DashboardSubheader onClick={onClick}>
 				{`${label} `}
 				<FontAwesomeIcon icon={isDisplayed ? faMinus : faPlus} />
-				{isDisplayed && children}
 			</DashboardSubheader>
+			{isDisplayed && children}
 		</>
 	);
 }
