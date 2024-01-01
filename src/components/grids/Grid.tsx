@@ -1,6 +1,6 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, SyntheticEvent, useEffect, useState } from "react";
 
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { GridItem } from "./GridItem";
 import { IApiResponse } from "../../interfaces/utils.interface";
@@ -13,9 +13,11 @@ import {
 	IPostCategory,
 	IPostTopic,
 } from "../../interfaces/objects.interface";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { formatLocation, formatQuery } from "../../services/util.service";
 import { DashboardTitle } from "../common/DashboardTitle";
+import { InlineButton } from "../../styles/components/util.style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Data
 interface ComponentProps {
@@ -27,6 +29,7 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 	// Hooks
 	const [searchParams] = useSearchParams();
 	const location = useLocation();
+	const navigate = useNavigate();
 
 	// State
 	// resources to be loaded with loader function
@@ -40,6 +43,13 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 			| undefined
 		)[]
 	>([]);
+
+	// Handlers
+	function onClick(e: SyntheticEvent<HTMLButtonElement>) {
+		e.preventDefault();
+		navigate(`${location.pathname}/new`);
+	}
+
 	// Effects
 	// load resources to state
 	useEffect(
@@ -85,6 +95,10 @@ function Grid({ loader }: PropsWithChildren<ComponentProps>) {
 							),
 					)}
 			</GridContainer>
+
+			<InlineButton onClick={onClick}>
+				<FontAwesomeIcon icon={faPlus} /> New
+			</InlineButton>
 		</>
 	) : (
 		<Loader icon={faSpinner} />

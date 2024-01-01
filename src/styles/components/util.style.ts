@@ -11,4 +11,13 @@ const CircleImg = styled.img`
 	cursor: pointer;
 `;
 
-export { BlankSpan, CircleImg };
+const InlineButton = styled.button`
+	max-width: 10rem;
+	padding: 0.5rem;
+	border: none;
+	border-radius: 0.5rem;
+	box-shadow: var(--box-shadow);
+	cursor: pointer;
+`;
+
+export { BlankSpan, CircleImg, InlineButton };
