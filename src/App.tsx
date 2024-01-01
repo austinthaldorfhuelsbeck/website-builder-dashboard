@@ -13,7 +13,6 @@ import { listEvents } from "./services/cl-api/events.service";
 import { CategoryForm } from "./components/forms/CategoryForm";
 import { listPostTopics } from "./services/cl-api/post-topics.service";
 import { Loader, PageContainer } from "./styles/layouts/page-layout.style";
-import { AuthenticationGuard } from "./components/common/AuthenticationGuard";
 import { listPostCategories } from "./services/cl-api/post-categories.service";
 import { listEventCategories } from "./services/cl-api/event-categories.service";
 import {
@@ -27,7 +26,7 @@ import { DashboardTitle } from "./components/common/DashboardTitle";
 const routes: RouteObject[] = [
 	{
 		path: "/",
-		element: <AuthenticationGuard component={Layout} />,
+		element: <Layout />,
 		children: [
 			{ index: true, element: <Dashboard /> },
 			{
