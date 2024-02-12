@@ -1,21 +1,20 @@
-import { StrictMode } from "react"
+import { StrictMode } from "react";
 
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom";
 
-import { createRoot } from "react-dom/client"
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
-import { App } from "./App"
-import { GlobalStyles } from "./styles/global-styles.style";
+import App from "./App";
 
 // Get root element
-const container = document.getElementById("root") as HTMLElement
-const root = createRoot(container)
+const container = document.getElementById("root") as HTMLElement;
+const root = createRoot(container);
 
 // Render
 root.render(
 	<StrictMode>
 		<BrowserRouter>
-			<GlobalStyles />
 			<App />
 		</BrowserRouter>
 	</StrictMode>,

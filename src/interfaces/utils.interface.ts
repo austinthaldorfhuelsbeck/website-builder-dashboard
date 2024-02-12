@@ -16,4 +16,5 @@ interface ILinkGroup {
 	links: ILink[]
 }
 
-export type { IAppError, IApiResponse, ILink, ILinkGroup }
+export type { IApiResponse, IAppError, ILink, ILinkGroup };
+

@@ -5,11 +5,6 @@ const viewGroup: ILinkGroup = {
 	label: "View",
 	links: [
 		{
-			id: 0,
-			label: "Dashboard",
-			target: "/",
-		},
-		{
 			id: 1,
 			label: "Posts",
 			target: "/posts",
@@ -65,4 +60,5 @@ const dashboardNavLinks: ILinkGroup[] = [viewGroup, createGroup, manageGroup];
 const audioCategoryId: string = "1703796960641";
 const videoCategoryId: string = "1703796960642";
 
-export { dashboardNavLinks, audioCategoryId, videoCategoryId };
+export { audioCategoryId, dashboardNavLinks, videoCategoryId };
+
