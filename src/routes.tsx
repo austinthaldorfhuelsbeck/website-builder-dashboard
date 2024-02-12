@@ -1,10 +1,8 @@
-import { Navigate, RouteObject } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { initialCategory, initialTopic } from "./data/app-consts.data";
 import { IFormHookProps } from "./interfaces/forms.interface";
+import AuthenticationGuard from "./providers/AuthenticationGuard";
 import PageLayout from "./providers/PageLayout";
 import {
 	deleteEventCategory,
@@ -29,6 +27,7 @@ import { listPosts } from "./services/posts.service";
 import CategoryForm from "./views/CategoryForm";
 import EventForm from "./views/EventForm";
 import Grid from "./views/Grid";
+import LoginPage from "./views/LoginPage";
 import NotFoundPage from "./views/NotFoundPage";
 import PostForm from "./views/PostForm";
 import { TopicForm } from "./views/TopicForm";
@@ -56,78 +55,104 @@ const eventCategoryFormConfig: IFormHookProps = {
 const routes: RouteObject[] = [
 	{
 		path: "/",
-		element: <PageLayout />,
+		element: <AuthenticationGuard />,
 		children: [
-			{ index: true, element: <Navigate to="/posts" /> },
 			{
-				path: "posts",
-				children: [
-					{ index: true, element: <Grid loader={listPosts} /> },
-					{ path: "new", element: <PostForm /> },
-					{ path: ":post_id", element: <PostForm /> },
-				],
-			},
-			{
-				path: "events",
-				children: [
-					{ index: true, element: <Grid loader={listEvents} /> },
-					{ path: "new", element: <EventForm /> },
-					{ path: ":event_id", element: <EventForm /> },
-				],
-			},
-			{
-				path: "post-categories",
+				path: "/",
+				element: <PageLayout />,
 				children: [
 					{
-						index: true,
-						element: <Grid loader={listPostCategories} />,
+						path: "posts",
+						children: [
+							{
+								index: true,
+								element: <Grid loader={listPosts} />,
+							},
+							{ path: "new", element: <PostForm /> },
+							{ path: ":post_id", element: <PostForm /> },
+						],
 					},
 					{
-						path: "new",
-						element: <CategoryForm {...postCategoryFormConfig} />,
+						path: "events",
+						children: [
+							{
+								index: true,
+								element: <Grid loader={listEvents} />,
+							},
+							{ path: "new", element: <EventForm /> },
+							{ path: ":event_id", element: <EventForm /> },
+						],
 					},
 					{
-						path: ":category_id",
-						element: <CategoryForm {...postCategoryFormConfig} />,
-					},
-				],
-			},
-			{
-				path: "post-topics",
-				children: [
-					{ index: true, element: <Grid loader={listPostTopics} /> },
-					{
-						path: "new",
-						element: <TopicForm {...postTopicFormConfig} />,
-					},
-					{
-						path: ":topic_id",
-						element: <TopicForm {...postTopicFormConfig} />,
-					},
-				],
-			},
-			{
-				path: "event-categories",
-				children: [
-					{
-						index: true,
-						element: <Grid loader={listEventCategories} />,
+						path: "post-categories",
+						children: [
+							{
+								index: true,
+								element: <Grid loader={listPostCategories} />,
+							},
+							{
+								path: "new",
+								element: (
+									<CategoryForm {...postCategoryFormConfig} />
+								),
+							},
+							{
+								path: ":category_id",
+								element: (
+									<CategoryForm {...postCategoryFormConfig} />
+								),
+							},
+						],
 					},
 					{
-						path: "new",
-						element: <CategoryForm {...eventCategoryFormConfig} />,
+						path: "post-topics",
+						children: [
+							{
+								index: true,
+								element: <Grid loader={listPostTopics} />,
+							},
+							{
+								path: "new",
+								element: <TopicForm {...postTopicFormConfig} />,
+							},
+							{
+								path: ":topic_id",
+								element: <TopicForm {...postTopicFormConfig} />,
+							},
+						],
 					},
 					{
-						path: ":category_id",
-						element: <CategoryForm {...eventCategoryFormConfig} />,
+						path: "event-categories",
+						children: [
+							{
+								index: true,
+								element: <Grid loader={listEventCategories} />,
+							},
+							{
+								path: "new",
+								element: (
+									<CategoryForm
+										{...eventCategoryFormConfig}
+									/>
+								),
+							},
+							{
+								path: ":category_id",
+								element: (
+									<CategoryForm
+										{...eventCategoryFormConfig}
+									/>
+								),
+							},
+						],
 					},
 				],
 			},
 		],
 	},
 	{
-		path: "callback",
-		element: <FontAwesomeIcon icon={faSpinner} />,
+		path: "login",
+		element: <LoginPage />,
 	},
 	{
 		path: "*",
