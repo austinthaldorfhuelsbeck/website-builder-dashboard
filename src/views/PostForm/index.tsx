@@ -39,6 +39,7 @@ const PostForm = () => {
 	const { categories } = usePostCategories();
 	const { topics } = usePostTopics();
 
+	// TODO: option selector doesn't work
 	return (
 		<form onSubmit={onSubmit} noValidate className="flex flex-col">
 			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
@@ -75,8 +76,6 @@ const PostForm = () => {
 				onChange={onChange}
 				value={formData.url}
 			/>
-			<pre>{JSON.stringify(formData, null, "\t")}</pre>
-			<pre>{audioCategoryId}</pre>
 			{formData.post_category_id === audioCategoryId && (
 				<InputGroup
 					{...postAudioValidation}
