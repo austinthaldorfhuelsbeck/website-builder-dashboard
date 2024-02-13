@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { styled } from "styled-components";
-import GridItem from "../../components/GridItem";
-import useGrid, { GridProps } from "../../hooks/useGrid";
-import { formatLocation, formatQuery } from "../../services/util.service";
+import GridItem from "../components/GridItem";
+import useGrid, { GridProps } from "../hooks/useGrid";
+import { formatLocation, formatQuery } from "../services/util.service";
 
 const DashboardHeader = styled.h3`
 	font-size: 180%;

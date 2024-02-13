@@ -1,4 +1,4 @@
-import { ILinkGroup } from "../interfaces/utils.interface";
+import { ILinkGroup } from "../interfaces";
 
 const viewGroup: ILinkGroup = {
 	id: 0,
@@ -61,4 +61,3 @@ const audioCategoryId: string = "1703796960641";
 const videoCategoryId: string = "1703796960642";
 
 export { audioCategoryId, dashboardNavLinks, videoCategoryId };
-

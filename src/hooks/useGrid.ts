@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-	IEvent,
-	IEventCategory,
-	IPost,
-	IPostCategory,
-	IPostTopic,
-} from "../interfaces/objects.interface";
-import { IApiResponse } from "../interfaces/utils.interface";
+import { IApiModel, IApiResponse } from "../interfaces";
 
 interface GridProps {
 	loader: () => Promise<IApiResponse>;
@@ -16,16 +9,7 @@ interface GridProps {
 const useGrid = ({ loader }: GridProps) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [resources, setResources] = useState<
-		(
-			| IPost
-			| IPostCategory
-			| IPostTopic
-			| IEvent
-			| IEventCategory
-			| undefined
-		)[]
-	>([]);
+	const [resources, setResources] = useState<(IApiModel | undefined)[]>([]);
 
 	const onCreate = (e: React.SyntheticEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -35,7 +19,7 @@ const useGrid = ({ loader }: GridProps) => {
 	useEffect(() => {
 		const loadResources = async () => {
 			const response = await loader();
-			if (response.data) setResources(response.data);
+			if (response.data) setResources(response.data as IApiModel[]);
 			// TODO: handle error
 		};
 		loadResources();

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import useGridItem, { GridItemProps } from "../hooks/useGridItem";
-import { IEvent, IPostTopic } from "../interfaces/objects.interface";
+import { IEvent, IPostTopic } from "../interfaces";
 import { formatDate, shortenText } from "../services/util.service";
 
 const GridItem: FC<GridItemProps> = ({ resource }) => {

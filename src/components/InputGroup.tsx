@@ -1,42 +1,24 @@
 import { FC } from "react";
-import { IValidation } from "../interfaces/forms.interface";
+import { IInputOptions } from "../interfaces";
 
-// Data interfaces
-interface InputProps extends IValidation {
-	value: string;
-	onChange: (e: any) => void;
-}
-
-// InputGroup component
-const InputGroup: FC<InputProps> = ({
+const InputGroup: FC<IInputOptions> = ({
+	label,
+	id,
 	type,
-	name,
-	title,
-	placeholder,
-	subtext,
-	$short,
-	onChange,
-	value,
+	register,
+	error,
 }) => (
-	<div
-		className={`flex flex-col m-4 mr-0 w-full ${$short ? "max-w-xs" : ""}`}
-	>
-		<label htmlFor={name}>
-			<strong>{title}</strong>
+	<div className="flex flex-col space-y-1">
+		<label htmlFor={id} className="text-sm font-semibold text-gray-500">
+			{label}
 		</label>
 		<input
+			className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+			id={id}
 			type={type}
-			placeholder={placeholder}
-			name={name}
-			onChange={onChange}
-			value={value}
-			className="border border-gray-300 focus:border-gray-500 focus:ring-2 focus:ring-gray-500 focus:outline-none"
+			{...register}
 		/>
-		{subtext && (
-			<p className={`m-2 ${subtext ? "text-white" : "inherit"}`}>
-				<em>{subtext}</em>
-			</p>
-		)}
+		{error && <p className="text-red-300">{error.message}</p>}
 	</div>
 );
 

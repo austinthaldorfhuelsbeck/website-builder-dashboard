@@ -1,6 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { IPostCategory } from "../interfaces/objects.interface";
-import { IApiResponse } from "../interfaces/utils.interface";
+import { IApiResponse, IPostCategory } from "../interfaces";
 import { fetchResponse } from "./external-api.service";
 
 // Config
@@ -58,3 +57,4 @@ export {
 	readPostCategory,
 	updatePostCategory,
 };
+

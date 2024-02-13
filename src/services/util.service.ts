@@ -1,4 +1,4 @@
-import { IEvent } from "../interfaces/objects.interface";
+import { IEvent } from "../interfaces";
 
 function formatDate(date: Date): string {
 	return new Date(date).toLocaleDateString("en-us", {
@@ -32,7 +32,7 @@ function formatLocation(pathname: string): string {
 export {
 	formatDate,
 	formatEventResponse,
-	shortenText,
-	formatQuery,
 	formatLocation,
+	formatQuery,
+	shortenText,
 };

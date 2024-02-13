@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 
 import { initialCategory, initialTopic } from "./data/app-consts.data";
-import { IFormHookProps } from "./interfaces/forms.interface";
+import { IFormHookProps } from "./interfaces";
 import AuthenticationGuard from "./providers/AuthenticationGuard";
 import PageLayout from "./providers/PageLayout";
 import {
@@ -24,13 +24,13 @@ import {
 	updatePostTopic,
 } from "./services/post-topics.service";
 import { listPosts } from "./services/posts.service";
-import CategoryForm from "./views/CategoryForm";
-import EventForm from "./views/EventForm";
-import Grid from "./views/Grid";
+import CategoryForm from "./views/CategoryPage";
+import EventForm from "./views/EventPage";
+import Grid from "./views/GridPage";
 import LoginPage from "./views/LoginPage";
 import NotFoundPage from "./views/NotFoundPage";
-import PostForm from "./views/PostForm";
-import { TopicForm } from "./views/TopicForm";
+import PostForm from "./views/PostPage";
+import TopicForm from "./views/TopicPage";
 
 // Config
 const postCategoryFormConfig: IFormHookProps = {

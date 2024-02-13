@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
 import { dashboardNavLinks } from "../data/app-config.data";
-import { ILink, ILinkGroup } from "../interfaces/utils.interface";
+import { ILink, ILinkGroup } from "../interfaces";
 
 // Interfaces for props
 interface LinkProps {

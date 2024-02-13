@@ -4,34 +4,34 @@ import axios, {
 	AxiosResponse,
 	RawAxiosRequestHeaders,
 	isAxiosError,
-} from "axios"
-import { IApiResponse, IAppError } from "../interfaces/utils.interface"
+} from "axios";
+import { IApiResponse, IAppError } from "../interfaces";
 
-async function callExternalApi(options: {
-	config: AxiosRequestConfig
-}): Promise<IApiResponse> {
+const callExternalApi = async (options: {
+	config: AxiosRequestConfig;
+}): Promise<IApiResponse> => {
 	try {
-		const response: AxiosResponse = await axios(options.config)
-		const { data } = response
+		const response: AxiosResponse = await axios(options.config);
+		const { data } = response;
 
 		return {
 			data,
 			error: null,
-		}
+		};
 	} catch (error) {
 		if (isAxiosError(error)) {
-			const axiosError = error as AxiosError
+			const axiosError = error as AxiosError;
 
-			const { response } = axiosError
+			const { response } = axiosError;
 
-			let message = "http request failed"
+			let message = "http request failed";
 
 			if (response && response.statusText) {
-				message = response.statusText
+				message = response.statusText;
 			}
 
 			if (axiosError.message) {
-				message = axiosError.message
+				message = axiosError.message;
 			}
 
 			if (
@@ -39,7 +39,7 @@ async function callExternalApi(options: {
 				response.data &&
 				(response.data as IAppError).message
 			) {
-				message = (response.data as IAppError).message
+				message = (response.data as IAppError).message;
 			}
 
 			return {
@@ -47,7 +47,7 @@ async function callExternalApi(options: {
 				error: {
 					message,
 				},
-			}
+			};
 		}
 
 		return {
@@ -55,22 +55,26 @@ async function callExternalApi(options: {
 			error: {
 				message: (error as Error).message,
 			},
-		}
+		};
 	}
-}
+};
 
-async function fetchResponse(config: AxiosRequestConfig) {
+const fetchResponse = async (config: AxiosRequestConfig) => {
 	const reqHeaders: RawAxiosRequestHeaders = {
 		"content-type": "application/json",
-	}
+	};
 	const configWithHeaders: AxiosRequestConfig = {
 		...config,
 		headers: reqHeaders,
-	}
+	};
 	const { data, error } = (await callExternalApi({
 		config: configWithHeaders,
-	})) as IApiResponse
-	return { data: data.data, error: data.error || error };
-}
+	})) as IApiResponse;
+	return {
+		data: (data as IApiResponse).data,
+		error: (data as IApiResponse).error || error,
+	};
+};
 
-export { fetchResponse }
+export { fetchResponse };
+

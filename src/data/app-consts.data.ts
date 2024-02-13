@@ -3,7 +3,7 @@ import {
 	IBaseEvent,
 	IBasePost,
 	IBaseTopic,
-} from "../interfaces/objects.interface";
+} from "../interfaces";
 
 const initialEvent: IBaseEvent = {
 	event_category_id: 0,
@@ -47,9 +47,10 @@ const warningMessage: string =
 	"Are you sure you wish to delete? You will not be able to recover this resource.";
 
 export {
+	initialCategory,
 	initialEvent,
 	initialPost,
-	initialCategory,
 	initialTopic,
 	warningMessage,
 };
+

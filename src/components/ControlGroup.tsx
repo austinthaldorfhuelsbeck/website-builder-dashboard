@@ -1,40 +1,44 @@
-import { FC, PropsWithChildren } from "react";
-import { IValidation } from "../interfaces/forms.interface";
+import { FC } from "react";
+import {
+	IEventCategory,
+	IInputOptions,
+	IPostCategory,
+	IPostTopic,
+} from "../interfaces";
 
-// Data interfaces
-interface ControlProps extends IValidation {
-	value: string;
-	onChange: (e: any) => void;
+interface ControlGroupProps extends IInputOptions {
+	$short?: boolean;
 }
 
-// ControlGroup component
-const ControlGroup: FC<PropsWithChildren<ControlProps>> = ({
-	name,
-	title,
+const ControlGroup: FC<ControlGroupProps> = ({
+	label,
+	id,
+	type,
 	options,
+	register,
+	error,
 	$short,
-	onChange,
-	value,
 }) => (
 	<div
 		className={`flex flex-col m-4 mr-0 w-full ${$short ? "max-w-xs" : ""}`}
 	>
-		<label htmlFor={name}>
-			<strong>{title}</strong>
+		<label htmlFor={id} className="text-sm font-semibold text-gray-500">
+			{label}
 		</label>
-		<select
-			name={name}
-			onChange={onChange}
-			value={value}
-			className="select-class" // Replace 'select-class' with actual Tailwind classes
-		>
-			{options?.map((option) => (
-				<option key={option.value} value={option.value}>
-					{option.label}
-				</option>
-			))}
+		<select className="border border-gray-300 focus:border-gray-500 focus:ring-2 focus:ring-gray-500 focus:outline-none">
+			{options?.map((option) => {
+				const _id =
+					(option as IPostCategory).post_category_id ||
+					(option as IPostTopic).post_topic_id ||
+					(option as IEventCategory).event_category_id;
+				return (
+					<option key={_id} value={_id}>
+						{option.label}
+					</option>
+				);
+			})}
 		</select>
 	</div>
 );
 
-export { ControlGroup };
+export default ControlGroup;

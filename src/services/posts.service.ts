@@ -1,7 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { IBasePost } from "../interfaces/objects.interface";
-import { IApiResponse } from "../interfaces/utils.interface";
+import { IApiResponse, IBasePost } from "../interfaces";
 import { fetchResponse } from "./external-api.service";
 
 // Config
@@ -78,3 +77,4 @@ export {
 	readPost,
 	updatePost,
 };
+

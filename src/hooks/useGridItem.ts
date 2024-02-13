@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
+	IApiResponse,
 	IEvent,
 	IEventCategory,
 	IPost,
 	IPostCategory,
 	IPostTopic,
-} from "../interfaces/objects.interface";
-import { IApiResponse } from "../interfaces/utils.interface";
+} from "../interfaces";
 import { readEventCategory } from "../services/event-categories.service";
 import { readPostCategory } from "../services/post-categories.service";
 import { readPostTopic } from "../services/post-topics.service";
@@ -41,7 +41,8 @@ const useGridItem = ({ resource }: GridItemProps) => {
 				const catResponse: IApiResponse = await readPostCategory(
 					resource.post_category_id,
 				);
-				if (catResponse.data) setCategory(catResponse.data);
+				if (catResponse.data)
+					setCategory(catResponse.data as IPostCategory);
 			} else if (
 				"event_category_id" in resource &&
 				resource.event_category_id &&
@@ -50,7 +51,8 @@ const useGridItem = ({ resource }: GridItemProps) => {
 				const evtResponse: IApiResponse = await readEventCategory(
 					resource.event_category_id,
 				);
-				if (evtResponse.data) setCategory(evtResponse.data);
+				if (evtResponse.data)
+					setCategory(evtResponse.data as IEventCategory);
 			}
 
 			if (
@@ -61,7 +63,8 @@ const useGridItem = ({ resource }: GridItemProps) => {
 				const topicResponse: IApiResponse = await readPostTopic(
 					resource.post_topic_id,
 				);
-				if (topicResponse.data) setTopic(topicResponse.data);
+				if (topicResponse.data)
+					setTopic(topicResponse.data as IPostTopic);
 			}
 		};
 

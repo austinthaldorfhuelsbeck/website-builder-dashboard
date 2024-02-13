@@ -1,6 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { IPostTopic } from "../interfaces/objects.interface";
-import { IApiResponse } from "../interfaces/utils.interface";
+import { IApiResponse, IPostTopic } from "../interfaces";
 import { fetchResponse } from "./external-api.service";
 
 // Config
@@ -56,3 +55,4 @@ export {
 	readPostTopic,
 	updatePostTopic,
 };
+
