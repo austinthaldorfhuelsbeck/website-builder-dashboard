@@ -1,9 +1,10 @@
 import { FC } from "react";
+import { IApiResponse } from "../interfaces";
 
 // Data
 interface ComponentProps {
 	onCancel: (e: any) => void;
-	onDelete: (e: any) => void;
+	onDelete: (...args: any) => Promise<IApiResponse>;
 }
 
 // Components

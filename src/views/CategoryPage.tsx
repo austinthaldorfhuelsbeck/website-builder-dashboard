@@ -1,35 +1,40 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import FormControls from "../components/FormControls";
 import InputGroup from "../components/InputGroup";
 import { IFormHookProps } from "../interfaces";
+import {
+	categoryLabelOptions,
+	categoryTextOptions,
+} from "./options/CategoryPage.options";
+import {
+	categoryLabelValidation,
+	categoryTextValidation,
+} from "./validations/CategoryPage.validations";
 
 // Components
-const CategoryForm: FC<IFormHookProps> = (config) => {
+const CategoryPage: FC<IFormHookProps> = ({
+	initialData,
+	createFunction,
+	readFunction,
+	updateFunction,
+	deleteFunction,
+}) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const navigate = useNavigate();
-
-	const [error, setError] = useState("");
-
-	const onCancel = () => navigate(-1);
-
-	const onSubmit = (data: any) => {
-		console.log(data);
-	};
-
-	const onDelete = () => console.log("Deleted.");
-
-	// Constants
 	const { category_id } = useParams();
+	const navigate = useNavigate();
+	const onCancel = () => navigate(-1);
 
 	return (
 		<form
-			onSubmit={handleSubmit(onSubmit)}
+			onSubmit={handleSubmit(
+				category_id ? updateFunction : createFunction,
+			)}
 			noValidate
 			className="flex flex-col"
 		>
@@ -39,36 +44,19 @@ const CategoryForm: FC<IFormHookProps> = (config) => {
 			</h3>
 
 			<InputGroup
-				label="Label *"
-				id="label"
-				type="text"
-				placeholder="Category name"
-				register={register("label", {
-					required: "Label is required.",
-					maxLength: {
-						value: 96,
-						message: "Label should be less than 100 characters.",
-					},
-				})}
+				{...categoryLabelOptions}
+				register={register("label", { ...categoryLabelValidation })}
 				error={errors.label}
 			/>
 			<InputGroup
-				label="Description"
-				id="label"
-				type="text"
-				placeholder="Category description"
-				register={register("label", {
-					maxLength: {
-						value: 96,
-						message: "Label should be less than 100 characters.",
-					},
-				})}
+				{...categoryTextOptions}
+				register={register("label", { ...categoryTextValidation })}
 				error={errors.label}
 			/>
-			<FormControls {...{ onCancel, onDelete }} />
+			<FormControls {...{ onCancel, onDelete: deleteFunction }} />
 		</form>
 	);
 };
 
 // Export
-export default CategoryForm;
+export default CategoryPage;

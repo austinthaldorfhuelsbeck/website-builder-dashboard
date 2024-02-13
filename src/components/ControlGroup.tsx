@@ -1,12 +1,12 @@
 import { FC } from "react";
 import {
 	IEventCategory,
-	IInputOptions,
+	IInputProps,
 	IPostCategory,
 	IPostTopic,
 } from "../interfaces";
 
-interface ControlGroupProps extends IInputOptions {
+interface ControlGroupProps extends IInputProps {
 	$short?: boolean;
 }
 

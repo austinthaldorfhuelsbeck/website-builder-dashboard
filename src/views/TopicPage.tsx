@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { styled } from "styled-components";
@@ -13,28 +13,29 @@ const DashboardHeader = styled.h3`
 `;
 
 // Components
-const TopicForm = (config: PropsWithChildren<IFormHookProps>) => {
+const TopicPage: FC<IFormHookProps> = ({
+	initialData,
+	createFunction,
+	readFunction,
+	updateFunction,
+	deleteFunction,
+}) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	const { post_topic_id } = useParams();
 	const navigate = useNavigate();
-
-	const [error, setError] = useState("");
-
 	const onCancel = () => navigate(-1);
 
-	const onSubmit = (data: any) => {
-		console.log(data);
-	};
-
-	const onDelete = () => console.log("Deleted.");
-
-	const { topic_id } = useParams();
-
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} noValidate>
+		<form
+			onSubmit={handleSubmit(
+				post_topic_id ? updateFunction : createFunction,
+			)}
+			noValidate
+		>
 			<DashboardHeader>
 				Edit Topic
 				<hr />
@@ -74,10 +75,10 @@ const TopicForm = (config: PropsWithChildren<IFormHookProps>) => {
 				onChange={onChange}
 				value={formData.text}
 			/> */}
-			<FormControls {...{ onCancel, onDelete }} />
+			<FormControls {...{ onCancel, onDelete: deleteFunction }} />
 		</form>
 	);
 };
 
 // Export
-export default TopicForm;
+export default TopicPage;

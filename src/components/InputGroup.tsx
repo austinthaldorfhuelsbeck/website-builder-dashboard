@@ -1,13 +1,7 @@
 import { FC } from "react";
-import { IInputOptions } from "../interfaces";
+import { IInputProps } from "../interfaces";
 
-const InputGroup: FC<IInputOptions> = ({
-	label,
-	id,
-	type,
-	register,
-	error,
-}) => (
+const InputGroup: FC<IInputProps> = ({ label, id, type, register, error }) => (
 	<div className="flex flex-col space-y-1">
 		<label htmlFor={id} className="text-sm font-semibold text-gray-500">
 			{label}

@@ -82,12 +82,15 @@ export interface IInputOptions {
 	type?: string;
 	placeholder?: string;
 	options?: (IPostCategory | IPostTopic | IEventCategory)[];
+}
+export interface IInputProps extends IInputOptions {
 	register: UseFormRegisterReturn<any>;
 	error: any;
 }
 export interface IFormHookProps {
 	initialData: any;
 	id?: string;
+	createFunction: (...args: any) => Promise<IApiResponse>;
 	readFunction: (...args: any) => Promise<IApiResponse>;
 	updateFunction: (...args: any) => Promise<IApiResponse>;
 	deleteFunction: (...args: any) => Promise<IApiResponse>;

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { IInputOptions } from "../interfaces";
+import { IInputProps } from "../interfaces";
 
-const TextAreaGroup: FC<IInputOptions> = ({
+const TextAreaGroup: FC<IInputProps> = ({
 	label,
 	id,
 	placeholder,

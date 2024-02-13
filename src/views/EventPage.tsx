@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -6,33 +6,27 @@ import FormControls from "../components/FormControls";
 
 import { useForm } from "react-hook-form";
 import InputGroup from "../components/InputGroup";
-import { useEventCategories } from "../hooks/useLoadResource";
+import { IFormHookProps } from "../interfaces";
 
-const EventForm: FC = () => {
-	const { event_id } = useParams();
-
-	const { categories } = useEventCategories();
-
+const EventPage: FC<IFormHookProps> = ({
+	initialData,
+	createFunction,
+	readFunction,
+	updateFunction,
+	deleteFunction,
+}) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	const { event_id } = useParams();
 	const navigate = useNavigate();
-
-	const [error, setError] = useState("");
-
 	const onCancel = () => navigate(-1);
-
-	const onSubmit = (data: any) => {
-		console.log(data);
-	};
-
-	const onDelete = () => console.log("Deleted.");
 
 	return (
 		<form
-			onSubmit={handleSubmit(onSubmit)}
+			onSubmit={handleSubmit(event_id ? updateFunction : createFunction)}
 			noValidate
 			className="flex flex-col"
 		>
@@ -97,9 +91,9 @@ const EventForm: FC = () => {
 				value={formData.content}
 				className="mb-12"
 			/> */}
-			<FormControls {...{ onCancel, onDelete }} />
+			<FormControls {...{ onCancel, onDelete: deleteFunction }} />
 		</form>
 	);
 };
 
-export default EventForm;
+export default EventPage;
