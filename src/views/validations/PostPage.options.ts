@@ -8,6 +8,14 @@ export const postLabelValidation: RegisterOptions = {
 	},
 };
 
+export const postCategoryValidation: RegisterOptions = {
+	required: "Category is required.",
+};
+
+export const postTopicValidation: RegisterOptions = {
+	required: "Topic is required.",
+};
+
 export const postTextValidation: RegisterOptions = {
 	maxLength: {
 		value: 96,

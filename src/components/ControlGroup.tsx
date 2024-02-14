@@ -13,10 +13,7 @@ interface ControlGroupProps extends IInputProps {
 const ControlGroup: FC<ControlGroupProps> = ({
 	label,
 	id,
-	type,
 	options,
-	register,
-	error,
 	$short,
 }) => (
 	<div
@@ -33,7 +30,7 @@ const ControlGroup: FC<ControlGroupProps> = ({
 					(option as IEventCategory).event_category_id;
 				return (
 					<option key={_id} value={_id}>
-						{option.label}
+						{option?.label}
 					</option>
 				);
 			})}

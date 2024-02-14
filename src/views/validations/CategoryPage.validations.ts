@@ -11,6 +11,6 @@ export const categoryLabelValidation: RegisterOptions = {
 export const categoryTextValidation: RegisterOptions = {
 	maxLength: {
 		value: 96,
-		message: "Label should be less than 100 characters.",
+		message: "Description should be less than 100 characters.",
 	},
 };

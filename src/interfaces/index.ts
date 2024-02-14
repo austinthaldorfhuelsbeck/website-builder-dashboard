@@ -81,7 +81,7 @@ export interface IInputOptions {
 	id: string;
 	type?: string;
 	placeholder?: string;
-	options?: (IPostCategory | IPostTopic | IEventCategory)[];
+	options?: (IPostCategory | IPostTopic | IEventCategory | undefined)[];
 }
 export interface IInputProps extends IInputOptions {
 	register: UseFormRegisterReturn<any>;

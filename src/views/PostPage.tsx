@@ -6,18 +6,14 @@ import ControlGroup from "../components/ControlGroup";
 import FormControls from "../components/FormControls";
 import InputGroup from "../components/InputGroup";
 import TextAreaGroup from "../components/TextAreaGroup";
-import { usePostTopics } from "../hooks/useLoadResource";
+import usePostCategories from "../hooks/usePostCategories";
+import usePostTopics from "../hooks/usePostTopics";
 import { IFormHookProps } from "../interfaces";
 import {
-	postAudioOptions,
-	postLabelOptions,
-	postTextOptions,
-	postUrlOptions,
-	postVideoOptions,
-} from "./options/PostPage.options";
-import {
+	postCategoryValidation,
 	postLabelValidation,
 	postTextValidation,
+	postTopicValidation,
 } from "./validations/PostPage.options";
 
 const PostForm: FC<IFormHookProps> = ({
@@ -36,6 +32,7 @@ const PostForm: FC<IFormHookProps> = ({
 	const navigate = useNavigate();
 	const onCancel = () => navigate(-1);
 	const { topics } = usePostTopics();
+	const { categories } = usePostCategories();
 
 	return (
 		<form
@@ -48,20 +45,34 @@ const PostForm: FC<IFormHookProps> = ({
 				<hr />
 			</h3>
 			<InputGroup
-				{...postLabelOptions}
+				label="Post Title *"
+				id="label"
+				type="text"
+				placeholder="Post title"
 				register={register("label", { ...postLabelValidation })}
 				error={errors.label}
 			/>
 			<div className="flex flex-row justify-start w-full">
-				{/* <ControlGroup
-					options={categories}
-					register={register("url")}
-					error={errors.url}
-				/> */}
 				<ControlGroup
+					label="Category *"
+					id="post_category_id"
+					$short
+					options={categories}
+					register={register("post_category_id", {
+						...postCategoryValidation,
+					})}
+					error={errors.post_category_id}
+				/>
+
+				<ControlGroup
+					label="Topic *"
+					id="post_topic_id"
+					$short
 					options={topics}
-					register={register("post_topic_id")}
-					error={errors.url}
+					register={register("post_topic_id", {
+						...postTopicValidation,
+					})}
+					error={errors.post_topic_id}
 				/>
 			</div>
 
@@ -70,22 +81,32 @@ const PostForm: FC<IFormHookProps> = ({
 				<hr />
 			</h3>
 			<InputGroup
-				{...postUrlOptions}
+				label="Post URL"
+				id="url"
+				type="text"
+				placeholder="Paste the full URL of the external link that clicking the post image should link to"
 				register={register("url")}
 				error={errors.url}
 			/>
 			<InputGroup
-				{...postAudioOptions}
+				label="Audio URL"
+				id="audio"
+				type="text"
 				register={register("audio")}
 				error={errors.audio}
 			/>
 			<InputGroup
-				{...postVideoOptions}
+				label="Video URL"
+				id="video"
+				type="text"
 				register={register("video")}
 				error={errors.video}
 			/>
 			<TextAreaGroup
-				{...postTextOptions}
+				label="Description"
+				id="text"
+				type="text"
+				placeholder="A short description of the post"
 				register={register("text", { ...postTextValidation })}
 				error={errors.text}
 			/>
