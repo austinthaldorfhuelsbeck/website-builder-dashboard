@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ControlGroup from "../components/ControlGroup";
 import FormControls from "../components/FormControls";
@@ -16,14 +17,20 @@ import {
 } from "../services/posts.service";
 
 const PostPage = () => {
-	const { formData, onChange, onSubmit, onCancel, onDelete, error } = useForm(
-		{
-			create: createPost,
-			read: readPost,
-			update: updatePost,
-			destroy: deletePost,
-		},
-	);
+	const {
+		formData,
+		onChange,
+		onQuillChange,
+		onSubmit,
+		onCancel,
+		onDelete,
+		error,
+	} = useForm({
+		create: createPost,
+		read: readPost,
+		update: updatePost,
+		destroy: deletePost,
+	});
 
 	const [categories, setCategories] = useState([]);
 	const [topics, setTopics] = useState([]);
@@ -114,12 +121,12 @@ const PostPage = () => {
 				Content
 				<hr />
 			</h3>
-			{/* <ReactQuill
+			<ReactQuill
 				className="mt-4 mb-12"
 				theme="snow"
 				onChange={onQuillChange}
 				value={formData.content}
-			/> */}
+			/>
 
 			<FormControls onCancel={onCancel} onDelete={onDelete} />
 			{error && <div className="bg-red-300">{error}</div>}

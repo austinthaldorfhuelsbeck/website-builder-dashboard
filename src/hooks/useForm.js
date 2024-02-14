@@ -16,6 +16,12 @@ export const useForm = ({ create, read, update, destroy }) => {
 		});
 	};
 
+	const onQuillChange = (e) => {
+		setFormData((prev) => {
+			return { ...prev, content: e };
+		});
+	};
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const res = _id ? await update(formData, _id) : await create(formData);
@@ -55,7 +61,15 @@ export const useForm = ({ create, read, update, destroy }) => {
 		if (_id) loadEvent(_id);
 	}, [_id, read]);
 
-	return { formData, onChange, onSubmit, onCancel, onDelete, error };
+	return {
+		formData,
+		onChange,
+		onQuillChange,
+		onSubmit,
+		onCancel,
+		onDelete,
+		error,
+	};
 };
 
 export default useForm;

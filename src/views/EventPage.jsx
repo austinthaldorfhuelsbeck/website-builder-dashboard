@@ -17,14 +17,20 @@ import {
 } from "../services/events.service";
 
 const EventPage = () => {
-	const { formData, onChange, onSubmit, onCancel, onDelete, error } = useForm(
-		{
-			create: createEvent,
-			read: readEvent,
-			update: updateEvent,
-			destroy: deleteEvent,
-		},
-	);
+	const {
+		formData,
+		onChange,
+		onQuillChange,
+		onSubmit,
+		onCancel,
+		onDelete,
+		error,
+	} = useForm({
+		create: createEvent,
+		read: readEvent,
+		update: updateEvent,
+		destroy: deleteEvent,
+	});
 
 	const [categories, setCategories] = useState([]);
 
@@ -79,9 +85,11 @@ const EventPage = () => {
 				<hr />
 			</h3>
 
+			<pre>{JSON.stringify(formData, null, "\t")}</pre>
+
 			<ReactQuill
 				theme="snow"
-				// onChange={onQuillChange}
+				onChange={onQuillChange}
 				value={formData.content}
 				className="mb-12"
 			/>
