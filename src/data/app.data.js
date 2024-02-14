@@ -38,6 +38,3 @@ export const initialTopic = {
 	created_at: new Date(),
 	updated_at: new Date(),
 };
-
-export const warningMessage =
-	"Are you sure you wish to delete? You will not be able to recover this resource.";

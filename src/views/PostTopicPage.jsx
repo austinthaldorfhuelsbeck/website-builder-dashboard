@@ -1,32 +1,33 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
 import FormControls from "../components/FormControls";
 import InputGroup from "../components/InputGroup";
+import { initialTopic } from "../data/app.data";
+import useLoadForm from "../hooks/useLoadForm";
+import {
+	createPostTopic,
+	deletePostTopic,
+	readPostTopic,
+	updatePostTopic,
+} from "../services/postTopics.service";
 
 // Components
-const TopicPage = ({
-	initialData,
-	createFunction,
-	readFunction,
-	updateFunction,
-	deleteFunction,
-}) => {
+const PostTopicPage = () => {
 	const {
 		register,
+		reset,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
-	const { post_topic_id } = useParams();
-	const navigate = useNavigate();
-	const onCancel = () => navigate(-1);
+	} = useForm({ defaultValues: initialTopic });
+	const { onSubmit, onCancel, onDelete, error } = useLoadForm({
+		createFunction: createPostTopic,
+		readFunction: readPostTopic,
+		updateFunction: updatePostTopic,
+		deleteFunction: deletePostTopic,
+		reset,
+	});
 
 	return (
-		<form
-			onSubmit={handleSubmit(
-				post_topic_id ? updateFunction : createFunction,
-			)}
-			noValidate
-		>
+		<form onSubmit={handleSubmit(onSubmit)} noValidate>
 			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
 				Edit Topic
 				<hr />
@@ -66,10 +67,12 @@ const TopicPage = ({
 				onChange={onChange}
 				value={formData.text}
 			/> */}
-			<FormControls {...{ onCancel, onDelete: deleteFunction }} />
+
+			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);
 };
 
 // Export
-export default TopicPage;
+export default PostTopicPage;

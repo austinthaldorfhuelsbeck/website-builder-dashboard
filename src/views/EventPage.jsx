@@ -1,35 +1,53 @@
+import { useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate, useParams } from "react-router-dom";
 
 import FormControls from "../components/FormControls";
 
 import { useForm } from "react-hook-form";
 import InputGroup from "../components/InputGroup";
+import { initialEvent } from "../data/app.data";
+import useLoadForm from "../hooks/useLoadForm";
+import { listEventCategories } from "../services/eventCategories.service";
+import {
+	createEvent,
+	deleteEvent,
+	readEvent,
+	updateEvent,
+} from "../services/events.service";
 
-const EventPage = ({
-	initialData,
-	createFunction,
-	readFunction,
-	updateFunction,
-	deleteFunction,
-}) => {
+const EventPage = () => {
 	const {
 		register,
+		reset,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
-	const { event_id } = useParams();
-	const navigate = useNavigate();
-	const onCancel = () => navigate(-1);
+	} = useForm({ defaultValues: initialEvent });
+	const { onSubmit, onCancel, onDelete, error } = useLoadForm({
+		createFunction: createEvent,
+		readFunction: readEvent,
+		updateFunction: updateEvent,
+		deleteFunction: deleteEvent,
+		reset,
+	});
+
+	const [categories, setCategories] = useState([]);
+
+	useEffect(() => {
+		const loadCategories = async () => {
+			const response = await listEventCategories();
+			if (response.data) setCategories(response.data);
+		};
+		if (!categories.length) loadCategories();
+	}, [categories]);
 
 	return (
 		<form
-			onSubmit={handleSubmit(event_id ? updateFunction : createFunction)}
+			onSubmit={handleSubmit(onSubmit)}
 			noValidate
 			className="flex flex-col"
 		>
 			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
-				Edit Event
+				Event
 				<hr />
 			</h3>
 
@@ -89,7 +107,9 @@ const EventPage = ({
 				value={formData.content}
 				className="mb-12"
 			/> */}
-			<FormControls {...{ onCancel, onDelete: deleteFunction }} />
+
+			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);
 };

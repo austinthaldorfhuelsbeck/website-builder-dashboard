@@ -1,40 +1,56 @@
+import { useEffect, useState } from "react";
+
 import { useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate, useParams } from "react-router-dom";
 import ControlGroup from "../components/ControlGroup";
 import FormControls from "../components/FormControls";
 import InputGroup from "../components/InputGroup";
 import TextAreaGroup from "../components/TextAreaGroup";
-import usePostCategories from "../hooks/usePostCategories";
-import usePostTopics from "../hooks/usePostTopics";
+import { initialPost } from "../data/app.data";
+import useLoadForm from "../hooks/useLoadForm";
+import { listPostCategories } from "../services/postCategories.service";
+import { listPostTopics } from "../services/postTopics.service";
 import {
-	postCategoryValidation,
-	postLabelValidation,
-	postTextValidation,
-	postTopicValidation,
-} from "./validations/PostPage.validations";
+	createPost,
+	deletePost,
+	readPost,
+	updatePost,
+} from "../services/posts.service";
 
-const PostForm = ({
-	initialData,
-	createFunction,
-	readFunction,
-	updateFunction,
-	deleteFunction,
-}) => {
+const PostPage = () => {
 	const {
 		register,
+		reset,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
-	const { post_id } = useParams();
-	const navigate = useNavigate();
-	const onCancel = () => navigate(-1);
-	const { topics } = usePostTopics();
-	const { categories } = usePostCategories();
+	} = useForm({ defaultValues: initialPost });
+	const { onSubmit, onCancel, onDelete, error } = useLoadForm({
+		createFunction: createPost,
+		readFunction: readPost,
+		updateFunction: updatePost,
+		deleteFunction: deletePost,
+		reset,
+	});
+
+	const [categories, setCategories] = useState([]);
+	const [topics, setTopics] = useState([]);
+
+	useEffect(() => {
+		const loadCategories = async () => {
+			const response = await listPostCategories();
+			if (response.data) setCategories(response.data);
+		};
+		const loadTopics = async () => {
+			const response = await listPostTopics();
+			if (response.data) setTopics(response.data);
+		};
+		if (!categories.length) loadCategories();
+		if (!topics.length) loadTopics();
+	}, [categories, topics]);
 
 	return (
 		<form
-			onSubmit={handleSubmit(post_id ? updateFunction : createFunction)}
+			onSubmit={handleSubmit(onSubmit)}
 			noValidate
 			className="flex flex-col"
 		>
@@ -47,7 +63,13 @@ const PostForm = ({
 				id="label"
 				type="text"
 				placeholder="Post title"
-				register={register("label", { ...postLabelValidation })}
+				register={register("label", {
+					required: "Label is required",
+					maxLength: {
+						value: 96,
+						message: "Label should be less than 100 characters.",
+					},
+				})}
 				error={errors.label}
 			/>
 			<div className="flex flex-row justify-start w-full">
@@ -57,7 +79,7 @@ const PostForm = ({
 					$short
 					options={categories}
 					register={register("post_category_id", {
-						...postCategoryValidation,
+						required: "Category is required.",
 					})}
 					error={errors.post_category_id}
 				/>
@@ -68,7 +90,7 @@ const PostForm = ({
 					$short
 					options={topics}
 					register={register("post_topic_id", {
-						...postTopicValidation,
+						required: "Topic is required.",
 					})}
 					error={errors.post_topic_id}
 				/>
@@ -105,7 +127,7 @@ const PostForm = ({
 				id="text"
 				type="text"
 				placeholder="A short description of the post"
-				register={register("text", { ...postTextValidation })}
+				register={register("text")}
 				error={errors.text}
 			/>
 
@@ -120,9 +142,10 @@ const PostForm = ({
 				value={formData.content}
 			/> */}
 
-			<FormControls {...{ onCancel, onDelete: deleteFunction }} />
+			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);
 };
 
-export default PostForm;
+export default PostPage;

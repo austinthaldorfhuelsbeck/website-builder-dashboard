@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { readEventCategory } from "../services/eventCategories.service";
-import { readPostTopic } from "../services/post-topics.service";
 import { readPostCategory } from "../services/postCategories.service";
+import { readPostTopic } from "../services/postTopics.service";
 
 const useGridItem = ({ resource }) => {
 	const navigate = useNavigate();
@@ -19,31 +19,19 @@ const useGridItem = ({ resource }) => {
 	useEffect(() => {
 		// Fetch category or topic based on resource type
 		const fetchCategoryOrTopic = async () => {
-			if (
-				"post_category_id" in resource &&
-				resource.post_category_id &&
-				!category
-			) {
+			if (resource.post_category_id && resource.post_id && !category) {
 				const catResponse = await readPostCategory(
 					resource.post_category_id,
 				);
 				if (catResponse.data) setCategory(catResponse.data);
-			} else if (
-				"event_category_id" in resource &&
-				resource.event_category_id &&
-				!category
-			) {
+			} else if (resource.event_category_id && resource.event_id && !category) {
 				const evtResponse = await readEventCategory(
 					resource.event_category_id,
 				);
 				if (evtResponse.data) setCategory(evtResponse.data);
 			}
 
-			if (
-				"post_topic_id" in resource &&
-				resource.post_topic_id &&
-				!topic
-			) {
+			if (resource.post_topic_id && resource.post_id && !topic) {
 				const topicResponse = await readPostTopic(
 					resource.post_topic_id,
 				);
@@ -61,12 +49,10 @@ const useGridItem = ({ resource }) => {
 const getResourceId = (resource) => {
 	if ("post_id" in resource) return resource.post_id;
 	if ("event_id" in resource) return resource.event_id;
-
 	if ("post_category_id" in resource) return resource.post_category_id;
 	if ("post_topic_id" in resource) return resource.post_topic_id;
 	if ("event_category_id" in resource) return resource.event_category_id;
 
-	// Add more conditions as necessary
 	return undefined;
 };
 

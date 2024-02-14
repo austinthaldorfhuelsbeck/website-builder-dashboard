@@ -1,53 +1,18 @@
-import {
-	initialCategory,
-	initialEvent,
-	initialPost,
-	initialTopic,
-} from "./data/app-consts.data";
 import AuthenticationGuard from "./providers/AuthenticationGuard";
 import PageLayout from "./providers/PageLayout";
-import {
-	createEventCategory,
-	deleteEventCategory,
-	listEventCategories,
-	readEventCategory,
-	updateEventCategory,
-} from "./services/eventCategories.service";
-import {
-	createEvent,
-	deleteEvent,
-	listEvents,
-	readEvent,
-	updateEvent,
-} from "./services/events.service";
-import {
-	createPostTopic,
-	deletePostTopic,
-	listPostTopics,
-	readPostTopic,
-	updatePostTopic,
-} from "./services/post-topics.service";
-import {
-	createPostCategory,
-	deletePostCategory,
-	listPostCategories,
-	readPostCategory,
-	updatePostCategory,
-} from "./services/postCategories.service";
-import {
-	createPost,
-	deletePost,
-	listPosts,
-	readPost,
-	updatePost,
-} from "./services/posts.service";
-import CategoryPage from "./views/CategoryPage";
+import { listEventCategories } from "./services/eventCategories.service";
+import { listEvents } from "./services/events.service";
+import { listPostCategories } from "./services/postCategories.service";
+import { listPostTopics } from "./services/postTopics.service";
+import { listPosts } from "./services/posts.service";
+import EventCategoryPage from "./views/EventCategoryPage";
 import EventPage from "./views/EventPage";
 import Grid from "./views/GridPage";
 import LoginPage from "./views/LoginPage";
 import NotFoundPage from "./views/NotFoundPage";
-import PostForm from "./views/PostPage";
-import TopicPage from "./views/TopicPage";
+import PostCategoryPage from "./views/PostCategoryPage";
+import PostPage from "./views/PostPage";
+import PostTopicPage from "./views/PostTopicPage";
 
 const routes = [
 	{
@@ -66,16 +31,12 @@ const routes = [
 								element: <Grid loader={listPosts} />,
 							},
 							{
-								path: "new" || ":post_id",
-								element: (
-									<PostForm
-										initialData={initialPost}
-										createFunction={createPost}
-										readFunction={readPost}
-										updateFunction={updatePost}
-										deleteFunction={deletePost}
-									/>
-								),
+								path: "new",
+								element: <PostPage />,
+							},
+							{
+								path: ":post_id",
+								element: <PostPage />,
 							},
 						],
 					},
@@ -87,16 +48,12 @@ const routes = [
 								element: <Grid loader={listEvents} />,
 							},
 							{
-								path: "new" || ":event_id",
-								element: (
-									<EventPage
-										initialData={initialEvent}
-										createFunction={createEvent}
-										readFunction={readEvent}
-										updateFunction={updateEvent}
-										deleteFunction={deleteEvent}
-									/>
-								),
+								path: "new",
+								element: <EventPage />,
+							},
+							{
+								path: ":event_id",
+								element: <EventPage />,
 							},
 						],
 					},
@@ -108,16 +65,12 @@ const routes = [
 								element: <Grid loader={listPostCategories} />,
 							},
 							{
-								path: "new" || ":category_id",
-								element: (
-									<CategoryPage
-										initialData={initialCategory}
-										createFunction={createPostCategory}
-										readFunction={readPostCategory}
-										updateFunction={updatePostCategory}
-										deleteFunction={deletePostCategory}
-									/>
-								),
+								path: "new",
+								element: <PostCategoryPage />,
+							},
+							{
+								path: ":category_id",
+								element: <PostCategoryPage />,
 							},
 						],
 					},
@@ -129,16 +82,12 @@ const routes = [
 								element: <Grid loader={listPostTopics} />,
 							},
 							{
-								path: "new" || ":topic_id",
-								element: (
-									<TopicPage
-										initialData={initialTopic}
-										createFunction={createPostTopic}
-										readFunction={readPostTopic}
-										updateFunction={updatePostTopic}
-										deleteFunction={deletePostTopic}
-									/>
-								),
+								path: "new",
+								element: <PostTopicPage />,
+							},
+							{
+								path: ":topic_id",
+								element: <PostTopicPage />,
 							},
 						],
 					},
@@ -150,16 +99,12 @@ const routes = [
 								element: <Grid loader={listEventCategories} />,
 							},
 							{
-								path: "new" || ":category_id",
-								element: (
-									<CategoryPage
-										initialData={initialCategory}
-										createFunction={createEventCategory}
-										readFunction={readEventCategory}
-										updateFunction={updateEventCategory}
-										deleteFunction={deleteEventCategory}
-									/>
-								),
+								path: "new",
+								element: <EventCategoryPage />,
+							},
+							{
+								path: ":category_id",
+								element: <EventCategoryPage />,
 							},
 						],
 					},

@@ -5,10 +5,10 @@ import GridItem from "../components/GridItem";
 import useGrid from "../hooks/useGrid";
 import { formatLocation, formatQuery } from "../services/util.service";
 
-const Grid = (props) => {
+const Grid = ({ loader }) => {
 	const [searchParams] = useSearchParams();
 	const location = useLocation();
-	const { resources, onCreate } = useGrid(props);
+	const { resources, onCreate } = useGrid({ loader });
 
 	return resources ? (
 		<>
