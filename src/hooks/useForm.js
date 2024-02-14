@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export const useLoadForm = ({
-	createFunction,
-	readFunction,
-	updateFunction,
-	deleteFunction,
-	reset,
-}) => {
+export const useForm = ({ create, read, update, destroy }) => {
 	const { post_id, event_id, category_id, topic_id } = useParams();
 	const _id = post_id || event_id || category_id || topic_id;
 	const navigate = useNavigate();
 
+	const [formData, setFormData] = useState({});
 	const [error, setError] = useState("");
 
-	const onSubmit = async (data) => {
-		const res = _id
-			? await updateFunction(data, _id)
-			: await createFunction(data);
+	const onChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prev) => {
+			return { ...prev, [name]: value };
+		});
+	};
+
+	const onSubmit = async (e) => {
+		e.preventDefault();
+		const res = _id ? await update(formData, _id) : await create(formData);
 		if (res.data) {
 			onCancel();
 		} else if (res.error) {
@@ -37,20 +38,24 @@ export const useLoadForm = ({
 				"Are you sure you wish to delete? You will not be able to recover this resource.",
 			)
 		) {
-			const res = await deleteFunction(_id);
+			const res = await destroy(_id);
 			if (res) onCancel();
 		}
 	};
 
 	useEffect(() => {
-		const load = async (id) => {
-			const res = await readFunction(id);
-			if (res.data) reset(res.data);
+		const loadEvent = async (id) => {
+			const res = await read(id);
+			if (res.data)
+				setFormData({
+					...res.data,
+					date: res.data.date?.slice(0, 10),
+				});
 		};
-		if (_id) load(_id);
-	}, [_id, readFunction, reset]);
+		if (_id) loadEvent(_id);
+	}, [_id, read]);
 
-	return { onSubmit, onCancel, onDelete, error };
+	return { formData, onChange, onSubmit, onCancel, onDelete, error };
 };
 
-export default useLoadForm;
+export default useForm;

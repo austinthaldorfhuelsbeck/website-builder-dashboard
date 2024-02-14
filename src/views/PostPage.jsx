@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
 import ControlGroup from "../components/ControlGroup";
 import FormControls from "../components/FormControls";
 import InputGroup from "../components/InputGroup";
 import TextAreaGroup from "../components/TextAreaGroup";
-import { initialPost } from "../data/app.data";
-import useLoadForm from "../hooks/useLoadForm";
+import useForm from "../hooks/useForm";
 import { listPostCategories } from "../services/postCategories.service";
 import { listPostTopics } from "../services/postTopics.service";
 import {
@@ -18,19 +16,14 @@ import {
 } from "../services/posts.service";
 
 const PostPage = () => {
-	const {
-		register,
-		reset,
-		handleSubmit,
-		formState: { errors },
-	} = useForm({ defaultValues: initialPost });
-	const { onSubmit, onCancel, onDelete, error } = useLoadForm({
-		createFunction: createPost,
-		readFunction: readPost,
-		updateFunction: updatePost,
-		deleteFunction: deletePost,
-		reset,
-	});
+	const { formData, onChange, onSubmit, onCancel, onDelete, error } = useForm(
+		{
+			create: createPost,
+			read: readPost,
+			update: updatePost,
+			destroy: deletePost,
+		},
+	);
 
 	const [categories, setCategories] = useState([]);
 	const [topics, setTopics] = useState([]);
@@ -49,11 +42,7 @@ const PostPage = () => {
 	}, [categories, topics]);
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			noValidate
-			className="flex flex-col"
-		>
+		<form onSubmit={onSubmit} noValidate className="flex flex-col">
 			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
 				Basic Info
 				<hr />
@@ -63,14 +52,8 @@ const PostPage = () => {
 				id="label"
 				type="text"
 				placeholder="Post title"
-				register={register("label", {
-					required: "Label is required",
-					maxLength: {
-						value: 96,
-						message: "Label should be less than 100 characters.",
-					},
-				})}
-				error={errors.label}
+				onChange={onChange}
+				value={formData.label}
 			/>
 			<div className="flex flex-row justify-start w-full">
 				<ControlGroup
@@ -78,10 +61,8 @@ const PostPage = () => {
 					id="post_category_id"
 					$short
 					options={categories}
-					register={register("post_category_id", {
-						required: "Category is required.",
-					})}
-					error={errors.post_category_id}
+					onChange={onChange}
+					value={formData.post_category_id}
 				/>
 
 				<ControlGroup
@@ -89,10 +70,8 @@ const PostPage = () => {
 					id="post_topic_id"
 					$short
 					options={topics}
-					register={register("post_topic_id", {
-						required: "Topic is required.",
-					})}
-					error={errors.post_topic_id}
+					onChange={onChange}
+					value={formData.post_topic_id}
 				/>
 			</div>
 
@@ -105,30 +84,30 @@ const PostPage = () => {
 				id="url"
 				type="text"
 				placeholder="Paste the full URL of the external link that clicking the post image should link to"
-				register={register("url")}
-				error={errors.url}
+				onChange={onChange}
+				value={formData.url}
 			/>
 			<InputGroup
 				label="Audio URL"
 				id="audio"
 				type="text"
-				register={register("audio")}
-				error={errors.audio}
+				onChange={onChange}
+				value={formData.audio}
 			/>
 			<InputGroup
 				label="Video URL"
 				id="video"
 				type="text"
-				register={register("video")}
-				error={errors.video}
+				onChange={onChange}
+				value={formData.video}
 			/>
 			<TextAreaGroup
 				label="Description"
 				id="text"
 				type="text"
 				placeholder="A short description of the post"
-				register={register("text")}
-				error={errors.text}
+				onChange={onChange}
+				value={formData.text}
 			/>
 
 			<h3 className="text-3xl font-bold mt-4 mb-0">

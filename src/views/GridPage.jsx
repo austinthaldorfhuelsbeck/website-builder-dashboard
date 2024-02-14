@@ -16,10 +16,9 @@ const Grid = ({ loader }) => {
 				<>
 					<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
 						{formatLocation(location.pathname)}
-						<hr />
 					</h3>
 					<button
-						className="max-w-xs p-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-150 border-none rounded-lg shadow cursor-pointer"
+						className="max-w-xs p-2 my-3 bg-gray-200 hover:bg-gray-300 transition-colors duration-150 border-none rounded-lg shadow cursor-pointer"
 						onClick={onCreate}
 					>
 						<FontAwesomeIcon icon={faPlus} /> New

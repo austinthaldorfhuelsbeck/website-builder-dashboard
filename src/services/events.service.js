@@ -1,4 +1,4 @@
-import fetchResponse from "./fetchResponse";
+import fetchResponse from "./fetchResponse.service";
 
 // Config
 const apiUrl = process.env.REACT_APP_API_SERVER_URL;

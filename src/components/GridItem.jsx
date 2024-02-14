@@ -14,7 +14,9 @@ const GridItem = ({ resource }) => {
 			{resource.date && (
 				<p className="m-2">{formatDate(resource.date)}</p>
 			)}
-			<p className="text-sm m-2">{shortenText(resource.text)}</p>
+			<p className="text-sm m-2">
+				{resource.text && shortenText(resource.text)}
+			</p>
 			<div className="flex flex-row justify-start">
 				{category && (
 					<p className="bg-gray-400 text-sm m-1 p-2 rounded-md">
