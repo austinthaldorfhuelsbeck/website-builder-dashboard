@@ -11,7 +11,7 @@ const FormControls = ({ onCancel, onDelete }) => {
 		} border-none shadow-md rounded-md transition-colors duration-150`;
 
 	return (
-		<div className="flex flex-row justify-start w-full">
+		<div className="mt-5 flex flex-row justify-start w-full">
 			<button className={buttonClass()} onClick={onCancel}>
 				Cancel
 			</button>

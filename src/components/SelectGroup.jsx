@@ -1,4 +1,4 @@
-const ControlGroup = ({ label, id, options, onChange, value, $short }) => (
+const SelectGroup = ({ label, id, options, onChange, value, $short }) => (
 	<div
 		className={`border-b-2 flex flex-col m-4 mr-0 w-full ${
 			$short ? "max-w-xs" : ""
@@ -14,6 +14,9 @@ const ControlGroup = ({ label, id, options, onChange, value, $short }) => (
 			value={value}
 			onChange={onChange}
 		>
+			<option disabled selected>
+				---
+			</option>
 			{options?.map((option) => {
 				const _id =
 					option.post_category_id ||
@@ -29,4 +32,4 @@ const ControlGroup = ({ label, id, options, onChange, value, $short }) => (
 	</div>
 );
 
-export default ControlGroup;
+export default SelectGroup;

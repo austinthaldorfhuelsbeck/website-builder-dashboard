@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import ControlGroup from "../components/ControlGroup";
+
 import FormControls from "../components/FormControls";
 import InputGroup from "../components/InputGroup";
+import SelectGroup from "../components/SelectGroup";
 import TextAreaGroup from "../components/TextAreaGroup";
 import useForm from "../hooks/useForm";
+import useUpload from "../hooks/useUpload";
 import { listPostCategories } from "../services/postCategories.service";
 import { listPostTopics } from "../services/postTopics.service";
 import {
@@ -16,9 +17,14 @@ import {
 	updatePost,
 } from "../services/posts.service";
 
+import "react-quill/dist/quill.snow.css";
+import UploadGroup from "../components/UploadGroup";
+
 const PostPage = () => {
 	const {
 		formData,
+		setAudio,
+		setVideo,
 		onChange,
 		onQuillChange,
 		onSubmit,
@@ -32,9 +38,13 @@ const PostPage = () => {
 		destroy: deletePost,
 	});
 
+	const audioUpload = useUpload();
+	const videoUpload = useUpload();
+
 	const [categories, setCategories] = useState([]);
 	const [topics, setTopics] = useState([]);
 
+	// load options for control groups
 	useEffect(() => {
 		const loadCategories = async () => {
 			const response = await listPostCategories();
@@ -47,6 +57,12 @@ const PostPage = () => {
 		if (!categories.length) loadCategories();
 		if (!topics.length) loadTopics();
 	}, [categories, topics]);
+
+	// set form data when upload completes
+	useEffect(() => {
+		if (audioUpload.fileUrl) setAudio(audioUpload.fileUrl);
+		if (videoUpload.fileUrl) setVideo(videoUpload.fileUrl);
+	}, [audioUpload.fileUrl, videoUpload.fileUrl, setAudio, setVideo]);
 
 	return (
 		<form onSubmit={onSubmit} noValidate className="flex flex-col">
@@ -63,7 +79,7 @@ const PostPage = () => {
 				value={formData.label}
 			/>
 			<div className="flex flex-row justify-start w-full">
-				<ControlGroup
+				<SelectGroup
 					label="Category *"
 					id="post_category_id"
 					$short
@@ -72,7 +88,7 @@ const PostPage = () => {
 					value={formData.post_category_id}
 				/>
 
-				<ControlGroup
+				<SelectGroup
 					label="Topic *"
 					id="post_topic_id"
 					$short
@@ -90,24 +106,39 @@ const PostPage = () => {
 				label="Post URL"
 				id="url"
 				type="text"
-				placeholder="Paste the full URL of the external link that clicking the post image should link to"
+				placeholder="Paste the full URL of the external link that clicking the post image should link to (optional)"
 				onChange={onChange}
 				value={formData.url}
 			/>
-			<InputGroup
-				label="Audio URL"
-				id="audio"
-				type="text"
-				onChange={onChange}
-				value={formData.audio}
-			/>
-			<InputGroup
-				label="Video URL"
-				id="video"
-				type="text"
-				onChange={onChange}
-				value={formData.video}
-			/>
+
+			<div className="flex">
+				<UploadGroup
+					label="Upload an Audio File"
+					id="audio"
+					accept="audio/*"
+					type="file"
+					percent={audioUpload.percent}
+					onChange={audioUpload.onFileChange}
+					value={formData.audio}
+				/>
+
+				<UploadGroup
+					label="Upload a Video File"
+					id="audio"
+					accept="video/*"
+					type="file"
+					percent={videoUpload.percent}
+					onChange={videoUpload.onFileChange}
+					value={formData.video}
+				/>
+			</div>
+			{audioUpload.uploadError && (
+				<div className="bg-red-300">{audioUpload.uploadError}</div>
+			)}
+			{videoUpload.uploadError && (
+				<div className="bg-red-300">{videoUpload.uploadError}</div>
+			)}
+
 			<TextAreaGroup
 				label="Description"
 				id="text"
@@ -129,6 +160,7 @@ const PostPage = () => {
 			/>
 
 			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			{/* <pre>{JSON.stringify(formData, null, "\t")}</pre> */}
 			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);

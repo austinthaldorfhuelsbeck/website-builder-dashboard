@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputGroup from "../components/InputGroup";
-import { auth } from "../firebase";
+import { firebaseAuth } from "../firebase";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -19,7 +19,11 @@ const Login = () => {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		signInWithEmailAndPassword(auth, formData.email, formData.password)
+		signInWithEmailAndPassword(
+			firebaseAuth,
+			formData.email,
+			formData.password,
+		)
 			.then(() => navigate("/events"))
 			.catch((error) => setError(error.message));
 	};

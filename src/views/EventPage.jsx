@@ -4,8 +4,8 @@ import "react-quill/dist/quill.snow.css";
 import FormControls from "../components/FormControls";
 
 import ReactQuill from "react-quill";
-import ControlGroup from "../components/ControlGroup";
 import InputGroup from "../components/InputGroup";
+import SelectGroup from "../components/SelectGroup";
 import TextAreaGroup from "../components/TextAreaGroup";
 import useForm from "../hooks/useForm";
 import { listEventCategories } from "../services/eventCategories.service";
@@ -57,7 +57,7 @@ const EventPage = () => {
 				value={formData.label}
 			/>
 			<div className="flex flex-row justify-start gap-5 w-full">
-				<ControlGroup
+				<SelectGroup
 					label="Category *"
 					id="event_category_id"
 					$short

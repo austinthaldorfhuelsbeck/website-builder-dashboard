@@ -2,7 +2,7 @@ import { faSignOut, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { firebaseAuth } from "../firebase";
 import useSearchBar from "../hooks/useSearchBar";
 
 const NavBar = () => {
@@ -11,7 +11,7 @@ const NavBar = () => {
 	const navigate = useNavigate();
 
 	const onLogout = () => {
-		signOut(auth)
+		signOut(firebaseAuth)
 			.then(() => {
 				navigate("/");
 			})

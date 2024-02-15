@@ -9,19 +9,31 @@ export const useForm = ({ create, read, update, destroy }) => {
 	const [formData, setFormData] = useState({});
 	const [error, setError] = useState("");
 
+	const setAudio = (audio) => {
+		setFormData((prev) => {
+			return { ...prev, audio: audio };
+		});
+	};
+	const setVideo = (video) => {
+		setFormData((prev) => {
+			return { ...prev, video: video };
+		});
+	};
+
+	// Form change event handlers
 	const onChange = (e) => {
 		const { name, value } = e.target;
 		setFormData((prev) => {
 			return { ...prev, [name]: value };
 		});
 	};
-
 	const onQuillChange = (e) => {
 		setFormData((prev) => {
 			return { ...prev, content: e };
 		});
 	};
 
+	// Form actions
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const res = _id ? await update(formData, _id) : await create(formData);
@@ -31,12 +43,10 @@ export const useForm = ({ create, read, update, destroy }) => {
 			setError(res.error?.message);
 		}
 	};
-
 	const onCancel = (e) => {
 		e?.preventDefault();
 		navigate(-1);
 	};
-
 	const onDelete = async (e) => {
 		e.preventDefault();
 		if (
@@ -63,6 +73,8 @@ export const useForm = ({ create, read, update, destroy }) => {
 
 	return {
 		formData,
+		setAudio,
+		setVideo,
 		onChange,
 		onQuillChange,
 		onSubmit,
