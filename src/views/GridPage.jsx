@@ -1,7 +1,8 @@
-import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useSearchParams } from "react-router-dom";
 import GridItem from "../components/GridItem";
+import Spinner from "../components/Spinner";
 import useGrid from "../hooks/useGrid";
 import { formatLocation, formatQuery } from "../services/util.service";
 
@@ -10,6 +11,7 @@ const Grid = ({ loader }) => {
 	const location = useLocation();
 	const { resources, onCreate } = useGrid({ loader });
 
+	// show spinner while resources are loading
 	return resources ? (
 		<>
 			{location.pathname !== "/" && (
@@ -56,15 +58,7 @@ const Grid = ({ loader }) => {
 			</div>
 		</>
 	) : (
-		<FontAwesomeIcon
-			icon={faSpinner}
-			className="text-9xl m-auto animate-spin"
-			style={{
-				animationName: "spin",
-				animationDuration: "2.5s",
-				animationIterationCount: "infinite",
-			}}
-		/>
+		<Spinner />
 	);
 };
 

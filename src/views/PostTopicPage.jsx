@@ -23,7 +23,6 @@ const PostTopicPage = () => {
 		<form onSubmit={onSubmit} noValidate>
 			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
 				Edit Topic
-				<hr />
 			</h3>
 
 			<InputGroup

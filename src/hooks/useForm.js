@@ -9,17 +9,6 @@ export const useForm = ({ create, read, update, destroy }) => {
 	const [formData, setFormData] = useState({});
 	const [error, setError] = useState("");
 
-	const setAudio = (audio) => {
-		setFormData((prev) => {
-			return { ...prev, audio: audio };
-		});
-	};
-	const setVideo = (video) => {
-		setFormData((prev) => {
-			return { ...prev, video: video };
-		});
-	};
-
 	// Form change event handlers
 	const onChange = (e) => {
 		const { name, value } = e.target;
@@ -73,8 +62,7 @@ export const useForm = ({ create, read, update, destroy }) => {
 
 	return {
 		formData,
-		setAudio,
-		setVideo,
+		setFormData,
 		onChange,
 		onQuillChange,
 		onSubmit,

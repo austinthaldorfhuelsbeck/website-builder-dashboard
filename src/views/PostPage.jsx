@@ -23,8 +23,7 @@ import UploadGroup from "../components/UploadGroup";
 const PostPage = () => {
 	const {
 		formData,
-		setAudio,
-		setVideo,
+		setFormData,
 		onChange,
 		onQuillChange,
 		onSubmit,
@@ -60,16 +59,20 @@ const PostPage = () => {
 
 	// set form data when upload completes
 	useEffect(() => {
-		if (audioUpload.fileUrl) setAudio(audioUpload.fileUrl);
-		if (videoUpload.fileUrl) setVideo(videoUpload.fileUrl);
-	}, [audioUpload.fileUrl, videoUpload.fileUrl, setAudio, setVideo]);
+		if (audioUpload.fileUrl)
+			setFormData((prev) => {
+				return { ...prev, audio: audioUpload.fileUrl };
+			});
+
+		if (videoUpload.fileUrl)
+			setFormData((prev) => {
+				return { ...prev, video: videoUpload.fileUrl };
+			});
+	}, [audioUpload.fileUrl, videoUpload.fileUrl, setFormData]);
 
 	return (
-		<form onSubmit={onSubmit} noValidate>
-			<h3 className="text-3xl font-bold mt-4 mb-0">
-				Basic Info
-				<hr />
-			</h3>
+		<form onSubmit={onSubmit} noValidate className="w-full">
+			<h3 className="text-3xl font-bold mt-4 mb-0">Basic Post Info</h3>
 			<InputGroup
 				label="Post Title *"
 				id="label"
@@ -98,10 +101,7 @@ const PostPage = () => {
 				/>
 			</div>
 
-			<h3 className="text-3xl font-bold mt-4 mb-0">
-				Details
-				<hr />
-			</h3>
+			<h3 className="text-3xl font-bold mt-4 mb-0">Details</h3>
 			<InputGroup
 				label="Post URL"
 				id="url"
@@ -124,7 +124,7 @@ const PostPage = () => {
 
 				<UploadGroup
 					label="Upload a Video File"
-					id="audio"
+					id="video"
 					accept="video/*"
 					type="file"
 					percent={videoUpload.percent}
@@ -148,10 +148,7 @@ const PostPage = () => {
 				value={formData.text}
 			/>
 
-			<h3 className="text-3xl font-bold mt-4 mb-0">
-				Content
-				<hr />
-			</h3>
+			<h3 className="text-3xl font-bold mt-4 mb-0">Content</h3>
 			<ReactQuill
 				className="mt-4 mb-12"
 				theme="snow"
@@ -160,7 +157,6 @@ const PostPage = () => {
 			/>
 
 			<FormControls onCancel={onCancel} onDelete={onDelete} />
-			{/* <pre>{JSON.stringify(formData, null, "\t")}</pre> */}
 			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);

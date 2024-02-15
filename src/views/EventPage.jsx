@@ -44,11 +44,7 @@ const EventPage = () => {
 
 	return (
 		<form onSubmit={onSubmit} noValidate className="flex flex-col">
-			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
-				Event
-				<hr />
-			</h3>
-
+			<h3 className="text-3xl font-bold mt-4 mb-0">Basic Event Info</h3>
 			<InputGroup
 				label="Event Name *"
 				id="label"
@@ -56,6 +52,8 @@ const EventPage = () => {
 				onChange={onChange}
 				value={formData.label}
 			/>
+
+			<h3 className="text-3xl font-bold mt-4 mb-0">Details</h3>
 			<div className="flex flex-row justify-start gap-5 w-full">
 				<SelectGroup
 					label="Category *"
@@ -80,13 +78,8 @@ const EventPage = () => {
 				onChange={onChange}
 				value={formData.text}
 			/>
-			<h3 className="text-3xl font-bold mt-4 mb-0">
-				Content
-				<hr />
-			</h3>
 
-			<pre>{JSON.stringify(formData, null, "\t")}</pre>
-
+			<h3 className="text-3xl font-bold mt-4 mb-5">Content</h3>
 			<ReactQuill
 				theme="snow"
 				onChange={onQuillChange}

@@ -7,7 +7,7 @@ const PageLayout = () => (
 		<NavBar />
 		<div className="flex-initial flex flex-row justify-start h-full">
 			<SideBar />
-			<div className="flex-auto flex flex-col basis-auto shrink-0 m-4 mr-12">
+			<div className="flex-auto flex flex-col basis-auto m-4 mr-12">
 				<Outlet />
 			</div>
 		</div>

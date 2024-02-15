@@ -1,6 +1,9 @@
 const UploadGroup = ({ label, id, accept, percent, onChange, value }) => (
 	<div className="flex-1 text-gray-400 m-5">
-		<label className="w-72 flex flex-col items-center px-4 py-6 rounded-lg shadow-md tracking-wide uppercase border border-gray-600 cursor-pointer hover:bg-gray-400 hover:text-white">
+		<label
+			className="w-72 flex flex-col items-center px-4 py-6 rounded-lg shadow-md tracking-wide uppercase border border-gray-600 cursor-pointer hover:bg-gray-400 hover:text-white"
+			htmlFor={id}
+		>
 			<svg
 				className="w-8 h-8"
 				fill="currentColor"
@@ -15,15 +18,24 @@ const UploadGroup = ({ label, id, accept, percent, onChange, value }) => (
 					: label}
 			</span>
 			<input
+				id={id}
 				type="file"
 				className="hidden"
 				accept={accept}
 				onChange={onChange}
 			/>
 		</label>
-		<div className="text-sm cursor-default max-w-96">
-			{value?.split("/").pop()}
-		</div>
+		{value && (
+			<div className="text-sm cursor-default max-w-96">
+				{accept === "audio/*" && (
+					<audio controls>
+						<source src={value} />
+					</audio>
+				)}
+				{accept === "video/*" && <video controls src={value} />}
+				{value?.split("/").pop()}
+			</div>
+		)}
 	</div>
 );
 

@@ -54,6 +54,11 @@ const Login = () => {
 							onChange={onChange}
 							value={formData.email}
 						/>
+						{formData.email?.length === 0 && (
+							<p className="text-red-300">
+								Username is required.
+							</p>
+						)}
 						<InputGroup
 							label="Password"
 							id="password"
@@ -61,6 +66,11 @@ const Login = () => {
 							onChange={onChange}
 							value={formData.password}
 						/>
+						{formData.password?.length === 0 && (
+							<p className="text-red-300">
+								Password is required.
+							</p>
+						)}
 						<div>
 							<button
 								type="submit"

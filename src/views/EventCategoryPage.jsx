@@ -23,7 +23,6 @@ const EventCategoryPage = () => {
 		<form onSubmit={onSubmit} noValidate className="flex flex-col">
 			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
 				Event Category
-				<hr />
 			</h3>
 
 			<InputGroup
