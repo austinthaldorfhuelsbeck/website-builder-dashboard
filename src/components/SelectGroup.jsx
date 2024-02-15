@@ -1,7 +1,7 @@
-const SelectGroup = ({ label, id, options, onChange, value, $short }) => (
+const SelectGroup = ({ label, id, options, onChange, value, short }) => (
 	<div
 		className={`border-b-2 flex flex-col m-4 mr-0 w-full ${
-			$short ? "max-w-xs" : ""
+			short ? "max-w-xs" : ""
 		}`}
 	>
 		<label htmlFor={id} className="text-sm font-semibold text-gray-500">

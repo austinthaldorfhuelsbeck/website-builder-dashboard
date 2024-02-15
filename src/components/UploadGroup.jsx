@@ -21,7 +21,9 @@ const UploadGroup = ({ label, id, accept, percent, onChange, value }) => (
 				onChange={onChange}
 			/>
 		</label>
-		<div className="text-sm cursor-default">{value?.split("/").pop()}</div>
+		<div className="text-sm cursor-default max-w-96">
+			{value?.split("/").pop()}
+		</div>
 	</div>
 );
 

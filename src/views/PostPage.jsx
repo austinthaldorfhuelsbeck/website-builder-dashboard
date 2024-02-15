@@ -65,8 +65,8 @@ const PostPage = () => {
 	}, [audioUpload.fileUrl, videoUpload.fileUrl, setAudio, setVideo]);
 
 	return (
-		<form onSubmit={onSubmit} noValidate className="flex flex-col">
-			<h3 className="text-3xl font-bold m-auto mt-4 mb-0 ml-4">
+		<form onSubmit={onSubmit} noValidate>
+			<h3 className="text-3xl font-bold mt-4 mb-0">
 				Basic Info
 				<hr />
 			</h3>

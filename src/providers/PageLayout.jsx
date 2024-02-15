@@ -5,9 +5,9 @@ import SideBar from "../components/SideBar";
 const PageLayout = () => (
 	<div className="flex flex-col w-full h-full">
 		<NavBar />
-		<div className="flex flex-row justify-start h-full">
+		<div className="flex-initial flex flex-row justify-start h-full">
 			<SideBar />
-			<div className="flex flex-col basis-auto shrink-0 m-4 w-4/5">
+			<div className="flex-auto flex flex-col basis-auto shrink-0 m-4 mr-12">
 				<Outlet />
 			</div>
 		</div>

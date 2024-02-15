@@ -60,7 +60,7 @@ const EventPage = () => {
 				<SelectGroup
 					label="Category *"
 					id="event_category_id"
-					$short
+					short
 					options={categories}
 					onChange={onChange}
 					value={formData.event_category_id}

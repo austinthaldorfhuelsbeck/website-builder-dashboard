@@ -78,7 +78,7 @@ const SidebarSection = ({ linkGroup }) => {
 };
 
 const SideBar = () => (
-	<nav className="top-0 min-w-[230px] bg-gray-200 py-2 border-gray-600 shadow">
+	<nav className="flex-initial top-0 min-w-[230px] bg-gray-200 py-2 border-gray-600 shadow">
 		{dashboardNavLinks.map((linkGroup) => (
 			<SidebarSection key={linkGroup.id} linkGroup={linkGroup} />
 		))}
