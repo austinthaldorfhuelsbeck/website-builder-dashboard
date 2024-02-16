@@ -1,7 +1,7 @@
-import { faSignOut, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faSignOut, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../firebase";
 import useSearchBar from "../hooks/useSearchBar";
 
@@ -20,6 +20,10 @@ const NavBar = () => {
 			});
 	};
 
+	const buttonClass =
+		"mx-1 p-4 rounded-md bg-gray-300 hover:bg-gray-400 transition-colors duration-150 focus:outline-none";
+	const externalUrl = "https://austinthaldorfhuelsbeck.github.io/cl-html/";
+
 	return (
 		<div className="sticky top-0 bg-white z-10 flex flex-row justify-start p-4 shadow">
 			<input
@@ -31,17 +35,17 @@ const NavBar = () => {
 				value={formData.query}
 			/>
 			{formData.query && (
-				<button
-					className="mx-1 px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 transition-colors duration-150 focus:outline-none"
-					onClick={onClear}
-				>
+				<button className={buttonClass} onClick={onClear}>
 					<FontAwesomeIcon icon={faXmark} />
 				</button>
 			)}
-			<button
-				className="mx-1 px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 transition-colors duration-150 focus:outline-none"
-				onClick={onLogout}
-			>
+
+			<Link to={externalUrl} target="_blank">
+				<button className={buttonClass}>
+					<FontAwesomeIcon icon={faEye} />
+				</button>
+			</Link>
+			<button className={buttonClass} onClick={onLogout}>
 				<FontAwesomeIcon icon={faSignOut} />
 			</button>
 		</div>

@@ -1,5 +1,5 @@
 // Components
-const FormControls = ({ onCancel, onDelete }) => {
+const FormControls = ({ handleCancel, handleDelete }) => {
 	// Tailwind utility function to apply conditional classes and hover effects
 	const buttonClass = ($warning) =>
 		`font-secondary m-2 ${
@@ -12,13 +12,13 @@ const FormControls = ({ onCancel, onDelete }) => {
 
 	return (
 		<div className="mt-5 flex flex-row justify-start w-full">
-			<button className={buttonClass()} onClick={onCancel}>
+			<button className={buttonClass()} onClick={handleCancel}>
 				Cancel
 			</button>
 			<button className={buttonClass()} type="submit">
 				Submit
 			</button>
-			<button className={buttonClass(true)} onClick={onDelete}>
+			<button className={buttonClass(true)} onClick={handleDelete}>
 				Delete
 			</button>
 		</div>

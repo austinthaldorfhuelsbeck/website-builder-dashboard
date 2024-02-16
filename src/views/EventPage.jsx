@@ -22,8 +22,8 @@ const EventPage = () => {
 		onChange,
 		onQuillChange,
 		onSubmit,
-		onCancel,
-		onDelete,
+		handleCancel,
+		handleDelete,
 		error,
 	} = useForm({
 		create: createEvent,
@@ -36,8 +36,12 @@ const EventPage = () => {
 
 	useEffect(() => {
 		const loadCategories = async () => {
-			const res = await listEventCategories();
-			if (res.data) setCategories(res.data);
+			try {
+				const res = await listEventCategories();
+				if (res.data) setCategories(res.data);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 		if (!categories.length) loadCategories();
 	}, [categories.length]);
@@ -87,7 +91,10 @@ const EventPage = () => {
 				className="mb-12"
 			/>
 
-			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			<FormControls
+				handleCancel={handleCancel}
+				handleDelete={handleDelete}
+			/>
 			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);

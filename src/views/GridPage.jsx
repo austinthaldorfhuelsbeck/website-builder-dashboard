@@ -1,5 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import GridItem from "../components/GridItem";
 import Spinner from "../components/Spinner";
@@ -11,8 +12,11 @@ const Grid = ({ loader }) => {
 	const location = useLocation();
 	const { resources, onCreate } = useGrid({ loader });
 
+	useEffect(() => console.log(resources), [resources]);
+
 	// show spinner while resources are loading
-	return resources ? (
+	if (!resources) return <Spinner />;
+	return (
 		<>
 			{location.pathname !== "/" && (
 				<>
@@ -28,37 +32,41 @@ const Grid = ({ loader }) => {
 				</>
 			)}
 
-			<div
-				className="grid grid-cols-auto-fill gap-4 align-stretch p-4"
-				style={{
-					gridTemplateColumns:
-						"repeat(auto-fill, minmax(250px, 1fr))",
-				}}
-			>
-				{resources
-					.filter(
-						(resource) =>
-							resource &&
-							(resource.label
-								.toLowerCase()
-								.includes(formatQuery(searchParams)) ||
-								resource.text
+			{resources.length ? (
+				<div
+					className="grid grid-cols-auto-fill gap-4 align-stretch p-4"
+					style={{
+						gridTemplateColumns:
+							"repeat(auto-fill, minmax(250px, 1fr))",
+					}}
+				>
+					{resources
+						.filter(
+							(resource) =>
+								resource &&
+								(resource.label
 									.toLowerCase()
-									.includes(formatQuery(searchParams))),
-					)
-					.map(
-						(resource) =>
-							resource && (
-								<GridItem
-									key={resource.label + resource.updated_at}
-									resource={resource}
-								/>
-							),
-					)}
-			</div>
+									.includes(formatQuery(searchParams)) ||
+									resource.text
+										.toLowerCase()
+										.includes(formatQuery(searchParams))),
+						)
+						.map(
+							(resource) =>
+								resource && (
+									<GridItem
+										key={
+											resource.label + resource.updated_at
+										}
+										resource={resource}
+									/>
+								),
+						)}
+				</div>
+			) : (
+				<></>
+			)}
 		</>
-	) : (
-		<Spinner />
 	);
 };
 

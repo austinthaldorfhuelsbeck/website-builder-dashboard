@@ -4,11 +4,11 @@ import fetchResponse from "./fetchResponse.service";
 const apiUrl = process.env.REACT_APP_BASE_API_URL;
 
 // Functions
-export const createPostCategory = async (postCategory) => {
+export const createPostCategory = async (data) => {
 	const config = {
 		url: `${apiUrl}/post_categories`,
 		method: "POST",
-		data: postCategory,
+		data,
 	};
 	return await fetchResponse(config);
 };

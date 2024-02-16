@@ -25,37 +25,50 @@ export const useForm = ({ create, read, update, destroy }) => {
 	// Form actions
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		const res = _id ? await update(formData, _id) : await create(formData);
-		if (res.data) {
-			onCancel();
-		} else if (res.error) {
-			setError(res.error?.message);
+		try {
+			const res = _id
+				? await update(formData, _id)
+				: await create(formData);
+			if (res.data) navigate(-1);
+			if (res.error) setError(res.error.message);
+		} catch (error) {
+			console.error(error);
+			// setError(error.message.toString());
 		}
 	};
-	const onCancel = (e) => {
+	const handleCancel = (e) => {
 		e?.preventDefault();
 		navigate(-1);
 	};
-	const onDelete = async (e) => {
+	const handleDelete = async (e) => {
 		e.preventDefault();
 		if (
 			window.confirm(
 				"Are you sure you wish to delete? You will not be able to recover this resource.",
 			)
 		) {
-			const res = await destroy(_id);
-			if (res) onCancel();
+			try {
+				const res = await destroy(_id);
+				if (res.data) console.log(res.data);
+			} catch (error) {
+				console.error(error);
+				// setError(error.message.toString());
+			}
 		}
 	};
 
 	useEffect(() => {
 		const loadEvent = async (id) => {
-			const res = await read(id);
-			if (res.data)
-				setFormData({
-					...res.data,
-					date: res.data.date?.slice(0, 10),
-				});
+			try {
+				const res = await read(id);
+				if (res.data)
+					setFormData({
+						...res.data,
+						date: res.data.date?.slice(0, 10),
+					});
+			} catch (error) {
+				setError(error);
+			}
 		};
 		if (_id) loadEvent(_id);
 	}, [_id, read]);
@@ -66,8 +79,8 @@ export const useForm = ({ create, read, update, destroy }) => {
 		onChange,
 		onQuillChange,
 		onSubmit,
-		onCancel,
-		onDelete,
+		handleCancel,
+		handleDelete,
 		error,
 	};
 };

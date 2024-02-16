@@ -10,14 +10,13 @@ import {
 
 // Components
 const PostTopicPage = () => {
-	const { formData, onChange, onSubmit, onCancel, onDelete, error } = useForm(
-		{
+	const { formData, onChange, onSubmit, handleCancel, handleDelete, error } =
+		useForm({
 			create: createPostTopic,
 			read: readPostTopic,
 			update: updatePostTopic,
 			destroy: deletePostTopic,
-		},
-	);
+		});
 
 	return (
 		<form onSubmit={onSubmit} noValidate>
@@ -47,7 +46,10 @@ const PostTopicPage = () => {
 				value={formData.text}
 			/>
 
-			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			<FormControls
+				handleCancel={handleCancel}
+				handleDelete={handleDelete}
+			/>
 			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);

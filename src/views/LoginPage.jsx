@@ -36,7 +36,7 @@ const Login = () => {
 						Admin Dashboard
 					</div>
 					<p className="mt-6 font-normal text-center text-gray-300 md:mt-0">
-						Sign in to manage your posts and events.
+						Sign in with test@test.co and password 123456
 					</p>
 				</div>
 				<div className="p-5 bg-white md:flex-1">

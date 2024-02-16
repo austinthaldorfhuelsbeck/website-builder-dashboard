@@ -27,8 +27,8 @@ const PostPage = () => {
 		onChange,
 		onQuillChange,
 		onSubmit,
-		onCancel,
-		onDelete,
+		handleCancel,
+		handleDelete,
 		error,
 	} = useForm({
 		create: createPost,
@@ -37,6 +37,7 @@ const PostPage = () => {
 		destroy: deletePost,
 	});
 
+	const imageUpload = useUpload();
 	const audioUpload = useUpload();
 	const videoUpload = useUpload();
 
@@ -46,12 +47,20 @@ const PostPage = () => {
 	// load options for control groups
 	useEffect(() => {
 		const loadCategories = async () => {
-			const response = await listPostCategories();
-			if (response.data) setCategories(response.data);
+			try {
+				const response = await listPostCategories();
+				if (response.data) setCategories(response.data);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 		const loadTopics = async () => {
-			const response = await listPostTopics();
-			if (response.data) setTopics(response.data);
+			try {
+				const response = await listPostTopics();
+				if (response.data) setTopics(response.data);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 		if (!categories.length) loadCategories();
 		if (!topics.length) loadTopics();
@@ -59,16 +68,24 @@ const PostPage = () => {
 
 	// set form data when upload completes
 	useEffect(() => {
+		if (imageUpload.fileUrl)
+			setFormData((prev) => {
+				return { ...prev, img: imageUpload.fileUrl };
+			});
 		if (audioUpload.fileUrl)
 			setFormData((prev) => {
 				return { ...prev, audio: audioUpload.fileUrl };
 			});
-
 		if (videoUpload.fileUrl)
 			setFormData((prev) => {
 				return { ...prev, video: videoUpload.fileUrl };
 			});
-	}, [audioUpload.fileUrl, videoUpload.fileUrl, setFormData]);
+	}, [
+		audioUpload.fileUrl,
+		videoUpload.fileUrl,
+		setFormData,
+		imageUpload.fileUrl,
+	]);
 
 	return (
 		<form onSubmit={onSubmit} noValidate className="w-full">
@@ -111,6 +128,22 @@ const PostPage = () => {
 				value={formData.url}
 			/>
 
+			<label className="ml-4 text-sm font-semibold text-gray-500">
+				Background Image
+			</label>
+			<UploadGroup
+				label="Upload an Image File"
+				id="img"
+				accept="image/*"
+				type="file"
+				percent={imageUpload.percent}
+				onChange={imageUpload.onFileChange}
+				value={formData.img}
+			/>
+
+			<label className="ml-4 text-sm font-semibold text-gray-500">
+				Optional Files
+			</label>
 			<div className="flex">
 				<UploadGroup
 					label="Upload an Audio File"
@@ -156,7 +189,10 @@ const PostPage = () => {
 				value={formData.content}
 			/>
 
-			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			<FormControls
+				handleCancel={handleCancel}
+				handleDelete={handleDelete}
+			/>
 			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);

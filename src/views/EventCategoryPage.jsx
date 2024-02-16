@@ -10,14 +10,13 @@ import {
 
 // Components
 const EventCategoryPage = () => {
-	const { formData, onChange, onSubmit, onCancel, onDelete, error } = useForm(
-		{
+	const { formData, onChange, onSubmit, handleCancel, handleDelete, error } =
+		useForm({
 			create: createEventCategory,
 			read: readEventCategory,
 			update: updateEventCategory,
 			destroy: deleteEventCategory,
-		},
-	);
+		});
 
 	return (
 		<form onSubmit={onSubmit} noValidate className="flex flex-col">
@@ -41,7 +40,10 @@ const EventCategoryPage = () => {
 				onChange={onChange}
 				value={formData.text}
 			/>
-			<FormControls onCancel={onCancel} onDelete={onDelete} />
+			<FormControls
+				handleCancel={handleCancel}
+				handleDelete={handleDelete}
+			/>
 			{error && <div className="bg-red-300">{error}</div>}
 		</form>
 	);

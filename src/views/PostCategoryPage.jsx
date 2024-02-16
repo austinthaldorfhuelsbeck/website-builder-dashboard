@@ -10,14 +10,13 @@ import {
 
 // Components
 const PostCategoryPage = () => {
-	const { formData, onChange, onSubmit, onCancel, onDelete, error } = useForm(
-		{
+	const { formData, onChange, onSubmit, handleCancel, handleDelete, error } =
+		useForm({
 			create: createPostCategory,
 			read: readPostCategory,
 			update: updatePostCategory,
 			destroy: deletePostCategory,
-		},
-	);
+		});
 
 	return (
 		<form onSubmit={onSubmit} noValidate className="flex flex-col">
@@ -42,8 +41,15 @@ const PostCategoryPage = () => {
 				value={formData.text}
 			/>
 
-			<FormControls onCancel={onCancel} onDelete={onDelete} />
-			{error && <div className="bg-red-300">{error}</div>}
+			<FormControls
+				handleCancel={handleCancel}
+				handleDelete={handleDelete}
+			/>
+			{error && (
+				<div className="m-3 mr-auto px-3 py-1 bg-red-300 rounded-md">
+					{error}
+				</div>
+			)}
 		</form>
 	);
 };

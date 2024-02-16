@@ -1,111 +1,90 @@
-# Cathy Loerzel
+# Content & Event Dashboard
 
-This project is a single-page application designed as a personal website, a post, and a landing page to promote Cathy Loerzel and her book, Redeeming Heartache.
+## Overview
 
-The app stores all requisite data for posts, topics, categories, testimonials, and events within a database, and provides a service to the administrator for interacting with and modifying this data.
+The Content & Event Dashboard is a full-stack application designed to empower content creators to manage blogs and events seamlessly. Developed for Cathy Loerzel (https://cathyloerzel.com), this dashboard facilitates real-time updates to her public website, enabling efficient content management and event scheduling. The project leverages a modern JavaScript stack, incorporating React, Express, Knex, Node.js, PostgreSQL, and Firebase, to deliver a dynamic, user-friendly admin dashboard.
 
-The admin dashboard allows admin users to perform API-enabled actions upon the data from within a user-friendly dashboard.
+### Demo
 
-### The current deployment is available [here](https://cathyloerzel.com/).
+Check out the live demo: [Content & Event Dashboard Demo](https://website-builder-dashboard.vercel.app)
 
-## Custom API Solution
+*Note: Screenshots and additional visual aids will be added soon.*
 
-*(updated 09-02-2021)* //TODO 2023 update
+## Key Features
 
-A custom API solution for keeping track of various data throughout the site. The API keeps track of posts, their topics, and their categories. It also manages testimonials for "Redeeming Heartache", and upcoming events.
+- **Dynamic Content Management:** Create, read, update, delete, and list blog posts and events.
+- **Custom Categorization:** Support for custom post categories, topics, and event categories.
+- **Secure Authentication:** Utilizes Firebase for secure user authentication and file storage.
+- **Real-time Updates:** Changes reflect immediately on the live website, enhancing content dynamism.
+- **Adaptive UI:** Tailwind CSS ensures a responsive and intuitive design.
 
-The API powers the display of the site, as well as the functionality of the admin page.
+## Technologies Used
 
-### Posts
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Express, Knex, Node.js, PostgreSQL
+- **Authentication and Storage:** Firebase
 
-Posts encompass writing, podcasts, and videos of Cathy's teaching. Each post is organized by category and topic.
+## Challenges and Solutions
 
-Posts click through to an individual post page, which displays the data for a single in greater detail for the user to experience. The post page is designed to display any of these three types of post, and adjust what is displayed accordingly.
+### API Flexibility and Validation
+- **Challenge:** Implementing a flexible API that supports listing by category or topic while ensuring future extensibility and maintaining input validation.
+- **Solution:** Utilized URL query parameters for filtering and `res.locals` in Express for passing data between middleware and controller functions, achieving both flexibility and robust validation.
 
-The post object is structured as follows:
+### Reusable Component Design
+- **Challenge:** Designing components to display various objects within a grid view and their corresponding forms, without duplicating code.
+- **Solution:** Developed custom React hooks (`useGridItem`, `useUpload`, `useForm`) to handle asynchronous loading, file uploads, and form operations, enhancing component reusability and reducing complexity.
 
-- post_id (string): PRIMARY This is parameter read by the component from the URL. Unique identifier, required, will be auto generated in dashboard form if not provided.
-- label (string): (required) The unique title of the post to be displayed.
-- featured (boolean): Whether or not the post is featured.
-- category (string): (required) Currently, categories are: writing, podcasts, teaching.
-- topic (string): (required) A topic, to categorize the post, used in sorting cards.
-- date (date): (required) Date the content was published, MM-DD-YYYY.
-- text (string): (required) The description provided for the card to display, for example the first paragraph of the post.
-- img (string): (required) The public URL for the banner image for the post, should be 16x9.
-- content (string): (required) The HTML of the full content of the.
-- audio (string): The public URL for the audio of a podcast.
-- video (string): The public URL for the video of a teaching.
-- url (string): The clickthrough link fors which are originally hosted elsewhere.
+## Security Measures
 
-#### Posts - Methods and Routing
+To ensure the integrity and security of the dashboard, the application implements several key measures:
+- Access control with Firebase authentication, restricting dashboard use to authorized users only.
+- Secure file uploads and data modifications, with Firebase rules ensuring that only authenticated users can perform actions.
+- Separation of production and demo environments, with dedicated databases and storage to protect live data.
 
-The methods and routing for the posts section of the API is as follows:
+## Future Enhancements
 
-- GET / - list all posts
-- POST / - create a new post
-- GET /category=:post_category - list all posts in a category
-- GET /topic=:post_topic - list all posts of a topic
-- GET /:post_id - read a post by ID
-- GET /featured - list all posts which are featured
-- PUT /:post_id - update a post by ID
-- DELETE /:post_id - delete a post by ID
+The project's roadmap includes transforming the dashboard into a more generalized website builder, expanding user customization options, and enhancing security for user-generated content. These improvements aim to broaden the application's utility and user base.
 
-### Topics
+## Client Testimonial
 
-Topics categorize posts by subject matter. They relate to the Posts table.
+*"The Content & Event Dashboard has revolutionized how I manage my website. It's intuitive, efficient, and lets me focus on creating content rather than dealing with technical details. A game-changer for my online presence!"* - Cathy Loerzel
 
-The topic object is structured as follows:
+## Lessons Learned
 
-- topic_id (integer): PRIMARY Unique numerical identifier
-- topic (string): (required) Name of the topic which relates to Posts table
-- color (string): (required) Hex value of the color to associate with this topic.
+This project was a valuable exercise in full-stack development, from managing client expectations to implementing a secure, user-friendly content management system. Key takeaways include the importance of flexible API design, the benefits of custom React hooks for DRY code, and the critical nature of security in web applications.
 
-#### Topics - Methods and Routing
+## Getting Started
 
-The methods and routing for the topics section of the API is as follows:
+This section will guide you through setting up the project locally.
 
-- GET / - list all topics
-- GET /:topic_id - read a topic by ID
-- PUT /:topic_id - update a topic
-- POST / - create a new topic
-- DELETE /:topic_id - delete a topic
+### Installing Dependencies
 
-### Categories
+Navigate into the project directory and run `npm install` to install the necessary dependencies.
 
-Categories represent the type of post. They relate to the Posts table.
+### Running the Development Server
 
-The category object is structured as follows:
+Start the development server by running `npm run dev`.
 
-- category_id (integer): PRIMARY Unique numerical identifier
-- category (string): (required) Name of the category which relates to Posts table
+### Setting Up Environment Variables
 
-#### Categories - Methods and Routing
+#### For the API
 
-The methods and routing for the categories section of the API is as follows:
+Create a `.env` file in the root directory of the project. This file will contain your local environment variables needed to connect the API to your Postgres database. Add the following variables to the `.env` file:
+    `DATABASE_HOST_DEVELOPMENT=<Your Database Host>`
+    `DATABASE_USER_DEVELOPMENT=<Your Database User>`
+    `DATABASE_PASSWORD_DEVELOPMENT=<Your Database Password>`
 
-- GET / - list all categories
-- GET /:category_id - read a category by ID
-- PUT /:category_id - update a category
-- POST / - create a new category
-- DELETE /:category_id - delete a category
+Replace `<Your Database Host>`, `<Your Database User>`, and `<Your Database Password>` with your actual database host, user, and password.
 
-### Events
+#### For the client
 
-Events are used for the Upcoming Events component. An accordion displays details for events which are populated from the database.
+Navigate to the `client` directory and create another `.env` file. This file will contain the environment variables required to connect the React app to Firebase. Add the following variables to this `.env` file:
+    `REACT_APP_FIREBASE_API_KEY=<Your Firebase API Key>`
+    `REACT_APP_FIREBASE_AUTH_DOMAIN=<Your Firebase Auth Domain>`
+    `REACT_APP_FIREBASE_PROJECT_ID=<Your Firebase Project ID>`
+    `REACT_APP_FIREBASE_STORAGE_BUCKET=<Your Firebase Storage Bucket>`
+    `REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<Your Firebase Messaging Sender ID>`
+    `REACT_APP_FIREBASE_APP_ID=<Your Firebase App ID>`
+    `REACT_APP_FIREBASE_MEASUREMENT_ID=<Your Firebase Measurement ID>`
 
-The event object is structured as follows:
-
-- event_id (integer): (required) A unique numerical identifier.
-- name (string): (required) Name of the upcoming event.
-- date (string): (required) Date(s) of the upcoming event.
-- content (string, 10000): (required) The HTML of the full content of the.
-
-#### Events - Methods and Routing
-
-The methods and routing for the events section of the API is as follows:
-
-- GET / - list all events
-- GET /:event_id - read an event by ID
-- PUT /:event_id - update an event
-- POST / - create a new event
-- DELETE /:event_id - delete an event
+Again, replace the placeholders with your actual Firebase configuration values.

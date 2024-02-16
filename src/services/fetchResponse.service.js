@@ -1,4 +1,4 @@
-import axios, { isAxiosError } from "axios";
+import axios from "axios";
 
 const callExternalApi = async (options) => {
 	try {
@@ -6,24 +6,23 @@ const callExternalApi = async (options) => {
 		const { data } = response;
 
 		return {
-			data,
+			data: data.data || data,
 			error: null,
 		};
 	} catch (error) {
-		if (isAxiosError(error)) {
+		if (error.isAxiosError) {
 			const { response } = error;
 
-			let message = "http request failed";
-
-			if (response && response.statusText) {
-				message = response.statusText;
-			}
+			let message = "HTTP request failed.";
 
 			if (error.message) {
 				message = error.message;
 			}
 
-			if (response?.data?.message) message = response.data.message;
+			if (response?.status) {
+				const { data } = response;
+				message = `${data?.error?.message} (error code ${response.status})`;
+			}
 
 			return {
 				data: null,
@@ -35,9 +34,7 @@ const callExternalApi = async (options) => {
 
 		return {
 			data: null,
-			error: {
-				message: error.message,
-			},
+			error,
 		};
 	}
 };
@@ -53,10 +50,7 @@ const fetchResponse = async (config) => {
 	const { data, error } = await callExternalApi({
 		config: configWithHeaders,
 	});
-	return {
-		data: data.data,
-		error: data.error || error,
-	};
+	return { data, error };
 };
 
 export default fetchResponse;

@@ -13,9 +13,12 @@ const useGrid = ({ loader }) => {
 
 	useEffect(() => {
 		const loadResources = async () => {
-			const response = await loader();
-			if (response.data) setResources(response.data);
-			// TODO: handle error
+			try {
+				const response = await loader();
+				if (response.data) setResources(response.data);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 		loadResources();
 	}, [loader]);
